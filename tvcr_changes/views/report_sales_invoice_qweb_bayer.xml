@@ -168,6 +168,180 @@
             </t>
         </template>
 
+        <template id="report_invoice_document_fecr_procter">
+            <t t-call="cr_electronic_invoice_qweb_fe.external_layout_fecr_invoice">
+                <div class="page" style="height:160mm;width:100%">
+                    <t t-set="lines" t-value="o.group_lines_by_product()"/>
+                    <t t-set="lines_count" t-value="len(lines)"/>
+                    <t t-set="page_height" t-value="160"/> <!-- Altura máxima en mm para el contenido -->
+                    <t t-set="line_height" t-value="11"/>  <!-- Altura estimada de cada línea en mm -->
+                    <!--t t-set="lines_per_page" t-value="int(page_height / line_height)"/-->
+                    <t t-set="lines_per_page" t-value="15"/>
+
+                    <div class="content">
+                        <t t-foreach="range(0, lines_count, lines_per_page)" t-as="page_index">
+                            <t t-if="page_index > 0"><br/></t>
+                            <div class="cuadro-detalle" style="height:160mm;">
+                                <div class="encabezado">Detalle</div>
+                                <div class="contenido">
+                                    <table class="ttable">
+                                        <thead>
+                                            <tr>
+                                                <th class="tthl">Descripción</th>
+                                                <th class="tthl">Cantidad</th>
+                                                <th class="tthl">Precio Unitario</th>
+                                                <th width="15%" class="tth">Monto Bruto</th>
+                                                <th width="15%" class="tth">Descuento</th>
+                                                <th width="15%" class="tth">Monto Neto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="lines[page_index:page_index + lines_per_page]" t-as="l">
+                                                <tr class="ttd">
+                                                    <td class="ttdl">
+                                                        <span t-esc="l['descripcion']"/>
+                                                    </td>
+                                                    <td class="ttdl">
+                                                        <span t-esc="l['cantidad']"/>
+                                                    </td>
+                                                    <td class="ttd">
+                                                        <span t-esc="l['precio_unitario']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                                    </td>
+                                                    <td class="ttd">
+                                                        <span t-esc="l['bruto']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                                    </td>
+                                                    <td class="ttd" groups="product.group_discount_per_so_line">
+                                                        <span t-esc="l['descuento']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                                    </td>
+                                                    <td class="ttd">
+                                                        <span t-esc="l['neto']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                                    </td>
+                                                    <td class="ttd">
+                                                        <span >GRA</span>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                        <tfoot class="ttfoot">
+                                            <tr>
+                                                <td colspan="5"></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                            <t t-if="page_index + lines_per_page >= lines_count">
+                                <table class="totals" style="width:100%">
+                                    <tr>
+                                        <td width="60%">
+                                            <t t-if="o.narration" class="text-center" style="height:25px;">
+                                                <strong>Observaciones:</strong><br/>
+                                                <span class="text-center">
+                                                    <br/><span t-field="o.narration"/>
+                                                </span>
+                                            </t>
+                                        </td>
+                                        <td class="text-right">
+                                            <table class="table" style="page-break-inside: avoid;">
+                                                <!--Tax totals-->
+                                                <t t-set="tax_totals" t-value="o.tax_totals"/>
+                                                <t t-call="cr_electronic_invoice_qweb_fe.document_tax_totals"/>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <strong>TOTAL EN LETRAS:</strong><span t-field="o.invoice_amount_text" />
+                            </t>
+                                </div>
+                            </div>
+                            <!-- Salto de página después de cada tabla, excepto la última -->
+                            <t t-if="page_index + lines_per_page &lt; lines_count">
+                                <p style="page-break-before:always;"> </p>
+                            </t>
+                            <!--div t-if="page_index + lines_per_page &lt; lines_count" class="page-break"/-->
+                        </t>
+                    </div>
+
+
+                    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css"/>
+                    <style type="text/css">
+
+                        body {
+                            font-family: 'Droid Sans', Arial, sans-serif;
+                            font-size:12px;
+                        }
+
+                        .cuadro-detalle {
+                        border: 1px solid #3c7896;
+                        border-radius: 10px 10px 0 0; /* Bordes redondeados solo arriba */
+                        height:160mm;
+                        width:100%;
+                        font-family: sans-serif;
+                        /*overflow: hidden; / * Importante para evitar que el contenido se desborde */
+                        }
+
+                        .contenido {
+                        page-break-inside: avoid; /* Evita saltos de página dentro del div.contenido */
+                        }
+
+                        .totals {
+                        page-break-inside: avoid; /* Evita saltos de página dentro del div.contenido */
+                        }
+
+                        .ttable {
+                        width: 100%;
+                        border-collapse: collapse;
+                        }
+
+                        .tth {
+                        padding: 8px;
+                        text-align:right;
+                        }
+
+                        .tthl {
+                        padding: 8px;
+                        text-align:left;
+                        }
+
+                        .ttd, .ttdl {
+                        padding: 8px;
+                        height: auto;  /* Permitir que las filas se ajusten al contenido */
+                        text-align: right;
+                        border-top: 1px solid lightgray; /* Línea horizontal entre filas */
+                        page-break-inside: avoid; /* Evita saltos de página dentro de una fila */
+                        }
+
+                        .ttdl {
+                        text-align: left;
+                        }
+
+                        .ttfoot {
+                        border-top: 2px solid #144b9d; /* Línea azul en el pie de tabla */
+                        border-bottom: none;
+                        }
+
+                        /* Estilos para controlar los saltos de página */
+                        .ttable tbody tr {
+                            page-break-inside: avoid;
+                        }
+
+                        @media print {
+                            .page-break {
+                                display: block;
+                                page-break-before: always;
+                            }
+                        }
+
+                        .encabezado {
+                        background-color: #d9edf8;
+                        color: #3c7896;
+                        padding: 10px;
+                        font-weight: bold;
+                        border-radius: 10px 10px 0 0;
+                        }
+                    </style>
+                </div>
+            </t>
+        </template>
+
         <template id="account.report_invoice">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
@@ -175,6 +349,7 @@
                     <t t-if="o._get_name_invoice_report() == 'account.report_invoice_document'" t-call="account.report_invoice_document" t-lang="lang"/>
                     <t t-if="o._get_name_invoice_report() == 'cr_electronic_invoice_qweb_fe.report_invoice_document_fecr'" t-call="cr_electronic_invoice_qweb_fe.report_invoice_document_fecr" t-lang="lang"/>
                     <t t-if="o._get_name_invoice_report() == 'tvcr_changes.report_invoice_document_fecr_bayer'" t-call="tvcr_changes.report_invoice_document_fecr_bayer" t-lang="lang"/>
+                    <t t-if="o._get_name_invoice_report() == 'tvcr_changes.report_invoice_document_fecr_procter'" t-call="tvcr_changes.report_invoice_document_fecr_procter" t-lang="lang"/>
                 </t>
             </t>
         </template>
@@ -187,6 +362,7 @@
                     <t t-if="o._get_name_invoice_report() == 'account.report_invoice_document'" t-call="account.report_invoice_document" t-lang="lang"/>
                     <t t-if="o._get_name_invoice_report() == 'cr_electronic_invoice_qweb_fe.report_invoice_document_fecr'" t-call="cr_electronic_invoice_qweb_fe.report_invoice_document_fecr" t-lang="lang"/>
                     <t t-if="o._get_name_invoice_report() == 'tvcr_changes.report_invoice_document_fecr_bayer'" t-call="tvcr_changes.report_invoice_document_fecr_bayer" t-lang="lang"/>
+                    <t t-if="o._get_name_invoice_report() == 'tvcr_changes.report_invoice_document_fecr_procter'" t-call="tvcr_changes.report_invoice_document_fecr_procter" t-lang="lang"/>
                 </t>
             </t>
         </template>
