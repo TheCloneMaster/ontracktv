@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tvcr_conexion_comercial_sale_user,access.tvcr.conexion.comercial.sale.user,tvcr_conexion_comercial.model_tvcr_conexion_comercial,sales_team.group_sale_salesman,1,1,1,1
+access_sale_order_external_id,access.sale.order.external.id,sale.model_sale_order,sales_team.group_sale_salesman,1,1,1,0

@@ -1,0 +1,31 @@
+<odoo>
+    <record id="purchase_order_alternative_wizard_form" model="ir.ui.view">
+        <field name="name">purchase.order.alternative.wizard.form</field>
+        <field name="model">purchase.order.alternative.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order Alternatives">
+                <group>
+                    <field name="alternative_po_ids" readonly="True">
+                        <tree string="Alternative Purchase Order">
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="company_currency_id" column_invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="name" string="Reference"/>
+                            <field name="date_planned"/>
+                            <field name="amount_total"/>
+                            <field name="amount_total_company_currency" string="Total en CRC" optional="show"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+
+                    <field name="selected_po_id"/>
+                    <field name="recomendation" widget="html"/>
+                </group>
+                <footer>
+                    <button string="Send Email" type="object" name="send_notification_email" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

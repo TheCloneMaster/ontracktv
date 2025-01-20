@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <odoo>
+    <record id="view_order_tree_inherit_tvcr" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit.tvcr</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="fetch_pending_orders" string="Cargar Ordenes Pendientes" type="object"/>
+            </header>
+        </field>
+    </record>
+</odoo> -->
+<odoo>
+    <record id="action_load_pending_orders" model="ir.actions.server">
+        <field name="name">Cargar Ordenes Pendientes</field>
+        <field name="model_id" ref="model_tvcr_conexion_comercial"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">model.load_pending_orders()</field>
+    </record>
+    <record id="sale_order_view_inherit_tvcr" model="ir.ui.view">
+        <field name="name">sale.order.view.inherit.tvcr</field>
+        <field name="model">sale.order</field>
+        <!-- <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml"> -->
+        <field name="inherit_id" ref="sale.sale_order_tree"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <!-- <button name="fetch_pending_orders" string="Cargar Ordenes Pendientes" type="object"/> -->
+                <button name="%(tvcr_conexion_comercial.action_load_pending_orders)d"
+                        type="action"
+                        string="Cargar Ordenes Pendientes"
+                        class="oe_highlight"/>
+            </header>
+        </field>
+    </record>
+</odoo>

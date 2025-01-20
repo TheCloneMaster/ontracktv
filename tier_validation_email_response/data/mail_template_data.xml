@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Mail template are declared in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="0">
+                <!--Email template -->
+        <record id="email_template_purchase_order_tier_validation" model="mail.template">
+            <field name="name">Aviso de Solicitud de Aprobación</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="email_from">erp.compras@teletica.com</field>
+            <field name="email_to">{{object.tier_validation_approver.email}}</field>
+            <field name="subject">SOLICITUD DE APROBACIÓN: {{object.name}}</field>
+            <field name="lang">{{object.tier_validation_approver.lang}}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html" type="html">
+                <div>
+                    <p>
+                        Estimado <t t-out="object.tier_validation_approver.name or ''">Brandon Freeman</t>
+                    </p>
+
+                    <p>
+                        Se adjunta el PDF de la Orden de Compra para su revisión<br/>
+                        Puede responder a este correo con la palabra "aceptar" para aprobar 
+                        la solicitud, o cualquier otro texto para rechazarla.
+                    </p>
+                </div>
+           </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,38 @@
+<odoo>
+    <record id="action_purchase_order_alternative_wizard" model="ir.actions.act_window">
+        <field name="name">Select Purchase Order Alternatives</field>
+        <field name="res_model">purchase.order.alternative.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="purchase_order_form_inherit_action_compare" model="ir.ui.view">
+        <field name="name">purchase.order.form.alternative.button</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_requisition.purchase_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_compare_alternative_lines']" position="after">
+                <button 
+                    string="Notify Alternatives" 
+                    type="action" 
+                    name="%(action_purchase_order_alternative_wizard)d" 
+                    class="btn-link d-block"
+                    context="{'active_id': active_id}"
+                    icon="fa-solid fa-envelope"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form_inherit_alternatives_company_currency" model="ir.ui.view">
+        <field name="name">purchase.order.form.alternatives.company.currency</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field name="company_currency_id" column_invisible="1"/>
+                <field name="amount_total_company_currency" string="Total en CRC" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

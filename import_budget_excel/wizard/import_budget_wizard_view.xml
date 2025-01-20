@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="import_budget_wizard_form" model="ir.ui.view">
+        <field name="name">import.budget.wizard.form</field>
+        <field name="model">import.budget.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Importar Presupuesto">
+                <group>
+                    <field name="excel_file"/>
+                    <field name="budget_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="import_budget" string="Importar" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="import_budget_wizard_action" model="ir.actions.act_window">
+        <field name="name">Importar Presupuesto desde Excel</field>
+        <field name="res_model">import.budget.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="crossovered_budget_view_form_inherit_import" model="ir.ui.view">
+        <field name="name">crossovered.budget.view.form.inherit.import</field>
+        <field name="model">crossovered.budget</field>
+        <field name="inherit_id" ref="account_budget.crossovered_budget_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_budget_confirm']" position="after">
+                <button name="%(import_budget_wizard_action)d"
+                        type="action"
+                        string="Importar Presupuesto"
+                        class="oe_highlight"
+                        context="{'default_budget_id': active_id}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

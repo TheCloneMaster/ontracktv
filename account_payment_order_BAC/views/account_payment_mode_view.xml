@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_payment_mode_form_bac_view" model="ir.ui.view">
+        <field name="name">account.payment.mode.form.bac</field>
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id" ref="account_payment_partner.account_payment_mode_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='note']" position="before">
+                <group name="bac_data" string="Datos BAC" invisible="not is_bac_method">
+                    <field name="is_bac_method" invisible="1"/>
+                    <field name="plan_number"/>
+                    <field name="secuencia_envios"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

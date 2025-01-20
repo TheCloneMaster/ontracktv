@@ -1,0 +1,52 @@
+<odoo>
+    <record id="email_template_purchase_order_tier_validation" model="mail.template">
+        <field name="name">Solicitud de Aprobación de Orden de Compra</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="email_from">erp.solicitudes@teletica.com</field>
+        <field name="email_to">{{object.tier_validation_approver.email}}</field>
+        <field name="mail_server_id">2</field>
+        <field name="subject">{{object.name}} :: SOLICITUD DE APROBACIÓN</field>
+        <field name="lang">{{object.tier_validation_approver.lang}}</field>
+        <field name="report_template_ids" eval="[(4, ref('purchase.action_report_purchase_order'))]"/>
+        <field name="body_html" type="html">
+                    <div>
+                        <p>
+                            Estimado <t t-out="object.tier_validation_approver.name or ''">Brandon Freeman</t>
+                        </p>
+
+                        <p>
+                            Se adjunta el PDF de la Orden de Compra para su revisión
+                            Puede responder a este correo con la palabra "aceptar" para aprobar 
+                            la solicitud, o cualquier otro texto para rechazarla.
+                        </p>
+                    </div>
+        </field>
+    </record>
+    <record id="email_template_expense_report_tier_validation" model="mail.template">
+        <field name="name">Solicitud de Aprobación de Gasto</field>
+        <field name="model_id" ref="hr_expense.model_hr_expense_sheet"/>
+        <field name="email_from">erp.solicitudes@teletica.com</field>
+        <field name="email_to">{{object.tier_validation_approver.email}}</field>
+        <field name="mail_server_id">2</field>
+        <field name="subject">{{object.number}} :: SOLICITUD DE APROBACIÓN GASTO</field>
+        <field name="lang">{{object.tier_validation_approver.lang}}</field>
+        <field name="report_template_ids" eval="[(4, ref('hr_expense.action_report_hr_expense_sheet'))]"/>
+        <field name="body_html" type="html">
+                    <div>
+                        <p>
+                            Estimado <t t-out="object.tier_validation_approver.name or ''">Brandon Freeman</t>
+                        </p>
+
+                        <p>
+                            Se solicita su aprobación de la siguiente solicitud de gasto.<br/>
+                            Se adjunta el PDF con el detalle para su revisión.<br/><br/>
+                            Puede responder a este correo con la palabra "aceptar" para aprobar 
+                            la solicitud, o cualquier otro texto para rechazarla.
+                        </p>
+                    </div>
+        </field>
+    </record>
+
+</odoo>
+
+

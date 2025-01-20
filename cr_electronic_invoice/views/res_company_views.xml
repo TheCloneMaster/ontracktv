@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_company_form_inherit" model="ir.ui.view">
+        <field name="name">res.company.form.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+
+            <!--field name="website" position="before">
+                <field name="legal_name"/>
+                <field name="activity_id" domain="[('active', '=', True)]" options='{"no_open": True, "no_create": True}' />
+                <button name="action_get_economic_activities" type="object" string="Consultar Actividad Economica en Hacienda" colspan="2" />
+            </field-->
+
+            <field name="vat" position="replace">
+                <label for="vat" />
+                <div class="o_row">
+                    <field name="vat"/>
+                    <field name="identification_id"/>
+                </div>
+                <field name="commercial_name"/>
+
+                <label for="economic_activities_ids" />
+                <div class="o_row">
+                    <field name="economic_activities_ids" widget="many2many_tags" readonly="1" force_save="1" />
+                    <button
+                    name="action_get_economic_activities"
+                    type="object"
+                    string=" Update"
+                    class="btn-link mb-1 px-0"
+                    icon="fa-refresh"
+                    confirm="This will update all economic activities for the company."
+                    />
+                </div>
+                <field name="activity_id" domain="[('id', 'in', economic_activities_ids)]" options="{'no_create': True}" />
+
+            </field>
+
+            <!--field name="partner_id" position="after">
+                <field name="identification_id"/>
+                <field name="vat"/>
+            </field-->
+
+            <!-- <field name="incoterm_id" position="attributes">
+                    <attribute name="invisible">country_id == %(base.cr)d</attribute>
+                </field> -->
+            <!-- Página para consultar información de EXONET-->
+            <xpath expr="//page[1]" position="after">
+                <page string="EXONET">
+                    <separator string="URL Base"/>
+                    <group col="4" colspan="2">
+                        <group col="2">
+                            <field name="url_base_exo" nolabel="1"/>
+                        </group>
+                        <group col="2"/>
+                    </group>
+                    <group col="4">
+                        <field invisible="not ultima_respuesta_exo or ultima_respuesta_exo == ''" readonly="ultima_respuesta_exo" colspan="4" name="ultima_respuesta_exo"/>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[1]" position="after">
+                <page string="Electronic Invoice">
+                    <group cols="2">
+                        <group cols="2">
+                            <field name="signature"/>
+                            <field name="frm_ws_identificador"/>
+                            <field name="frm_ws_password" password="True"/>
+                            <field name="frm_pin" password="True"/>
+                            <field name="date_expiration_sign" force_save="True" readonly="1"/>
+                            <field name="range_days"/>
+                            <field name="send_user_ids" widget="many2many_tags"/>
+                            <field name="to_emails"/>
+                        </group>
+                        <group cols="2">
+                            <button name="test_get_token" type="object" string="Test get token" colspan="2" />
+                            <field name="frm_ws_ambiente" widget="radio"/>
+                        </group>
+                        <group cols="2">
+                            <field name="CCE_sequence_id"/>
+                            <field name="CPCE_sequence_id"/>
+                            <field name="RCE_sequence_id"/>
+                            <field name="FEC_sequence_id"/>
+                        </group>
+
+                        <group cols="2">
+                            <field name="sucursal_MR"/>
+                            <field name="terminal_MR"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="invoice_qr_type"/>
+                        <field name="invoice_field_ids" required="invoice_qr_type == 'by_info'" invisible="invoice_qr_type != 'by_info'">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle" />
+                                <field name="field_id" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page string="Invoice Import">
+                    <group cols="2">
+                        <group cols="2">
+                            <field name="import_bill_automatic"/>
+                            <field name="import_bill_mail_server_id" invisible="not import_bill_automatic" requiered="import_bill_automatic"/>
+                            <field name="import_bill_folder_import" invisible="not import_bill_automatic" requiered="import_bill_automatic"/>
+                            <field name="import_bill_journal_id"
+                                    invisible="not import_bill_automatic" requiered="import_bill_automatic"/>
+                            <field name="import_bill_product_id" invisible="not import_bill_automatic"/>
+                            <field name="import_bill_account_id" invisible="not import_bill_automatic" requiered="import_bill_automatic"/>
+                            <field name="import_bill_account_analytic_id" invisible="not import_bill_automatic"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

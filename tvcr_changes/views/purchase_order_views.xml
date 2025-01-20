@@ -1,0 +1,24 @@
+<odoo>
+    <record id="purchase_order_form_inherit_action_request" model="ir.ui.view">
+        <field name="name">purchase.order.form.alternative.request</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_requisition.purchase_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_create_alternative']" position="before">
+                <field name="request_id"/> 
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form_approver_tvcr" model="ir.ui.view">
+        <field name="name">purchase.order.form.approver_tvcr</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="valid_purchase_approvers" invisible="1"/>
+                <field name="tier_validation_approver"/>
+            </field>
+        </field>
+    </record>
+</odoo>

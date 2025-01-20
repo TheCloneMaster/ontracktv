@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menú Principal -->
+        <menuitem id="menu_tvcr_pagos_root"
+            name="Pagos"
+            web_icon="tvcr_pagos,static/description/icon.png"
+            sequence="40"
+            groups="tvcr_pagos.group_tvcr_pagos_user,tvcr_pagos.group_tvcr_pagos_manager"/>
+
+        <!-- Submenús -->
+        <menuitem id="menu_tvcr_pagos_bills"
+            name="Bills"
+            action="account.action_move_in_invoice_type"
+            parent="menu_tvcr_pagos_root"
+            sequence="10"
+            groups="tvcr_pagos.group_tvcr_pagos_user,tvcr_pagos.group_tvcr_pagos_manager"/>
+
+        <menuitem id="menu_tvcr_pagos_refunds"
+            name="Refunds"
+            action="account.action_move_in_refund_type"
+            parent="menu_tvcr_pagos_root"
+            sequence="20"
+            groups="tvcr_pagos.group_tvcr_pagos_user,tvcr_pagos.group_tvcr_pagos_manager"/>
+
+        <menuitem id="menu_tvcr_pagos_payments"
+            name="Payments"
+            action="account.action_account_payments_payable"
+            parent="menu_tvcr_pagos_root"
+            sequence="30"
+            groups="tvcr_pagos.group_tvcr_pagos_user,tvcr_pagos.group_tvcr_pagos_manager"/>
+
+        <menuitem id="menu_tvcr_pagos_payment_orders"
+            name="Payment Orders"
+            action="account_payment_order.account_payment_order_outbound_action"
+            parent="menu_tvcr_pagos_root"
+            sequence="40"
+            groups="tvcr_pagos.group_tvcr_pagos_user,tvcr_pagos.group_tvcr_pagos_manager"/>
+
+        <menuitem id="menu_tvcr_pagos_advance_payments"
+            name="Advance Payments"
+            action="purchase_advance_payment.action_account_advance_payments_payable"
+            parent="menu_tvcr_pagos_root"
+            sequence="50"
+            groups="tvcr_pagos.group_tvcr_pagos_user,tvcr_pagos.group_tvcr_pagos_manager"/>
+
+        <menuitem id="menu_tvcr_pagos_bank_accounts"
+            name="Bank Accounts"
+            action="account.action_account_supplier_accounts"
+            parent="menu_tvcr_pagos_root"
+            sequence="60"
+            groups="tvcr_pagos.group_tvcr_pagos_user,tvcr_pagos.group_tvcr_pagos_manager"/>
+
+        <menuitem id="menu_tvcr_pagos_vendors"
+            name="Vendors"
+            action="account.res_partner_action_supplier"
+            parent="menu_tvcr_pagos_root"
+            sequence="70"
+            groups="tvcr_pagos.group_tvcr_pagos_user,tvcr_pagos.group_tvcr_pagos_manager"/>
+    </data>
+</odoo>

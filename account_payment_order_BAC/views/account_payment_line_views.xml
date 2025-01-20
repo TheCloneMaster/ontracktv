@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_payment_line_tree_bac" model="ir.ui.view">
+        <field name="name">account.payment.line.tree.bac</field>
+        <field name="model">account.payment.line</field>
+        <field name="inherit_id" ref="account_payment_order.account_payment_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_currency" position="attributes">
+                <attribute name="sum">Total Amount</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

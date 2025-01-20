@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- STOCK.LANDED.COST -->
+        <record id='view_stock_landed_cost_import_invoice_form' model='ir.ui.view'>
+            <field name="name">stock.landed.cost.import.invoice.form</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form" />
+            <field name="arch" type="xml">
+                <button name="button_cancel" position="before">
+                            <button
+                                name="%(action_import_invoice_wizard)d"
+                                string="Import invoice lines"
+                                invisible="state != 'draft'"
+                                type="action"
+                            />
+                </button>
+                <xpath expr="//tree/field[@name='price_unit']" position="before">
+                    <field name="original_currency_id"/>
+                    <field name="currency_amount"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='product_id']" position="before">
+                    <field name="invoice_id"/>
+                    <field name="partner_id"/>
+                </xpath>
+                <page name="additional_costs" position="after">
+                    <page string="Importaciones" name="pickings">
+                        <field name="picking_ids" readonly="1">
+                            <tree string="Traslados Bodega" editable="bottom">
+                                <field name="name"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="partner_id"/>
+                                <field name="origin"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Gastos" name="vendor_bills">
+                        <field name="vendor_bill_ids" readonly="1">
+                            <tree string="Facturas" editable="bottom">
+                                <field name="name"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="partner_id"/>
+                                <field name="invoice_date"/>
+                                <field name="amount_total_in_currency_signed"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</odoo>

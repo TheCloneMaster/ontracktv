@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Categoría para los grupos -->
+        <record id="module_category_tvcr_pagos" model="ir.module.category">
+            <field name="name">TVCR Pagos</field>
+            <field name="description">Gestión de pagos para TVCR</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Grupo de Usuarios -->
+        <record id="group_tvcr_pagos_user" model="res.groups">
+            <field name="name">Usuario de Pagos</field>
+            <field name="category_id" ref="module_category_tvcr_pagos"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Grupo de Administradores -->
+        <record id="group_tvcr_pagos_manager" model="res.groups">
+            <field name="name">Administrador de Pagos</field>
+            <field name="category_id" ref="module_category_tvcr_pagos"/>
+            <field name="implied_ids" eval="[(4, ref('group_tvcr_pagos_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+</odoo>

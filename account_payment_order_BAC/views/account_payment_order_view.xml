@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_payment_order_bac_form" model="ir.ui.view">
+        <field name="name">account.payment.order.bac.form</field>
+        <field name="model">account.payment.order</field>
+        <field name="inherit_id" ref="account_payment_order.account_payment_order_form"/>
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <field name="numero_envio" invisible="not payment_mode_id.is_bac_method"/>
+            </field>
+        </field>
+    </record>
+</odoo>

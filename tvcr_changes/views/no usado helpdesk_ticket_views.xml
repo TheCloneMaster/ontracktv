@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="helpdesk_ticket_view_form_sertec" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.sertec</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='description']" position="after">
+                <page name="fechas">
+                    <group>
+                        <field name="store_collect_date"/>
+                        <field name="shop_delivery_date"/>
+                        <field name="shop_return_date"/>
+                    </group>
+                    <group>
+                        <field name="nc_date"/>
+                        <field name="pdv_not_delivered_date"/>
+                    <field name="store_delivered_date"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
