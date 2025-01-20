@@ -9,6 +9,7 @@
         'cr_electronic_invoice_qweb_fe', 
         'purchase_request',
         'hr_expense_invoice',
+        'stock_account'
     ],
     'data': [
         'views/purchase_order_views.xml',
@@ -20,5 +21,6 @@
         'views/hr_expense_sheet_views.xml',
         'views/report_sales_invoice_qweb_bayer.xml',
         'views/res_company_views.xml',
+        'views/stock_location_views.xml'
     ],
 }

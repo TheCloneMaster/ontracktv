@@ -9,3 +9,5 @@ from . import res_users
 from . import hr_expense_sheet
 from . import res_partner
 from . import account_move
+from . import stock_move
+from . import stock_location
