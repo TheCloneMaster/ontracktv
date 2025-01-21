@@ -1,5 +1,8 @@
 from odoo import models, fields, api
 from datetime import datetime
+import string
+import re
+import unicodedata
 
 
 class AccountPaymentOrder(models.Model):
@@ -51,9 +54,8 @@ class AccountPaymentOrder(models.Model):
 
         # Generate detail lines
         for idx, line in enumerate(self.payment_line_ids, 1):
-            description = (line.communication or 'PAGO PROVEEDORES TELETICA')[:30].ljust(30)
-            short_description = (line.communication or '').ljust(40)[:40]
-            
+            description = (self.remove_special(line.communication) or 'PAGO PROVEEDORES TELETICA')[:30].ljust(30)
+            short_description = (self.remove_special(line.communication) or '').ljust(40)[:40]
             detail = (
                 'T' + 
             self.payment_mode_id.plan_number.zfill(4) +
@@ -63,11 +65,11 @@ class AccountPaymentOrder(models.Model):
             payment_date +
             f"{line.amount_currency:14.2f}".replace('.', '') + 
             ' ' * 5 +
-            description + 
+            description +
             ' ' +
-            line.partner_id.name[:60].ljust(60) +
+            self.remove_special(line.partner_id.name[:60]).ljust(60) +
             self.numero_envio.zfill(5) + str(idx).zfill(4) + 
-            line.name.ljust(20)[:20] + #factura  -> short description
+            self.remove_special(line.name).ljust(20)[:20] + #factura  -> short description
             '2'
             )
             content.append(detail)
@@ -77,3 +79,10 @@ class AccountPaymentOrder(models.Model):
         filename = f'BAC_payment_{self.name}_{payment_date}.txt'
         
         return file_content, filename
+
+    def remove_special(self, value):
+        # Remover tildes
+        tildes = (unicodedata.normalize('NFKD', value)).encode('ASCII', 'ignore').decode('ASCII')
+        # Remover caracteres especiales
+        caracteres =  re.sub('[^a-zA-Z0-9 \n\.]', '', tildes)
+        return caracteres
