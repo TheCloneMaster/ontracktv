@@ -12,6 +12,7 @@
         'stock_account'
     ],
     'data': [
+        'data/filters_data.xml',
         'views/purchase_order_views.xml',
         'views/account_asset_views.xml',
         'views/res_partner_views.xml',
@@ -21,6 +22,7 @@
         'views/hr_expense_sheet_views.xml',
         'views/report_sales_invoice_qweb_bayer.xml',
         'views/res_company_views.xml',
-        'views/stock_location_views.xml'
+        'views/stock_location_views.xml',
+        'views/account_move_views.xml'
     ],
 }
