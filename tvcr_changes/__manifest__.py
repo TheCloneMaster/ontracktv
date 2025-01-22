@@ -9,10 +9,12 @@
         'cr_electronic_invoice_qweb_fe', 
         'purchase_request',
         'hr_expense_invoice',
-        'stock_account'
+        'stock_account',
+        'mail'
     ],
     'data': [
         'data/filters_data.xml',
+        'data/mail_templates_email_layouts.xml',
         'views/purchase_order_views.xml',
         'views/account_asset_views.xml',
         'views/res_partner_views.xml',
