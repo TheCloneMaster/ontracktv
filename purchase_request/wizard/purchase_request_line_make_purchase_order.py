@@ -127,15 +127,9 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         if not self.supplier_id:
             raise UserError(_("Enter a supplier."))
         supplier = self.supplier_id
-        active_model = self.env.context.get("active_model", False)
-        if active_model == "purchase.request":
-            request_ids = self.env.context.get("active_ids", False)
-            user_id = self.env[active_model].browse(request_ids).requested_by.id
-
         data = {
             "origin": origin,
             "partner_id": self.supplier_id.id,
-            "user_id": user_id,
             "payment_term_id": self.supplier_id.property_supplier_payment_term_id.id,
             "fiscal_position_id": supplier.property_account_position_id
             and supplier.property_account_position_id.id
@@ -173,7 +167,6 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return {
             "order_id": po.id,
             "product_id": product.id,
-            "name": item.name or product_id.name,
             "product_uom": product.uom_po_id.id or product.uom_id.id,
             "price_unit": 0.0,
             "product_qty": qty,

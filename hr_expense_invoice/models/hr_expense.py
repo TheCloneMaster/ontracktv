@@ -75,6 +75,7 @@ class HrExpense(models.Model):
             [
                 ("company_id", "=", self.company_id.id),
                 ("type", "=", "general"),
+                ("code", "=", "LIQUI"),
             ],
             limit=1,
         )
@@ -97,6 +98,7 @@ class HrExpense(models.Model):
                         "account_id": employee_partner.property_account_payable_id.id,
                         "partner_id": employee_partner.id,
                         "credit": amount_invoice,
+                        "date_maturity": self.sheet_id.accounting_date,
                     }
                 ),
             ]

@@ -50,8 +50,9 @@ class HrExpenseSheet(models.Model):
                     transfer_line2 = move2.line_ids.filtered(
                         lambda x: x.debit > 0
                     )
-
-                (ap_lines + transfer_line + transfer_line2).reconcile()
+                    (ap_lines + transfer_line + transfer_line2).reconcile()
+                else:
+                    (ap_lines + transfer_line).reconcile()
         return res
 
     def action_sheet_move_create(self):

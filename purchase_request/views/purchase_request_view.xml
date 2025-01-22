@@ -33,7 +33,7 @@
                     <button
                         name="%(action_purchase_request_line_make_purchase_order)d"
                         invisible="state not in ('approved')"
-                        string="Crear SIC"
+                        string="Create RFQ"
                         type="action"
                     />
                     <button
