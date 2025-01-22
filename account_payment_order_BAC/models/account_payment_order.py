@@ -86,3 +86,14 @@ class AccountPaymentOrder(models.Model):
         # Remover caracteres especiales
         caracteres =  re.sub('[^a-zA-Z0-9 \n\.]', '', tildes)
         return caracteres
+
+    def action_cancel(self):
+        # Unreconcile and cancel payments
+        for payment in self.payment_ids:
+            if payment.state != "draft":
+                payment.action_draft()
+            if payment.state != "cancel":
+                payment.action_cancel()
+        self.write({"state": "cancel"})
+        return True
+

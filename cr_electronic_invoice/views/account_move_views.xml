@@ -156,9 +156,9 @@
                                     domain="[('number_electronic', '!=', False)]"
                                     readonly="state != 'draft'" />
                                 <field name="not_loaded_invoice"
-                                    readonly="state != 'draft'" invisible="not invoice_id" />
+                                    readonly="state != 'draft'" invisible="invoice_id" />
                                 <field name="not_loaded_invoice_date"
-                                    readonly="state != 'draft'" invisible="not invoice_id" />
+                                    readonly="state != 'draft'" invisible="invoice_id" />
                             </group>
                             <group string="Electronic Receipts" name="eref_info_group2" colspan="2">
                                 <field name="fname_xml_comprobante" invisible="1" readonly="1" />

@@ -96,8 +96,12 @@ class FetchmailServer(models.Model):
                                 imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Repeated Invoice")
                             else:
+                                imap_server.copy(num, 'Inbox/Ignored')
+                                imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Ignore email")
                         except Exception:
+                            imap_server.copy(num, 'Inbox/Failed')
+                            imap_server.store(num, '+FLAGS', '\\Deleted')
                             _logger.info('Failed to process mail from %s server %s.', server.server_type, server.name, exc_info=True)
                             failed += 1
                         self._cr.commit()

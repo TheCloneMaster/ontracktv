@@ -8,12 +8,12 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     manual_currency = fields.Boolean(
-        #readonly=True,
+        readonly=True,
     )
     manual_currency_rate = fields.Float(
         digits="Manual Currency",
         tracking=True,
-        #readonly=True,
+        readonly=True,
         help="Set new currency rate to apply on the invoice\n."
         "This rate will be taken in order to convert amounts between the "
         "currency on the purchase order and last currency",

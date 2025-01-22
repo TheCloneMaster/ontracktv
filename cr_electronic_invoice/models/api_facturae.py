@@ -1270,7 +1270,7 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
                        'account_id': default_account and default_account.id,
                        #'analytic_account_id': default_analytic_account and default_analytic_account.id,
                        'economic_activity_id': activity.id,
-                       # 'tax_ids': taxes
+                       'tax_ids': taxes
             }
             new_lines.append((0, 0, columns))
 
