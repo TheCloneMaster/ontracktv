@@ -81,11 +81,11 @@ class AccountPaymentOrder(models.Model):
         return file_content, filename
 
     def remove_special(self, value):
-        # Remover tildes
-        tildes = (unicodedata.normalize('NFKD', value)).encode('ASCII', 'ignore').decode('ASCII')
-        # Remover caracteres especiales
-        caracteres =  re.sub('[^a-zA-Z0-9 \n\.]', '', tildes)
-        return caracteres
+        double_dot = value.replace(':', ' ')
+        accent = (unicodedata.normalize('NFKD', double_dot)).encode('ASCII', 'ignore').decode('ASCII')
+        characters =  re.sub('[^a-zA-Z0-9 \n.]', '', accent).replace('.', '')
+        double_space = characters.replace('  ', ' ')
+        return double_space
 
     def action_cancel(self):
         # Unreconcile and cancel payments
