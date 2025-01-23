@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template name="Remove MNL Button" id="mail_notification_layout_inherit" inherit_id="mail.mail_notification_layout">
-        <xpath expr="//table[@role='presentation']/tbody/tr[3]/td/table/tbody/tr/td" position="replace">
+    <template name="Remove Mail Notification Layout Button" id="mail_notification_layout_inherit" inherit_id="mail.mail_notification_layout">
+        <xpath expr="//table[@role='presentation']/tbody/tr[3]/td/table/tbody/tr/td[1]" position="replace">
+        </xpath>
+        <xpath expr="//table[@role='presentation']/tbody/tr[3]/td/table/tbody/tr/td[2]" position="replace">
+        </xpath>
+        <xpath expr="//table[@role='presentation']/tbody/tr[3]/td/table/tbody/tr/td[3]" position="replace">
+        </xpath>
+    </template>
+
+    <template name="Remove Mail Notification Light Button" id="mail_notification_layout_light_inherit" inherit_id="mail.mail_notification_light">
+        <xpath expr="//table[@role='presentation']/tbody/tr/td/table/tr/td/t[1]" position="replace">
+        </xpath>
+        <xpath expr="//table[@role='presentation']/tbody/tr/td/table/tr/td/t" position="replace">
         </xpath>
     </template>
 
