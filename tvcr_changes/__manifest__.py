@@ -10,7 +10,8 @@
         'purchase_request',
         'hr_expense_invoice',
         'stock_account',
-        'mail'
+        'mail',
+        'stock_landed_costs'
     ],
     'data': [
         'data/filters_data.xml',
@@ -25,6 +26,7 @@
         'views/report_sales_invoice_qweb_bayer.xml',
         'views/res_company_views.xml',
         'views/stock_location_views.xml',
-        'views/account_move_views.xml'
+        'views/account_move_views.xml',
+        'views/stock_landed_cost_views.xml'
     ],
 }
