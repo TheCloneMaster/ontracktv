@@ -56,11 +56,12 @@ class AccountPaymentOrder(models.Model):
         for idx, line in enumerate(self.payment_line_ids, 1):
             description = (self.remove_special(line.communication) or 'PAGO PROVEEDORES TELETICA')[:30].ljust(30)
             short_description = (self.remove_special(line.communication) or '').ljust(40)[:40]
+            replacements = str.maketrans({"-": "", " ": ""})
             detail = (
                 'T' + 
             self.payment_mode_id.plan_number.zfill(4) +
             self.numero_envio.zfill(5) +
-            line.partner_bank_id.acc_number.replace('-', '')[-20:].ljust(20) + 
+            line.partner_bank_id.acc_number.translate(replacements)[-20:].ljust(20) + 
             str(idx).zfill(5) + 
             payment_date +
             f"{line.amount_currency:14.2f}".replace('.', '') + 
