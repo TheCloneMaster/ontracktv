@@ -16,6 +16,7 @@ class TierValidation(models.AbstractModel):
 
     def _notify_review_available(self, tier_reviews):
         """method to notify when tier validation is created"""
+        _logger.info('Entrando a notificar')
         for review in tier_reviews:
             if review.status == 'pending' and len(review.reviewer_ids)==1 and review.reviewer_ids.has_group('base.group_portal'):
                 if review.model == 'purchase.order':
@@ -29,11 +30,12 @@ class TierValidation(models.AbstractModel):
                 if not lang:
                     lang = get_lang(self.env).code
 
+                _logger.info('Notificar: Enviando correo')
                 email_template.with_context(type='binary',
                                             default_type='binary').send_mail(self.id,
                                             raise_exception=False,
                                             force_send=True)
-        super()._notify_review_requested(tier_reviews)
+        super()._notify_review_available(tier_reviews)
 
 class FetchmailServer(models.Model):
     _inherit = 'fetchmail.server'
