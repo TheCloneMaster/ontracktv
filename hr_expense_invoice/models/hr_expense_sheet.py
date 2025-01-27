@@ -6,6 +6,8 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
+import logging
+_logger = logging.getLogger(__name__)
 
 class HrExpenseSheet(models.Model):
     _inherit = "hr.expense.sheet"
@@ -45,6 +47,7 @@ class HrExpenseSheet(models.Model):
                     move2 = self.env["account.move"].create(
                         expense._prepare_own_account_pending_balance_move_vals()
                     )
+
                     move2.action_post()
                     # reconcile with the invoice
                     transfer_line2 = move2.line_ids.filtered(

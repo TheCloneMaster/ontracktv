@@ -130,7 +130,7 @@ class HrExpense(models.Model):
         ap_lines = self.invoice_id.line_ids.filtered(
             lambda x: x.display_type == "payment_term"
         )
-        return {
+        result = {
             "journal_id": journal.id,
             "move_type": "entry",
             "name": "/",
@@ -155,6 +155,8 @@ class HrExpense(models.Model):
                 ),
             ],
         }
+        _logger.error("result: %s", result)
+        return result
 
     def action_expense_create_invoice(self):
         invoice = self.env["account.move"].create(self._prepare_invoice_values())

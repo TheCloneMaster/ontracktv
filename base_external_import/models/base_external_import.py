@@ -80,7 +80,7 @@ class Task(models.Model):
 
         importmsg = dict()
         try:
-            importmsg = model_obj.sudo().load(cols, [data])
+            importmsg = model_obj.with_context(check_move_validity=False, skip_invoice_sync=True).sudo().load(cols, [data])
         except Exception as error:
             append_to_log(log, 'ERROR', data, str(error))
             log['last_error_count'] += 1
