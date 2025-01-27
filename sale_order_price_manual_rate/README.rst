@@ -28,15 +28,12 @@ Price recalculation in sales orders
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module add 2 buttons on sale orders (below sale order lines) that:
+This module add a button on sale orders (below sale order lines) that:
 
--  Recalculates the prices of the order lines that contain a product in
-   them.
--  Reset product descriptions from current product information.
+- Recalculates the prices of the order dividing the price by the exchange factor.
 
 It is launched manually as a button to get the user decide if he/she
-wants to recalculate prices when pricelist is changed or after
-duplicating a sale order to update or not sales information.
+wants to recalculate prices.
 
 **Table of contents**
 
@@ -52,16 +49,11 @@ menus.
 Usage
 =====
 
-Inside a sale order, you can click on "Recalculate prices" to launch a
+Inside a sale order, you can click on "Aplicar factor de cambio" to launch a
 recalculation of all the prices of the lines, losing previous custom
 prices.
 
-The second "Reset descriptions" will get descriptions from products,
-losing custom descriptions.
 
-|Sale order price recalculation|
-
-.. |Sale order price recalculation| image:: https://raw.githubusercontent.com/sale_order_price_recalculation/static/description/sale_order_price_recalculation.png
 
 Known issues / Roadmap
 ======================
