@@ -15,6 +15,9 @@
                     invisible="state not in ('draft', 'sent')"
                 />
             </field>
+            <field name="pricelist_id" position="after">
+                <field name="exchange_factor" />
+            </field>
         </field>
     </record>
 </odoo>
