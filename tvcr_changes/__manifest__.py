@@ -23,7 +23,7 @@
         'views/res_users_views.xml',
         'views/purchase_request_views.xml',
         'views/hr_expense_sheet_views.xml',
-        'views/report_sales_invoice_qweb_bayer.xml',
+        'views/report_sales_invoice_qweb_templates.xml',
         'views/res_company_views.xml',
         'views/stock_location_views.xml',
         'views/account_move_views.xml',
