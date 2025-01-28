@@ -7,7 +7,7 @@
                 <div class="page" style="height:160mm;width:100%">
                     <t t-set="lines" t-value="o.group_lines_by_sale_order()"/>
                     <t t-set="lines_count" t-value="len(lines)"/>
-                    <t t-set="page_height" t-value="160"/> <!-- Altura máxima en mm para el contenido -->
+                    <t t-set="page_height" t-value="150"/> <!-- Altura máxima en mm para el contenido -->
                     <t t-set="line_height" t-value="11"/>  <!-- Altura estimada de cada línea en mm -->
                     <!--t t-set="lines_per_page" t-value="int(page_height / line_height)"/-->
                     <t t-set="lines_per_page" t-value="15"/>
@@ -175,7 +175,7 @@
                 <div class="page" style="height:160mm;width:100%">
                     <t t-set="lines" t-value="o.group_lines_by_product()"/>
                     <t t-set="lines_count" t-value="len(lines)"/>
-                    <t t-set="page_height" t-value="160"/> <!-- Altura máxima en mm para el contenido -->
+                    <t t-set="page_height" t-value="150"/> <!-- Altura máxima en mm para el contenido -->
                     <t t-set="line_height" t-value="11"/>  <!-- Altura estimada de cada línea en mm -->
                     <!--t t-set="lines_per_page" t-value="int(page_height / line_height)"/-->
                     <t t-set="lines_per_page" t-value="15"/>
@@ -345,7 +345,7 @@
         </template>
 
         <!-- Tribunal - BCR -->
-     <!--   <template id="external_layout_fecr_invoice_plantilla_6">
+<!--        <template id="external_layout_fecr_invoice_plantilla_6">
             <t t-if="not o" t-set="o" t-value="doc"/>
             <t t-if="not company">
                 &lt;!&ndash; Multicompany &ndash;&gt;
@@ -441,9 +441,15 @@
                     </div>
                 </div>
                 &lt;!&ndash; Agencia &ndash;&gt;
-                <div t-if="o.partner_shipping_id.agent == True and o.move_type == 'out_invoice' or o.move_type == 'out_refund'" class="row mb8">
+                <div t-if="o.partner_shipping_id.agent == True" class="row mb8">
                     <div class="col-1"><span><strong>Agencia:</strong></span></div>
                     <div class="col-8"><span t-field="o.partner_shipping_id.name"/></div>
+                    <div class="col-1"></div>
+                    <div class="col-2"></div>
+                </div>
+                <div t-else="" class="row mb8" style="background-color:#55555">
+                    <div class="col-1"></div>
+                    <div class="col-8"><span t-field="o.partner_id.name"/></div>
                     <div class="col-1"></div>
                     <div class="col-2"></div>
                 </div>
@@ -580,11 +586,11 @@
             </div>
         </template>
         <template id="report_invoice_document_fecr_plantilla_6" name="Tribunal Supremo / Banco de Costa Rica">
-            <t t-call="tvcr_changes.external_layout_fecr_invoice_tribunal_bcr">
+            <t t-call="tvcr_changes.external_layout_fecr_invoice_plantilla_6">
                 <div class="page" style="height:160mm;width:100%">
                     <t t-set="lines" t-value="o.invoice_line_ids"/>
                     <t t-set="lines_count" t-value="len(lines)"/>
-                    <t t-set="page_height" t-value="160"/> &lt;!&ndash; Altura máxima en mm para el contenido &ndash;&gt;
+                    <t t-set="page_height" t-value="150"/> &lt;!&ndash; Altura máxima en mm para el contenido &ndash;&gt;
                     <t t-set="line_height" t-value="11"/>  &lt;!&ndash; Altura estimada de cada línea en mm &ndash;&gt;
                     &lt;!&ndash;t t-set="lines_per_page" t-value="int(page_height / line_height)"/&ndash;&gt;
                     <t t-set="lines_per_page" t-value="15"/>
@@ -753,7 +759,7 @@
                 <div class="page" style="height:160mm;width:100%">
                     <t t-set="lines" t-value="o.group_lines_by_product()"/>
                     <t t-set="lines_count" t-value="len(lines)"/>
-                    <t t-set="page_height" t-value="160"/> <!-- Altura máxima en mm para el contenido -->
+                    <t t-set="page_height" t-value="150"/> <!-- Altura máxima en mm para el contenido -->
                     <t t-set="line_height" t-value="11"/>  <!-- Altura estimada de cada línea en mm -->
                     <!--t t-set="lines_per_page" t-value="int(page_height / line_height)"/-->
                     <t t-set="lines_per_page" t-value="15"/>
@@ -924,7 +930,7 @@
                 <div class="page" style="height:160mm;width:100%">
                     <t t-set="lines" t-value="o.group_lines_by_product_distribution_model()"/>
                     <t t-set="lines_count" t-value="len(lines)"/>
-                    <t t-set="page_height" t-value="160"/> <!-- Altura máxima en mm para el contenido -->
+                    <t t-set="page_height" t-value="150"/> <!-- Altura máxima en mm para el contenido -->
                     <t t-set="line_height" t-value="11"/>  <!-- Altura estimada de cada línea en mm -->
                     <!--t t-set="lines_per_page" t-value="int(page_height / line_height)"/-->
                     <t t-set="lines_per_page" t-value="15"/>
@@ -933,7 +939,7 @@
                         <t t-foreach="range(0, lines_count, lines_per_page)" t-as="page_index">
                             <t t-if="page_index > 0"><br/></t>
                             <div class="cuadro-detalle" style="height:160mm;">
-                                <div class="encabezado">Detalle</div>
+                                <div class="encabezado">Detalle Orden: <span t-field="o.ref"/></div>
                                 <div class="contenido">
                                     <table class="ttable">
                                         <thead>
