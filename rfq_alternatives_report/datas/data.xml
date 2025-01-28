@@ -45,12 +45,12 @@
         </field>
     </record>
 
-    <function name="write" model="ir.model.data">
-        <function name="search" model = "ir.model.data">
-            <value eval="[('name', '=', 'email_template_edi_purchase_done'), ('module', '=', 'purchase')] "/>
-        </function>
-        <value eval ="{'noupdate': False}"/>
-    </function>
+<!--    <function name="write" model="ir.model.data">-->
+<!--        <function name="search" model = "ir.model.data">-->
+<!--            <value eval="[('name', '=', 'email_template_edi_purchase_done'), ('module', '=', 'purchase')] "/>-->
+<!--        </function>-->
+<!--        <value eval ="{'noupdate': False}"/>-->
+<!--    </function>-->
 
     <record id="purchase.email_template_edi_purchase_done" model="mail.template">
         <field name="name">Purchase: Purchase Order</field>
