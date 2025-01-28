@@ -11,6 +11,11 @@
             <field name="supplier_rank" position="after">
                 <field name="expenses_provider"/>
                 <field name="invoice_template_id"/>
+                <field name="xml_type"/>
+            </field>
+            <field name="website" position="before">
+                <field name="sale_email" widget="email"/>
+                <field name="purchase_email" widget="email"/>
             </field>
         </field>
     </record>

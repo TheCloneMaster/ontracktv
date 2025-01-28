@@ -23,3 +23,8 @@ class PartnerElectronic(models.Model):
         string='Invoice Report Template',
         domain="[('type', '=', 'qweb')]",
     )
+
+    xml_type = fields.Selection(selection=[('ice', 'ICE'), ('millicom', 'Millicom Cable')], string="Tipo de xml")
+
+    sale_email = fields.Char('Correo de Ventas')
+    purchase_email = fields.Char('Correo de Compras')
