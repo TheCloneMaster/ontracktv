@@ -1395,7 +1395,7 @@ class AccountInvoiceElectronic(models.Model):
                     _logger.info('E-INV CR - SIGNED XML:%s', inv.fname_xml_comprobante)
                 else:
                     xml_firmado = inv.xml_comprobante
-
+                return
                 # Get token from Hacienda
                 token_m_h = api_facturae.get_token_hacienda( inv.company_id )
 
