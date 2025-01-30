@@ -1109,6 +1109,7 @@ class AccountInvoiceElectronic(models.Model):
                     total_impuestos = 0.0
                     base_subtotal = 0.0
                     _no_cabys_code = False
+                    ICP_otros_cargos = 0.0
 
                     for inv_line in inv.invoice_line_ids.filtered(lambda x: x.display_type == 'product'):
                         # Revisamos si está línea es de Otros Cargos
@@ -1197,7 +1198,8 @@ class AccountInvoiceElectronic(models.Model):
                             _line_tax = 0.0
                             _tax_exoneration = False
                             _percentage_exoneration = 0
-                            if inv_line.tax_ids:
+                            num_impuestos = len(inv_line.tax_ids)
+                            if num_impuestos>=2 or (num_impuestos==1 and inv_line.tax_ids[0].tax_code!='99'):
                                 tax_index = 0
 
                                 taxes_lookup = {}
@@ -1260,6 +1262,8 @@ class AccountInvoiceElectronic(models.Model):
 
                                 line["impuesto"] = taxes
                                 line["impuestoNeto"] = round(_line_tax, 5)
+                            elif num_impuestos==1 and inv_line.tax_ids[0].tax_code=='99':
+                                ICP_otros_cargos += subtotal_line * 0.01
 
                             # Si no hay product_uom_id se asume como Servicio
                             categories = [
@@ -1311,6 +1315,15 @@ class AccountInvoiceElectronic(models.Model):
                             'MontoCargo': total_servicio_salon
                         }
 
+                    if ICP_otros_cargos:
+                        total_otros_cargos += ICP_otros_cargos
+                        otros_cargos_id += 1
+                        otros_cargos[otros_cargos_id] = {
+                            'TipoDocumento': '07',
+                            'Detalle': 'Colegio Periodistas',
+                            'MontoCargo': ICP_otros_cargos
+                        }
+
                     # TODO: CORREGIR BUG NUMERO DE FACTURA NO SE
                     # GUARDA EN LA REFERENCIA DE LA NC CUANDO SE CREA MANUALMENTE
                     if inv.invoice_id and not inv.invoice_origin:
@@ -1337,6 +1350,7 @@ class AccountInvoiceElectronic(models.Model):
                             )
                         )
                         continue
+
                     total_servicio_gravado = round(total_servicio_gravado, 5)
                     total_servicio_exento = round(total_servicio_exento, 5)
                     total_servicio_exonerado = round(total_servicio_exonerado, 5)
