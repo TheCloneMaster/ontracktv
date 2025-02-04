@@ -24,7 +24,7 @@ class InvoiceAnalyticDistributionWizard(models.TransientModel):
             raise models.ValidationError('El archivo debe tener al menos 2 columnas')
         
         # Procesar filas
-        distribution = []
+        distribution = {}
         total_percent = 0
         for row in range(1, sheet.nrows):
             code = sheet.cell_value(row, 0)
@@ -37,24 +37,18 @@ class InvoiceAnalyticDistributionWizard(models.TransientModel):
             if not analytic_account:
                 raise models.ValidationError(f'Cuenta analítica no encontrada: {code}')
             
-            distribution.append({
-                'analytic_account_id': analytic_account.id,
-                # 'name': name,
-                'percent': percent
-            })
+            distribution[str(analytic_account.id)] = percent
             total_percent += percent
         
         # Validar suma de porcentajes
         if round(total_percent, 2) != 100:
             raise models.ValidationError('La suma de porcentajes debe ser 100%')
-        
+
+        json_result = json.dumps(distribution)
         # Aplicar distribución a las líneas
         for line in invoice.invoice_line_ids:
             line.write({
-                'analytic_distribution': json.dumps({
-                    str(analytic_account): percent
-                    for analytic_account, percent in distribution
-                })
+                'analytic_distribution': distribution
             })
         
         return {'type': 'ir.actions.act_window_close'}
