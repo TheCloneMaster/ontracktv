@@ -21,7 +21,7 @@ class InvoiceAnalyticDistributionWizard(models.TransientModel):
         
         # Validar estructura
         if sheet.ncols < 2:
-            raise models.ValidationError('El archivo debe tener al menos 3 columnas')
+            raise models.ValidationError('El archivo debe tener al menos 2 columnas')
         
         # Procesar filas
         distribution = []
@@ -30,7 +30,7 @@ class InvoiceAnalyticDistributionWizard(models.TransientModel):
             code = sheet.cell_value(row, 0)
             # name = sheet.cell_value(row, 1)
             percent = sheet.cell_value(row, 1)
-            if percent == 0:
+            if not percent:
                 continue
             
             analytic_account = self.env['account.analytic.account'].search([('code', '=', code)], limit=1)
@@ -52,7 +52,7 @@ class InvoiceAnalyticDistributionWizard(models.TransientModel):
         for line in invoice.invoice_line_ids:
             line.write({
                 'analytic_distribution': json.dumps({
-                    str(analytic_account.id): percent
+                    str(analytic_account): percent
                     for analytic_account, percent in distribution
                 })
             })

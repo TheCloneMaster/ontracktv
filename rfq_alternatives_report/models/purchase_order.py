@@ -2,6 +2,8 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from collections import defaultdict
+import logging
+_logger = logging.getLogger(__name__)
 
 from odoo import api, fields, models, _, Command
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, get_lang
@@ -47,9 +49,12 @@ class PurchaseOrder(models.Model):
     def button_confirm(self):
         if self.alternative_po_ids and not self.env.context.get('skip_alternative_check', False):
             alternative_po_ids = self.alternative_po_ids.filtered(lambda po: po.state in ['draft', 'sent', 'to approve'] and po.id not in self.ids)
+            _logger.error('TVCR -Cancelando órdenes de compra alternativas: %s para PO %s', alternative_po_ids.ids, self.id)
             alternative_po_ids.button_cancel()
 
+        _logger.error('TVCR -antes de confirmar')
         res = super(PurchaseOrder, self.with_context(skip_alternative_check=True)).button_confirm()
+        _logger.error('TVCR -despues de confirmar')
         if self.need_validation:
             return self.request_validation()
         return res
