@@ -27,9 +27,9 @@ class InvoiceAnalyticDistributionWizard(models.TransientModel):
         distribution = {}
         total_percent = 0
         for row in range(1, sheet.nrows):
-            code = sheet.cell_value(row, 0)
+            code = sheet.cell_value(row, 0).rstrip('-')
             # name = sheet.cell_value(row, 1)
-            percent = sheet.cell_value(row, 1)
+            percent = sheet.cell_value(row, 1)*100.0
             if not percent:
                 continue
             
@@ -44,7 +44,6 @@ class InvoiceAnalyticDistributionWizard(models.TransientModel):
         if round(total_percent, 2) != 100:
             raise models.ValidationError('La suma de porcentajes debe ser 100%')
 
-        json_result = json.dumps(distribution)
         # Aplicar distribución a las líneas
         for line in invoice.invoice_line_ids:
             line.write({
