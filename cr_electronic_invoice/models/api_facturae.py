@@ -1178,7 +1178,10 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
     if load_lines:
         lines = invoice_xml.xpath("inv:DetalleServicio/inv:LineaDetalle", namespaces=namespaces)
         for line in lines:
-            product_uom = invoice.env['uom.uom'].search([('code', '=', line.xpath("inv:UnidadMedida",
+            if default_product:
+                product_uom = default_product.uom_id.id
+            else:
+                product_uom = invoice.env['uom.uom'].search([('code', '=', line.xpath("inv:UnidadMedida",
                                                                                   namespaces=namespaces)[0].text)],
                                                         limit=1).id
             total_amount = float(line.xpath("inv:MontoTotal", namespaces=namespaces)[0].text)
