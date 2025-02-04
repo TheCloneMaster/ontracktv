@@ -1215,6 +1215,7 @@ class AccountInvoiceElectronic(models.Model):
                                                               'iva_tax_code': i.tax_root.iva_tax_code,
                                                               'exoneration_percentage': _tax_exoneration_rate,
                                                               'amount_exoneration': i.amount,
+                                                              '_tax_exoneration': True,
                                                               'include_base_amount': i.include_base_amount,
                                                              }
                                     else:
@@ -1222,9 +1223,10 @@ class AccountInvoiceElectronic(models.Model):
                                                               'tarifa': i.amount,
                                                               'iva_tax_desc': i.iva_tax_desc,
                                                               'iva_tax_code': i.iva_tax_code,
+                                                              '_tax_exoneration': False,
                                                               'include_base_amount': i.include_base_amount,
                                                              }
-                                subtotal_line2 = subtotal_line
+                                subtotal_line2 = inv_line.discount < 100 and subtotal_line or base_line  #MAB
                                 _logger.error(_('E-INV CR  - TAXES: %s' % (line_taxes['taxes'])))
 
                                 for i in line_taxes['taxes']:
@@ -1244,7 +1246,7 @@ class AccountInvoiceElectronic(models.Model):
                                             'iva_tax_code': taxes_lookup[i['id']]['iva_tax_code'],
                                         }
                                         # Se genera la exoneración si existe para este impuesto
-                                        if _tax_exoneration:
+                                        if taxes_lookup[i['id']]['_tax_exoneration']:
                                             exoneration_percentage = taxes_lookup[i['id']]['exoneration_percentage']
                                             _tax_amount_exoneration = round(subtotal_line2 *
                                                                             exoneration_percentage / 100, 5)
@@ -1316,12 +1318,12 @@ class AccountInvoiceElectronic(models.Model):
                         }
 
                     if ICP_otros_cargos:
-                        total_otros_cargos += ICP_otros_cargos
+                        total_otros_cargos += round(ICP_otros_cargos, 5)
                         otros_cargos_id += 1
                         otros_cargos[otros_cargos_id] = {
                             'TipoDocumento': '07',
                             'Detalle': 'Colegio Periodistas',
-                            'MontoCargo': ICP_otros_cargos
+                            'MontoCargo': round(ICP_otros_cargos, 5)
                         }
 
                     # TODO: CORREGIR BUG NUMERO DE FACTURA NO SE
@@ -1334,7 +1336,10 @@ class AccountInvoiceElectronic(models.Model):
                         inv.message_post(subject=_('Error'), body=_no_cabys_code)
                         continue
 
-                    if abs(base_subtotal + total_impuestos + total_otros_cargos - total_iva_devuelto - inv.amount_total) > 0.5:
+                    #if abs(base_subtotal + total_impuestos + total_otros_cargos - total_iva_devuelto - inv.amount_total) > 0.5:
+                    montoCorrecto = abs(base_subtotal + total_impuestos + total_otros_cargos - total_iva_devuelto - inv.amount_total) < 0.5 or (abs(total_impuestos)>0 and inv.amount_total==0)
+
+                    if not montoCorrecto:
                         inv.state_tributacion = 'error'
                         inv.message_post(
                             subject=_('Error'),
@@ -1395,7 +1400,7 @@ class AccountInvoiceElectronic(models.Model):
                     _logger.info('E-INV CR - SIGNED XML:%s', inv.fname_xml_comprobante)
                 else:
                     xml_firmado = inv.xml_comprobante
-                return
+                #return  #MAB
                 # Get token from Hacienda
                 token_m_h = api_facturae.get_token_hacienda( inv.company_id )
 
