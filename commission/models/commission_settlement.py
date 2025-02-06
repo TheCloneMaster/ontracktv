@@ -18,12 +18,12 @@ class CommissionSettlement(models.Model):
     total = fields.Float(compute="_compute_total", readonly=True, store=True)
     date_from = fields.Date(string="From", required=True)
     date_to = fields.Date(string="To", required=True)
-    agent_id = fields.Many2one(
-        comodel_name="res.partner",
-        domain="[('agent', '=', True)]",
-        required=True,
-    )
-    agent_type = fields.Selection(related="agent_id.agent_type")
+    # agent_id = fields.Many2one(
+    #     comodel_name="res.partner",
+    #     domain="[('agent', '=', True)]",
+    #     required=True,
+    # )
+    # agent_type = fields.Selection(related="agent_id.agent_type")
     settlement_type = fields.Selection(
         selection=[("manual", "Manual")],
         default="manual",
@@ -82,11 +82,11 @@ class CommissionSettlement(models.Model):
     def action_cancel(self):
         self.write({"state": "cancel"})
 
-    def _message_auto_subscribe_followers(self, updated_values, subtype_ids):
-        res = super()._message_auto_subscribe_followers(updated_values, subtype_ids)
-        if updated_values.get("agent_id"):
-            res.append((updated_values["agent_id"], subtype_ids, False))
-        return res
+    # def _message_auto_subscribe_followers(self, updated_values, subtype_ids):
+    #     res = super()._message_auto_subscribe_followers(updated_values, subtype_ids)
+    #     if updated_values.get("agent_id"):
+    #         res.append((updated_values["agent_id"], subtype_ids, False))
+    #     return res
 
     def compute_settlement_lines(self):
         self.ensure_one()
@@ -97,6 +97,17 @@ class CommissionSettlement(models.Model):
             ('move_type', 'in', ['out_invoice', 'out_refund']),
             ('state', '=', 'posted'),
         ])
+
+        commission_section_ids = self.env['commission.section'].search([])
+        commission_sections = [
+            (section.amount_from, section.amount_to, section.percent)
+            for section in commission_section_ids
+        ]
+        commission_medium_ids = self.env['commission.medium'].search([])
+        commission_mediums = [
+            (medium.medium_code, medium.percent)
+            for medium in commission_medium_ids
+        ]
 
         # Crear diccionario para agrupar facturas por dirección de entrega
         invoices_by_agent = {}
@@ -155,6 +166,13 @@ class CommissionSettlement(models.Model):
                         'invoice_amount': agent_invoice['invoice_amount'],
                         'commission_base': agent_invoice['commission_base'],
                     }
+
+                                # <field name="commission_amount" sum="Monto Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                                # <field name="volume_amount" sum="Monto Volumen" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                                # <field name="pronto_pago" sum="Pronto Pago" widget="monetary" options="{'currency_field': 'currency_id'}" />
+
+
+
                     _logger.error(f"Settlement line values: {values}")
                     settlement_line = self.env['commission.settlement.line'].create(values)
                     _logger.error(f"Settlement line: {settlement_line}")
@@ -217,5 +235,8 @@ class SettlementLine(models.Model):
         readonly=False, store=True
     )
     commission_amount = fields.Monetary(
+        readonly=False, store=True
+    )
+    pronto_pago = fields.Monetary(
         readonly=False, store=True
     )

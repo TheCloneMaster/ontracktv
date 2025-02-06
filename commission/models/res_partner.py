@@ -20,6 +20,7 @@ class ResPartner(models.Model):
         string="Agencias permitidas",
     )
     # Fields for the partner when it acts as an agent
+    comision_sobre_canje = fields.Boolean(string="Comisión sobre canje")
     agent = fields.Boolean(
         string="Es Agencia",
         help="Marque este campo si el socio es una agencia.",

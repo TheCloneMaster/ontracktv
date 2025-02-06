@@ -13,6 +13,7 @@
     "data": [
         "security/commission_security.xml",
         "security/ir.model.access.csv",
+        "views/account_move_views.xml",
         "data/menuitem_data.xml",
         "views/commission_views.xml",
         "views/commission_settlement_views.xml",
