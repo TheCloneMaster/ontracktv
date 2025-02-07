@@ -7,7 +7,8 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Invoicing",
     "license": "AGPL-3",
-    "depends": ["product"],
+    "depends": ["product", 'account'],
+    "summary": "Commission management",
     "website": "https://github.com/OCA/commission",
     "maintainers": ["pedrobaeza"],
     "data": [
@@ -17,7 +18,6 @@
         "data/menuitem_data.xml",
         "views/commission_views.xml",
         "views/commission_settlement_views.xml",
-        # "views/commission_mixin_views.xml",
         "views/product_template_views.xml",
         "views/res_partner_views.xml",
         "reports/commission_settlement_report.xml",

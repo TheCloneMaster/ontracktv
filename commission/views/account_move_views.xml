@@ -5,14 +5,14 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='partner_shipping_id']/parent::div" position="after">
+            <field name="partner_shipping_id" position="after">
                 <div class="o_address_format">
                     <field name="es_canje" 
-                           attrs="{'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])]}"/>
-                    <field name="aplica_comisiones" 
-                           attrs="{'invisible': [('move_type', 'not in', ['out_invoice','out_refund'])]}"/>
+                           invisible ="move_type not in ('out_invoice','out_refund')"/>
+                    <field name="no_aplica_comisiones" 
+                           invisible ="move_type not in ('out_invoice','out_refund')"/>
                 </div>
-            </xpath>
+            </field>
         </field>
     </record>
 </odoo>

@@ -3,6 +3,8 @@
 # Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
 import logging
@@ -18,6 +20,7 @@ class CommissionSettlement(models.Model):
     total = fields.Float(compute="_compute_total", readonly=True, store=True)
     date_from = fields.Date(string="From", required=True)
     date_to = fields.Date(string="To", required=True)
+    fecha_pronto_pago = fields.Date(string="Fecha Pronto Pago", default=fields.Date.context_today)
     # agent_id = fields.Many2one(
     #     comodel_name="res.partner",
     #     domain="[('agent', '=', True)]",
@@ -98,21 +101,24 @@ class CommissionSettlement(models.Model):
             ('state', '=', 'posted'),
         ])
 
+        self.line_ids.unlink()  ## Elimina cálculo previo
+
         commission_section_ids = self.env['commission.section'].search([])
         commission_sections = [
             (section.amount_from, section.amount_to, section.percent)
             for section in commission_section_ids
         ]
         commission_medium_ids = self.env['commission.medium'].search([])
-        commission_mediums = [
-            (medium.medium_code, medium.percent)
-            for medium in commission_medium_ids
-        ]
+        commission_mediums = {
+            medium.medium_code: medium.percent for medium in commission_medium_ids
+        }
 
         # Crear diccionario para agrupar facturas por dirección de entrega
         invoices_by_agent = {}
         
         for invoice in invoices:
+            if (not invoice.partner_id.comision_sobre_canje and invoice.es_canje) or invoice.no_aplica_comisiones:
+                continue
             # Obtener la dirección clave (parent_id de shipping o la dirección de entrega directa)
             try:
                 shipping_address = invoice.partner_shipping_id
@@ -121,18 +127,34 @@ class CommissionSettlement(models.Model):
                 _logger.error(f"Error getting shipping address for invoice {invoice.id}: {e}")
                 continue
 
-            # Calcular commission_base (monto sin impuestos de líneas no exentas de comisión)
-            volumen_base = sum(
-                line.price_subtotal
-                for line in invoice.invoice_line_ids
-                if not line.product_id.commission_free
-            )
-            commission_base = sum(
-                line.price_subtotal
-                for line in invoice.invoice_line_ids
-                if not line.product_id.commission_free
-            )
-            
+            volumen_base = 0
+            invoice_commission = 0
+            # Calcular line_commission (monto sin impuestos de líneas no exentas de comisión)
+            for line in invoice.invoice_line_ids:
+                if line.product_id.commission_free:
+                    continue
+                analytic_distribution = line.analytic_distribution
+
+                # Extraer primeros dos dígitos del código de la primera dimensión analítica
+                line_percentage = 0
+                if analytic_distribution:
+                    dimension_ids = list(analytic_distribution.keys())
+                    if dimension_ids:
+                        first_dimension_id = int(dimension_ids[0])
+                        analytic_account = self.env['account.analytic.account'].browse(first_dimension_id)
+                        if analytic_account.code:
+                            section_code = analytic_account.code[:2]
+                            if section_code not in commission_mediums:
+                                continue
+                            try:
+                                line_percentage =commission_mediums[section_code]
+                            except Exception as e:
+                                _logger.error(f"Error getting commission percentage for section code {section_code}: {e}")
+                                line_percentage = 0
+
+                invoice_commission += line.price_subtotal * line_percentage / 100
+                volumen_base += line.price_subtotal
+
             # Agregar la factura al diccionario usando la dirección como llave
             if key_address not in invoices_by_agent:
                 invoices_by_agent[key_address] = {'invoices': []}
@@ -140,8 +162,8 @@ class CommissionSettlement(models.Model):
             invoices_by_agent[key_address]['invoices'].append({
                 'invoice': invoice,
                 'invoice_amount': invoice.amount_total,
+                'invoice_commission': invoice_commission,
                 'volumen_base': volumen_base,
-                'commission_base': commission_base,
             })
 
         # Calcular totales por agente
@@ -150,10 +172,47 @@ class CommissionSettlement(models.Model):
             invoices_by_agent[agent].update({
                 'total_amount': sum(inv['invoice_amount'] for inv in agent_invoices),
                 'total_volumen_base': sum(inv['volumen_base'] for inv in agent_invoices),
-                'total_commission_base': sum(inv['commission_base'] for inv in agent_invoices),
+                'total_invoice_commission': sum(inv['invoice_commission'] for inv in agent_invoices),
             })
             for agent_invoice in agent_invoices:
                 try:
+                    agent_volume = invoices_by_agent[agent]['total_volumen_base']
+                    for minimo, maximo, porcentaje in commission_sections:
+                        if agent_volume >= minimo and agent_volume <= maximo:
+                            volume_percentage = porcentaje
+                            break
+                    volume_amount = (agent_invoice['volumen_base'] - agent_invoice['invoice_commission']) * volume_percentage / 100
+
+                    fecha_factura = agent_invoice['invoice'].invoice_date
+                    fecha_inicio_credito = date(fecha_factura.year, fecha_factura.month, 1) + relativedelta(months=1) + relativedelta(days=-1) #primer día del mes siguiente
+
+                    if agent_invoice['invoice'].payment_state == 'paid':
+                        for line in agent_invoice['invoice'].line_ids:
+                            if line.display_type != 'payment_term':
+                                continue
+                            # Buscar en matched_debit_ids (pagos recibidos)
+                            for matched_debit in line.matched_debit_ids:
+                                if matched_debit.debit_move_id.move_id.payment_id and matched_debit.debit_move_id.move_id.payment_id.date:
+                                    payment_date = matched_debit.debit_move_id.move_id.payment_id.date
+                            # Buscar en matched_credit_ids (pagos realizados - aunque menos común en facturas de cliente)
+                            for matched_credit in line.matched_credit_ids:
+                                if matched_credit.credit_move_id.move_id.payment_id and matched_credit.credit_move_id.move_id.payment_id.date:
+                                    payment_date = matched_credit.credit_move_id.move_id.payment_id.date
+                    else:
+                        payment_date = self.fecha_pronto_pago
+                    dias_plazo = (payment_date - fecha_inicio_credito).days
+                    if dias_plazo <= 10:
+                        porcentaje = 2.0
+                    elif dias_plazo <= 20:
+                        porcentaje = 1.25
+                    elif dias_plazo <= 29:
+                        porcentaje = 0.75
+                    else:
+                        porcentaje = 0.0
+
+                    monto_pronto_pago = ((agent_invoice['volumen_base'] - agent_invoice['invoice_commission']) - volume_amount) * porcentaje / 100
+
+
                     values = {
                         'name': agent_invoice['invoice'].name,
                         'settlement_id': self.id,
@@ -162,16 +221,13 @@ class CommissionSettlement(models.Model):
                         'date': agent_invoice['invoice'].invoice_date,
                         'agent_id': agent,
                         'invoice_id': agent_invoice['invoice'].id,
-                        'agent_volume': invoices_by_agent[agent]['total_volumen_base'],
+                        'agent_volume': agent_volume,
                         'invoice_amount': agent_invoice['invoice_amount'],
-                        'commission_base': agent_invoice['commission_base'],
+                        'volumen_base': agent_invoice['volumen_base'],
+                        'invoice_commission': agent_invoice['invoice_commission'],
+                        'volume_amount': volume_amount,
+                        'pronto_pago': monto_pronto_pago,
                     }
-
-                                # <field name="commission_amount" sum="Monto Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
-                                # <field name="volume_amount" sum="Monto Volumen" widget="monetary" options="{'currency_field': 'currency_id'}" />
-                                # <field name="pronto_pago" sum="Pronto Pago" widget="monetary" options="{'currency_field': 'currency_id'}" />
-
-
 
                     _logger.error(f"Settlement line values: {values}")
                     settlement_line = self.env['commission.settlement.line'].create(values)
@@ -228,15 +284,18 @@ class SettlementLine(models.Model):
     invoice_amount = fields.Monetary(
         readonly=False, store=True
     )
-    commission_base = fields.Monetary(
+    volumen_base = fields.Monetary(
+        readonly=False, store=True
+    )
+    invoice_commission = fields.Monetary(
         readonly=False, store=True
     )
     volume_amount = fields.Monetary(
         readonly=False, store=True
     )
-    commission_amount = fields.Monetary(
-        readonly=False, store=True
-    )
+    # commission_amount = fields.Monetary(
+    #     readonly=False, store=True
+    # )
     pronto_pago = fields.Monetary(
         readonly=False, store=True
     )

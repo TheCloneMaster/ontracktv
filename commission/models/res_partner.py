@@ -48,12 +48,6 @@ class ResPartner(models.Model):
         string="Período de cálculo",
         default="monthly",
     )
-    settlement_ids = fields.One2many(
-        comodel_name="commission.settlement",
-        inverse_name="agent_id",
-        readonly=True,
-        string="Comisiones",
-    )
 
     @api.model
     def _commercial_fields(self):

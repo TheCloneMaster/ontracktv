@@ -32,23 +32,6 @@
                             <!-- <field name="commission_id" required="agent" /> -->
                             <field name="settlement" required="agent" />
                         </group>
-                        <group
-                            colspan="2"
-                            string="Settlements"
-                            invisible="not settlement_ids"
-                        >
-                            <field colspan="2" name="settlement_ids" nolabel="1">
-                                <tree
-                                    decoration-danger="state == 'cancel'"
-                                    decoration-success="state == 'invoiced'"
-                                >
-                                    <field name="date_from" />
-                                    <field name="date_to" />
-                                    <field name="total" sum="Settled total" />
-                                    <field name="state" />
-                                </tree>
-                            </field>
-                        </group>
                     </group>
                 </page>
             </page>

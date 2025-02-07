@@ -5,7 +5,6 @@
         <field name="model">commission.settlement</field>
         <field name="arch" type="xml">
             <tree decoration-danger="state == 'cancel'">
-                <field name="agent_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="date_from" />
                 <field name="date_to" />
@@ -20,7 +19,6 @@
         <field name="model">commission.settlement</field>
         <field name="arch" type="xml">
             <search string="Settlement search">
-                <field name="agent_id" />
                 <field name="date_from" />
                 <field name="date_to" />
                 <field name="company_id" />
@@ -31,11 +29,6 @@
                 />
                 <separator />
                 <group expand="1" string="Group By">
-                    <filter
-                        string="Agent"
-                        name="group_agent"
-                        context="{'group_by': 'agent_id'}"
-                    />
                     <filter
                         string="Date from month"
                         name="group_date"
@@ -69,18 +62,15 @@
                 <sheet>
                     <field name="can_edit" invisible="1" />
                     <group readonly="not can_edit">
-                        <group colspan="2">
-                            <field name="agent_id" />
-                        </group>
                         <group>
                             <field name="date_from" />
                             <field name="settlement_type" />
+                            <field name="fecha_pronto_pago" />
                         </group>
                         <group>
                             <field name="date_to" />
                             <field name="company_id" groups="base.group_multi_company" />
                             <!--field name="currency_id" groups="base.group_multi_currency" /-->
-                            <field name="agent_type" invisible="1" />
                         </group>
                     </group>
                     <group string="Commission lines">
@@ -94,8 +84,9 @@
                                 <field name="invoice_id" />
                                 <field name="currency_id" groups="base.group_multi_currency" />
                                 <field name="invoice_amount" sum="Total Factura" widget="monetary" options="{'currency_field': 'currency_id'}" />
-                                <field name="commission_base" sum="Base Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
-                                <field name="commission_amount" sum="Monto Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                                <field name="volumen_base" sum="Volumen Base" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                                <field name="invoice_commission" sum="Base Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                                <!-- <field name="commission_amount" sum="Monto Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" /> -->
                                 <field name="volume_amount" sum="Monto Volumen" widget="monetary" options="{'currency_field': 'currency_id'}" />
                                 <field name="pronto_pago" sum="Pronto Pago" widget="monetary" options="{'currency_field': 'currency_id'}" />
                             </tree>
@@ -120,10 +111,11 @@
                 <!-- <field name="commission_id" /> -->
                 <field name="invoice_id" />
                 <field name="invoice_amount" sum="Total Factura" widget="monetary" options="{'currency_field': 'currency_id'}" />
-                <field name="commission_base" sum="Base Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                <field name="volumen_base" sum="Volumen Base" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                <field name="invoice_commission" sum="Base Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
                 <field name="agent_volume" sum="Volumen Agente" widget="monetary" options="{'currency_field': 'currency_id'}" />
                 <field name="volume_amount" sum="Monto Volumen" widget="monetary" options="{'currency_field': 'currency_id'}" />
-                <field name="commission_amount" sum="Monto Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                <!-- <field name="commission_amount" sum="Monto Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" /> -->
             </tree>
         </field>
     </record>
@@ -163,7 +155,7 @@
             <graph string="Settlement analysis" sample="1">
                 <field name="agent_id" />
                 <field name="date" interval="month" operator="+" />
-                <field name="commission_amount" type="measure" />
+                <!-- <field name="commission_amount" type="measure" /> -->
                 <field name="volume_amount" type="measure" />
             </graph>
         </field>
