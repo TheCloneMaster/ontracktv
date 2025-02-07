@@ -17,6 +17,12 @@
                 <field name="sale_email" widget="email"/>
                 <field name="purchase_email" widget="email"/>
             </field>
+            <field name="ref" position="attributes">
+                <attribute name="string">Referencia de cliente</attribute>
+            </field>
+            <field name="ref" position="after">
+                <field name="vendor_ref"/>
+            </field>
         </field>
     </record>
 

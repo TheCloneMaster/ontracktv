@@ -25,6 +25,6 @@ class PartnerElectronic(models.Model):
     )
 
     xml_type = fields.Selection(selection=[('ice', 'ICE'), ('millicom', 'Millicom Cable')], string="Tipo de xml")
-
     sale_email = fields.Char('Correo de Ventas')
     purchase_email = fields.Char('Correo de Compras')
+    vendor_ref = fields.Char('Referencia de proveedor')
