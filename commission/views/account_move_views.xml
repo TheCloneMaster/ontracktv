@@ -6,12 +6,12 @@
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
             <field name="partner_shipping_id" position="after">
-                <div class="o_address_format">
+                <group>
                     <field name="es_canje" 
                            invisible ="move_type not in ('out_invoice','out_refund')"/>
                     <field name="no_aplica_comisiones" 
                            invisible ="move_type not in ('out_invoice','out_refund')"/>
-                </div>
+                </group>
             </field>
         </field>
     </record>

@@ -47,6 +47,7 @@ class FetchmailServer(models.Model):
             imap_server = None
             if server.server_type in ('imap', 'outlook'):
                 try:
+                    errors_warnings = []
                     imap_server = server.connect()
                     # Check if Processed folder exists, if not create it
                     result, folders = imap_server.list()
@@ -84,7 +85,7 @@ class FetchmailServer(models.Model):
                             _logger.info("Subject : %s " % msg.get('subject', ''))
                             _logger.info("From: %s " % msg.get('from', ''))
                             _logger.info("To: %s " % msg.get('to', ''))
-                            result = self.create_invoice_with_attamecth(msg)
+                            result, warning_messages = self.create_invoice_with_attamecth(msg)
                             if result and not isinstance(result, bool):
                                 # Move to Processed folder
                                 imap_server.copy(num, 'Processed')
@@ -92,14 +93,23 @@ class FetchmailServer(models.Model):
                                 _logger.info("Invoice created correctly %s", str(result))
                             elif result:
                                 # Move to Processed folder
+                                errors_warnings.append(f"Repeated Invoice in email {msg.get('subject', '')}")
+                                errors_warnings.append(f"From: {msg.get('from', '')}")
+                                errors_warnings += warning_messages
                                 imap_server.copy(num, 'Processed')
                                 imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Repeated Invoice")
                             else:
+                                errors_warnings.append(f"Ignored email {msg.get('subject', '')}")
+                                errors_warnings.append(f"From: {msg.get('from', '')}")
+                                errors_warnings += warning_messages
                                 imap_server.copy(num, 'Inbox/Ignored')
                                 imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Ignore email")
                         except Exception:
+                            errors_warnings.append(f"Failed to process email {msg.get('subject', '')}")
+                            errors_warnings.append(f"From: {msg.get('from', '')}")
+                            errors_warnings += warning_messages
                             imap_server.copy(num, 'Inbox/Failed')
                             imap_server.store(num, '+FLAGS', '\\Deleted')
                             _logger.info('Failed to process mail from %s server %s.', server.server_type, server.name, exc_info=True)
@@ -110,6 +120,14 @@ class FetchmailServer(models.Model):
                 except Exception:
                     _logger.info("General failure when trying to fetch mail from %s server %s.", server.server_type, server.name, exc_info=True)
                 finally:
+                    if errors_warnings:
+                        email_body = '\n'.join(errors_warnings)
+                        self.env['mail.mail'].create({
+                            'subject': 'Detalle de errores cargando correos facturación electrónica',
+                            'body_html': f'<pre>{email_body}</pre>',
+                            'email_to': 'mi.fernandez@teletica.com,moises.murillo@teletica.com',
+                            'email_from': 'erp.facturas@teletica.com',
+                        }).send()
                     if imap_server:
                         imap_server.close()
                         imap_server.logout()
@@ -139,6 +157,7 @@ class FetchmailServer(models.Model):
         pending_xml_responses = {}
         extra_files = {}
         processed_docs = {}
+        warning_messages = []
 
         for attach in msg.get('attachments'):
             file_name = attach.fname or 'item.ignore'
@@ -163,8 +182,10 @@ class FetchmailServer(models.Model):
                     
                     # if document_type == 'TiqueteElectronico' or document_type == 'NotaDebitoElectronica':
                     if document_type == 'TiqueteElectronico':
-                        _logger.info("This is a TICKET only invoices are valid for taxes")
-                        continue
+                        message = "Warning: This is a TICKET only invoices are valid for taxes"
+                        warning_messages.append(message)
+                        _logger.info(message)
+                        #continue
                     # Check Exist
                     electronic_number = invoice_xml.xpath("inv:Clave", namespaces=namespaces)[0].text
                     exist_invoice = self.get_bill_exist_or_false(electronic_number)
@@ -180,14 +201,18 @@ class FetchmailServer(models.Model):
                                 _logger.info('ACK loaded in existing Invoice: %s', electronic_number)
                                 result = exist_invoice
                             else:
-                                _logger.info('ACK already registered in existing Invoice: %s, ignoring', electronic_number)
+                                message = 'ACK already registered in existing Invoice: ' + electronic_number + ', ignoring'
+                                #warning_messages.append(message)
+                                _logger.info(message)
                                 result = True
                         else:  #should keep track of pending ACKs to be loaded
                             pending_xml_responses[electronic_number] = attach
                         continue
                     if document_type in ('FacturaElectronica', 'NotaCreditoElectronica', 'NotaDebitoElectronica') \
                         and exist_invoice:
-                        _logger.info("Duplicated Document (%s), ignoring", electronic_number)
+                        message = 'Duplicated Document (' + electronic_number + '), ignoring'
+                        warning_messages.append(message)
+                        _logger.info(message)
                         result = True
                         continue
 
@@ -196,13 +221,18 @@ class FetchmailServer(models.Model):
                     elif document_type == 'NotaCreditoElectronica':
                         type_invoice = 'in_refund'
                     else:
-                        _logger.info("The electronic receipt is unknown, it will simply be ignored")
+                        message = 'The electronic receipt is unknown, it will simply be ignored'
+                        warning_messages.append(message)
+                        _logger.info(message)
+                        result = True
                         continue
 
                     receptor = invoice_xml.xpath("inv:Receptor/inv:Identificacion/inv:Numero", namespaces=namespaces)[0].text
                     receiver_company_id = self.env['res.company'].search([('vat', '=', receptor),('import_bill_automatic', '=', True)], limit=1)
                     if not receiver_company_id: #  or not receiver_company_id.import_bill_automatic
-                        _logger.info("Company with VAT %s is not configured for automatic bill import", receptor )
+                        message = 'Company with VAT ' + receptor + ' is not configured for automatic bill import'
+                        warning_messages.append(message)
+                        _logger.info(message)
                         continue
                     purchase_journal = receiver_company_id.import_bill_journal_id
                     self = self.with_context(default_journal_id=purchase_journal.id,
@@ -267,4 +297,4 @@ class FetchmailServer(models.Model):
             _logger.debug("PDF files not processed: %s. No related document", extra_files)
         else:
             _logger.debug("PDF files not processed: %s. Too many documents", extra_files)
-        return result
+        return result, warning_messages

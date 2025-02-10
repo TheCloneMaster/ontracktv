@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group/group[//field[@name='vat']]" position="inside">
                 <field name="agent" string="Agent" />
+                <field name="comision_sobre_canje" string="Comisión sobre canje" />
             </xpath>
             <xpath
                 expr="//page[@name='sales_purchases']//field[@name='user_id']"

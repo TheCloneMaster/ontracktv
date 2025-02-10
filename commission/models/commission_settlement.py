@@ -223,6 +223,7 @@ class CommissionSettlement(models.Model):
                         'invoice_id': agent_invoice['invoice'].id,
                         'agent_volume': agent_volume,
                         'invoice_amount': agent_invoice['invoice_amount'],
+                        'volumen_percentage': volume_percentage,
                         'volumen_base': agent_invoice['volumen_base'],
                         'invoice_commission': agent_invoice['invoice_commission'],
                         'volume_amount': volume_amount,
@@ -236,7 +237,6 @@ class CommissionSettlement(models.Model):
                     _logger.error(f"Error creating settlement line: {e}")
             
         # return invoices_by_agent
-
 class SettlementLine(models.Model):
     _name = "commission.settlement.line"
     _description = "Line of a commission settlement"
@@ -284,9 +284,15 @@ class SettlementLine(models.Model):
     invoice_amount = fields.Monetary(
         readonly=False, store=True
     )
+    volumen_percentage = fields.Float(
+        readonly=False, store=True
+    )
     volumen_base = fields.Monetary(
         readonly=False, store=True
     )
+    # commission_percentage = fields.Float(
+    #     readonly=False, store=True
+    # )
     invoice_commission = fields.Monetary(
         readonly=False, store=True
     )
@@ -299,3 +305,7 @@ class SettlementLine(models.Model):
     pronto_pago = fields.Monetary(
         readonly=False, store=True
     )
+
+    @api.onchange('volumen_percentage')
+    def _onchange_volumen_percentage(self):
+        self.volume_amount = (self.volumen_base - self.invoice_commission) * self.volumen_percentage / 100

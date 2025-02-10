@@ -1019,12 +1019,15 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
             if interactive:
                 raise UserError(_("This is a TICKET only invoices are valid for taxes"))
             else:
-                return -1
+                _logger.error(_(str('Tax code %s and percentage %s is not ' % (tax_code, tax_amount)) +
+                                    'registered in the system'))
+                #return -1
 
     except Exception as e:
         if interactive:
             raise UserError(_("This XML file is not XML-compliant. Error: %s") % e)
         else:
+            _logger.error(_("This XML file is not XML-compliant. Error: %s") % e)
             return -1
 
     namespaces = invoice_xml.nsmap
@@ -1060,6 +1063,7 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
     elif interactive:
         raise UserError(_('El receptor no está definido en el xml'))
     else:
+        _logger.error(_('El receptor no está definido en el xml'))
         return -1
 
     if receptor != invoice.company_id.vat:
@@ -1071,6 +1075,8 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
             if receiver_company_id:
                 invoice.company_id = receiver_company_id
             else:
+                _logger.error(_('El receptor no corresponde con la compañía actual con identificación ' +
+                              receptor + '. Por favor active la compañía correcta.'))
                 return -1
 
     currency_node = invoice_xml.xpath("inv:ResumenFactura/inv:CodigoTipoMoneda/inv:CodigoMoneda",
@@ -1253,11 +1259,15 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
                             raise UserError(_(str('Tax code %s and percentage %s as non-tax ', (tax_code, tax_amount)) +
                                               'deductible is not registered in the system'))
                         else:
+                            _logger.error(_(str('Tax code %s and percentage %s as non-tax ', (tax_code, tax_amount)) +
+                                              'deductible is not registered in the system'))
                             return -1
                     if interactive:
                         raise UserError(_(str('Tax code %s and percentage %s is not ' % (tax_code, tax_amount)) +
                                           'registered in the system'))
                     else:
+                        _logger.error(_(str('Tax code %s and percentage %s is not ' % (tax_code, tax_amount)) +
+                                          'registered in the system'))
                         return -1
 
             _logger.debug('E-INV CR - impuestos de linea: %s', (taxes))

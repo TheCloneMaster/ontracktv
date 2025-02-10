@@ -85,8 +85,10 @@
                                 <field name="currency_id" groups="base.group_multi_currency" />
                                 <field name="invoice_amount" sum="Total Factura" widget="monetary" options="{'currency_field': 'currency_id'}" />
                                 <field name="volumen_base" sum="Volumen Base" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                                <!-- <field name="commission_percentage" sum="Porcentaje Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" /> -->
                                 <field name="invoice_commission" sum="Base Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" />
                                 <!-- <field name="commission_amount" sum="Monto Comisión" widget="monetary" options="{'currency_field': 'currency_id'}" /> -->
+                                <field name="volumen_percentage" />
                                 <field name="volume_amount" sum="Monto Volumen" widget="monetary" options="{'currency_field': 'currency_id'}" />
                                 <field name="pronto_pago" sum="Pronto Pago" widget="monetary" options="{'currency_field': 'currency_id'}" />
                             </tree>
