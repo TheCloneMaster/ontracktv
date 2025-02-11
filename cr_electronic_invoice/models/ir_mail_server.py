@@ -175,7 +175,13 @@ class FetchmailServer(models.Model):
 
             if file_type == '.XML':
                     _logger.info('XML attachment = %s', file_name)
-                    invoice_xml = etree.fromstring(attach_content)
+                    try:
+                        invoice_xml = etree.fromstring(attach_content)
+                    except Exception as e:
+                        message = f'Error parsing attachment {file_name}: {e}'
+                        warning_messages.append(message)
+                        _logger.info(message)
+                        continue
 
                     namespaces = invoice_xml.nsmap
                     inv_xmlns = namespaces.pop(None)
