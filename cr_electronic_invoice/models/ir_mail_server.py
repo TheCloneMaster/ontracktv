@@ -193,12 +193,12 @@ class FetchmailServer(models.Model):
                         invoice_xml.tag).group(0)
                     
                     # if document_type == 'TiqueteElectronico' or document_type == 'NotaDebitoElectronica':
-                    if document_type == 'TiqueteElectronico':
-                        message = "Warning: This is a TICKET only invoices are valid for taxes"
-                        warning_messages.append(message)
-                        _logger.info(message)
-                        #continue
-                    # Check Exist
+                    # if document_type == 'TiqueteElectronico':
+                    #     message = "Warning: This is a TICKET only invoices are valid for taxes"
+                    #     warning_messages.append(message)
+                    #     _logger.info(message)
+                    #     #continue
+                    # # Check Exist
                     electronic_number = invoice_xml.xpath("inv:Clave", namespaces=namespaces)[0].text
                     exist_invoice = self.get_bill_exist_or_false(electronic_number)
                     processed_docs[electronic_number] = exist_invoice
