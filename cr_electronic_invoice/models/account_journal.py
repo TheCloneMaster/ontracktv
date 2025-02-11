@@ -64,14 +64,14 @@ class AccountJournalInherit(models.Model):
     # -------------------------------------------------------------------------
 
     def invoice_from_xml(self, attachment):
-        try:
-            invoice_xml = etree.fromstring(base64.b64decode(attachment.datas))
-            document_names = "FacturaElectronica|NotaCreditoElectronica|NotaDebitoElectronica|TiqueteElectronico"
-            document_type = re.search(document_names, invoice_xml.tag).group(0)
-            if document_type == 'TiqueteElectronico':
-                raise UserError(_("This is a TICKET only invoices are valid for taxes"))
-        except Exception as e:
-            raise UserError(_("This XML file is not XML-compliant. Error: %s") % e)
+        # try:
+        #     invoice_xml = etree.fromstring(base64.b64decode(attachment.datas))
+        #     document_names = "FacturaElectronica|NotaCreditoElectronica|NotaDebitoElectronica|TiqueteElectronico"
+        #     # document_type = re.search(document_names, invoice_xml.tag).group(0)
+        #     # if document_type == 'TiqueteElectronico':
+        #     #     raise UserError(_("This is a TICKET only invoices are valid for taxes"))
+        # except Exception as e:
+        #     raise UserError(_("This XML file is not XML-compliant. Error: %s") % e)
         attachment.write({'res_model': 'mail.compose.message'})
         decoders = self.env['account.move']._get_create_invoice_from_attachment_decoders()
         invoice = False

@@ -1015,13 +1015,13 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
         doc_types = 'FacturaElectronica|NotaCreditoElectronica|NotaDebitoElectronica|TiqueteElectronico'
         document_type = re.search(doc_types, invoice_xml.tag).group(0)
 
-        if document_type == 'TiqueteElectronico':
-            if interactive:
-                raise UserError(_("This is a TICKET only invoices are valid for taxes"))
-            else:
-                _logger.error(_(str('Tax code %s and percentage %s is not ' % (tax_code, tax_amount)) +
-                                    'registered in the system'))
-                #return -1
+        # if document_type == 'TiqueteElectronico':
+        #     if interactive:
+        #         raise UserError(_("This is a TICKET only invoices are valid for taxes"))
+        #     else:
+        #         _logger.error(_(str('Tax code %s and percentage %s is not ' % (tax_code, tax_amount)) +
+        #                             'registered in the system'))
+        #         #return -1
 
     except Exception as e:
         if interactive:
