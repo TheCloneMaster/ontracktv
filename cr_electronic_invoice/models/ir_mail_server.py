@@ -162,10 +162,16 @@ class FetchmailServer(models.Model):
         for attach in msg.get('attachments'):
             file_name = attach.fname or 'item.ignore'
             file_type = pathlib.Path(file_name.upper()).suffix
-            if isinstance(attach.content, bytes):
-                attach_content = attach.content
-            else:
-                attach_content = attach.content.encode()
+            try:
+                if isinstance(attach.content, bytes):   
+                    attach_content = attach.content
+                else:
+                    attach_content = attach.content.encode()
+            except Exception as e:
+                message = f'Error reading attachment {file_name}: {e}'
+                warning_messages.append(message)
+                _logger.info(message)
+                continue
 
             if file_type == '.XML':
                     _logger.info('XML attachment = %s', file_name)
