@@ -302,9 +302,10 @@ class FetchmailServer(models.Model):
         if len(processed_docs)==1:
             for file_name, attach in list(extra_files.items()):
                 num, doc = list(processed_docs.items())[0]
-                attachment_id = self.create_ir_attachment_invoice(doc, attach,
+                if doc:
+                    attachment_id = self.create_ir_attachment_invoice(doc, attach,
                                                                     'application/pdf')
-                doc.message_post(attachment_ids=[attachment_id.id])
+                    doc.message_post(attachment_ids=[attachment_id.id])
         elif len(processed_docs)==0 and extra_files:
             _logger.debug("PDF files not processed: %s. No related document", extra_files)
         else:
