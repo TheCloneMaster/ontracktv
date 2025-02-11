@@ -220,7 +220,7 @@ class FetchmailServer(models.Model):
                         else:  #should keep track of pending ACKs to be loaded
                             pending_xml_responses[electronic_number] = attach
                         continue
-                    if document_type in ('FacturaElectronica', 'NotaCreditoElectronica', 'NotaDebitoElectronica') \
+                    if document_type in ('FacturaElectronica', 'NotaCreditoElectronica', 'NotaDebitoElectronica', 'TiqueteElectronico') \
                         and exist_invoice:
                         message = 'Duplicated Document (' + electronic_number + '), ignoring'
                         warning_messages.append(message)
@@ -228,7 +228,7 @@ class FetchmailServer(models.Model):
                         result = True
                         continue
 
-                    if document_type == 'FacturaElectronica' or document_type == 'NotaDebitoElectronica':
+                    if document_type in ('FacturaElectronica', 'NotaDebitoElectronica', 'TiqueteElectronico'):
                         type_invoice = 'in_invoice'
                     elif document_type == 'NotaCreditoElectronica':
                         type_invoice = 'in_refund'
