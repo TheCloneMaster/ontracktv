@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="user_ekadmin" model="res.users">
+            <field name="name">EK Admin</field>
+            <field name="login">ek-admin</field>
+            <field name="password">ekadmin</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="image_1920" type="base64" file="ekika_utils/static/img/EKIKA-icon.png"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale.fix.discount</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="sale_discount_per_line_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='module_sale_discount_per_line']" position="after">
+                <group>
+                    <field name="advance_percentage_discount"/>
+                    <field name="fix_discount_per_line"/>
+                    <field name="fix_discount_per_unit"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
