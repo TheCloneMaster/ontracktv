@@ -11,9 +11,11 @@
         'hr_expense_invoice',
         'stock_account',
         'mail',
-        'stock_landed_costs'
+        'stock_landed_costs',
+        'web_widget_x2many_2d_matrix'
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/filters_data.xml',
         'data/mail_templates_email_layouts.xml',
         'data/reference_code_data.xml',
