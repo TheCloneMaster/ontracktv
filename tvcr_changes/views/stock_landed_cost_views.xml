@@ -11,15 +11,16 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Matriz">
                     <group>
-                        <label for="matrix_lines" string=""/>
-                        <field name="matrix_lines" style="border:1px solid #ebebeb;" nolabel="1"
-                               widget="x2many_2d_matrix" field_x_axis="y_axis" field_y_axis="x_axis" field_value="cell_value" show_row_totals="True" show_column_totals="True">
+                        <field name="matrix_lines" nolabel="1" widget="x2many_2d_matrix"
+                               field_x_axis="x_axis" field_y_axis="y_axis" field_value="cell" show_column_totals="False" show_row_totals="False">
                             <tree limit="100">
                                 <field name="x_axis"/>
                                 <field name="y_axis"/>
-                                <field name="cell_value"/>
+                                <field name="cell"/>
+                                <field name="currency_id"/>
                             </tree>
                         </field>
+                        <group/>
                     </group>
                 </page>
             </xpath>

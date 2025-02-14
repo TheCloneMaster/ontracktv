@@ -1,12 +1,15 @@
 from odoo import api, fields, models, tools, _
 from odoo.tools import format_date, formatLang
+from collections import defaultdict, Counter
+
 
 class StockValuationAdjustmentMatrix(models.Model):
     _name = 'stock.valuation.adjustment.matrix'
 
-    x_axis = fields.Char()
-    y_axis = fields.Char()
-    cell_value = fields.Char()
+    x_axis = fields.Char(store=True)
+    y_axis = fields.Char(store=True)
+    cell = fields.Monetary(store=True)
+    currency_id = fields.Many2one('res.currency')
 
 class StockLandedCost(models.Model):
     _inherit = 'stock.landed.cost'
@@ -16,63 +19,57 @@ class StockLandedCost(models.Model):
     @api.depends('valuation_adjustment_lines')
     def _compute_matrix_values(self):
         for i in self:
-            if i.valuation_adjustment_lines:
+            if i.valuation_adjustment_lines and i.picking_ids:
                 matrix_vals = []
-
-                cost_line_count = {}
                 for line in i.valuation_adjustment_lines:
-                    cost_line_name = line.cost_line_id.name
-                    if cost_line_name not in cost_line_count:
-                        cost_line_count[cost_line_name] = 1
-                    else:
-                        cost_line_count[cost_line_name] += 1
-
-                for line in i.valuation_adjustment_lines:
-                    cost_line_name = line.cost_line_id.name
-
-                    if cost_line_count[cost_line_name] > 1:
-                        y_axis_value = f'{cost_line_name} ({cost_line_count[cost_line_name]})'
-                        cost_line_count[cost_line_name] -= 1
-                    else:
-                        y_axis_value = f'{cost_line_name}'
-
-                    # Producto y linea de costo
+                    y_axis = line.move_id.purchase_line_id.name
+                    currency = line.currency_id.id
                     vals = {
-                        'x_axis': 'Producto',
-                        'y_axis': y_axis_value,
-                        'cell_value': line.product_id.name
+                        'x_axis': 'Valor original',
+                        'y_axis': y_axis,
+                        'cell': line.former_cost,
+                        'currency_id': currency
+                    }
+                    matrix_vals.append((0, 0, vals))
+                    vals = {
+                        'x_axis': line.cost_line_id.name,
+                        'y_axis': y_axis,
+                        'cell': line.additional_landed_cost,
+                        'currency_id': currency
                     }
                     matrix_vals.append((0, 0, vals))
 
-                    # Costo original
-                    vals2 = {
-                        'x_axis': 'Costo original',
-                        'y_axis': y_axis_value,
-                        'cell_value': formatLang(self.env, line.former_cost, currency_obj=i.currency_id)
-                    }
-                    matrix_vals.append((0, 0, vals2))
+                # Agrupar por axis Y (Producto) y sumar los valores
+                grouped = defaultdict(list)
+                for _, _, dictionary in matrix_vals:
+                    y_axis_value = dictionary.get('y_axis')
+                    if y_axis_value:
+                        grouped[y_axis_value].append(dictionary)
 
-                    # Nuevo valor
-                    vals3 = {
-                        'x_axis': 'Costo en destino adicional',
-                        'y_axis': y_axis_value,
-                        'cell_value': formatLang(self.env, line.additional_landed_cost, currency_obj=i.currency_id)
-                    }
-                    matrix_vals.append((0, 0, vals3))
+                for key in grouped:
+                    cell_counts = Counter(d.get('cell', 0) for d in grouped[key])
+                    total_cell_value = 0
+                    seen_valor_original = False
+                    for d in grouped[key]:
+                        if d['x_axis'] == 'Valor original' and not seen_valor_original:
+                            total_cell_value += d['cell']
+                            seen_valor_original = True
+                        elif d['x_axis'] != 'Valor original':
+                            total_cell_value += d['cell']
+                    currency_id = grouped[key][0].get('currency_id')
 
-                    # Costo en destino adicional
-                    vals4 = {
-                        'x_axis': 'Nuevo valor',
-                        'y_axis': y_axis_value,
-                        'cell_value': formatLang(self.env, line.final_cost, currency_obj=i.currency_id)
+                    vals = {
+                        'x_axis': 'Total',
+                        'y_axis': key,
+                        'cell': total_cell_value,
+                        'currency_id': currency_id,
                     }
-                    matrix_vals.append((0, 0, vals4))
+                    matrix_vals.append((0, 0, vals))
 
-                matrix_vals = sorted(matrix_vals, key=lambda x: x[2]['y_axis'])
+                # Asignar valores a many2many
                 i.matrix_lines = matrix_vals
             else:
                 i.matrix_lines = False
-
 
 class StockValuationAdjustmentLines(models.Model):
     _inherit = 'stock.valuation.adjustment.lines'
