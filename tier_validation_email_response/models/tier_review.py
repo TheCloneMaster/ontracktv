@@ -104,6 +104,8 @@ class FetchmailServer(models.Model):
                                 imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Error in response")
                             else:
+                                imap_server.copy(num, 'Inbox/Ignored')
+                                imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Ignored email")
                         except Exception:
                             _logger.info('Failed to process mail from %s server %s.', server.server_type, server.name, exc_info=True)

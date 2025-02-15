@@ -1088,7 +1088,7 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
 
     payment_methods_id = False
     partner = invoice.env['res.partner'].search([('vat', '=', emisor),
-                                                ('ref','not like', 'CLI-%'),
+                                                # ('ref','not like', 'CLI-%'),
                                                 '|',
                                                     ('company_id', '=', invoice.company_id.id),
                                                     ('company_id', '=', False)], limit=1)

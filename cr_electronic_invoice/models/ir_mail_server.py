@@ -127,6 +127,7 @@ class FetchmailServer(models.Model):
                             'body_html': f'<pre>{email_body}</pre>',
                             'email_to': 'mi.fernandez@teletica.com,moises.murillo@teletica.com',
                             'email_from': 'erp.facturas@teletica.com',
+                            'smtp_server_id': server.id  # ID del servidor saliente que quieres usar
                         }).send()
                     if imap_server:
                         imap_server.close()
