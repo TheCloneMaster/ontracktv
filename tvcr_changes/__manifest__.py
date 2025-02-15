@@ -12,7 +12,8 @@
         'stock_account',
         'mail',
         'stock_landed_costs',
-        'web_widget_x2many_2d_matrix'
+        'web_widget_x2many_2d_matrix',
+        'commission'
     ],
     'data': [
         'security/ir.model.access.csv',
