@@ -122,12 +122,13 @@ class FetchmailServer(models.Model):
                 finally:
                     if errors_warnings:
                         email_body = '\n'.join(errors_warnings)
+                        server_saliente_id = self.env['ir.mail.server'].search([('name', '=', 'erp.facturas@teletica.com')], limit=1)
                         self.env['mail.mail'].create({
                             'subject': 'Detalle de errores cargando correos facturación electrónica',
                             'body_html': f'<pre>{email_body}</pre>',
                             'email_to': 'mi.fernandez@teletica.com,moises.murillo@teletica.com',
                             'email_from': 'erp.facturas@teletica.com',
-                            'smtp_server_id': server.id  # ID del servidor saliente que quieres usar
+                            'smtp_server_id': server_saliente_id.id  # ID del servidor saliente que quieres usar
                         }).send()
                     if imap_server:
                         imap_server.close()
