@@ -638,7 +638,7 @@ class AccountInvoiceElectronic(models.Model):
                                                       'mimetype': 'text/xml'})
 
                     if i.tipo_documento != 'FEC' and i.partner_id and i.partner_id.email:
-                        email_template = self.env.ref('account.email_template_edi_invoice', False)
+                        email_template = self.env.ref('account.email_template_edi_credit_note', False) if i.move_type == 'out_refund' else self.env.ref('account.email_template_edi_invoice', False)
                         domain = [('res_model', '=', i._name),
                                   ('res_id', '=', i.id),
                                   ('res_field', '=', 'xml_comprobante')]
