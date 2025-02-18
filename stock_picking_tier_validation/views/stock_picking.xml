@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_picking_internal_search_tier_validation">
+        <field name="name">stock.picking.search.tier.validation</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <filter name="needs_review" string="Necesita mi validacion"
+                        domain="[('reviewer_ids','in',uid), ('state', 'not in', ['open', 'cancel', 'generated', 'uploaded'])]"/>
+                <filter name="tier_validated" string="Validado"
+                        domain="[('validated', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>
