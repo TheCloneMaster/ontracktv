@@ -13,7 +13,8 @@
         'mail',
         'stock_landed_costs',
         'web_widget_x2many_2d_matrix',
-        'commission'
+        'commission',
+        'account_invoice_line_report'
     ],
     'data': [
         'security/ir.model.access.csv',
