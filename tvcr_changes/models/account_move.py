@@ -215,3 +215,13 @@ class AccountInvoiceElectronic(models.Model):
                 inv.not_loaded_invoice = 'FI-0000000010'
                 inv.not_loaded_invoice_date = fields.Date.today()
         return super(AccountInvoiceElectronic, self).generate_and_send_invoices(invoices)
+
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+
+    tax_names = fields.Char('Impuestos',compute='_compute_tax_names', store=True)
+
+    @api.depends('tax_ids', 'tax_ids.name')
+    def _compute_tax_names(self):
+        for line in self:
+            line.tax_names = ', '.join(line.tax_ids.mapped('name')) if line.tax_ids else ''

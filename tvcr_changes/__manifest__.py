@@ -20,6 +20,7 @@
         'data/filters_data.xml',
         'data/mail_templates_email_layouts.xml',
         'data/reference_code_data.xml',
+        'report/account_invoice_report_view.xml',
         'views/purchase_order_views.xml',
         'views/account_asset_views.xml',
         'views/res_partner_views.xml',
