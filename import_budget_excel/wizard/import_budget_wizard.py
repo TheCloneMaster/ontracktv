@@ -90,7 +90,11 @@ class ImportBudgetWizard(models.TransientModel):
 
             # Procesar cada mes
             for month, col_index in month_columns.items():
-                amount = abs(row[col_index].value)
+                try:
+                    amount = abs(row[col_index].value)
+                except Exception as e:
+                    _logger.error("Error al procesar el monto para el mes %s: %s", col_index, row[col_index].value)
+                    continue
                 if amount:  # Solo procesar si hay un monto asignado
                     # Crear la línea de presupuesto
                     existing_line = self.env['crossovered.budget.lines'].search([

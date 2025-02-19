@@ -16,15 +16,16 @@ class PurchaseOrder(models.Model):
     def _compute_above_budget(self):
         for order in self:
             order.is_above_budget = any(order.order_line.mapped('is_above_budget'))
+            raise UserError("Order is above budget")
 
-    def action_budget(self):
-        self.ensure_one()
-        analytic_account_ids = [
-            int(account)
-            for line in self.order_line
-            for account_ids in (line.analytic_distribution or {})
-            for account in account_ids.split(',')
-        ]
-        action = self.env["ir.actions.actions"]._for_xml_id("account_budget.budget_report_action")
-        action['domain'] = [('auto_account_id', 'in', analytic_account_ids), ('budget_analytic_id.budget_type', '!=', 'revenue')]
-        return action
+    # def action_budget(self):
+    #     self.ensure_one()
+    #     analytic_account_ids = [
+    #         int(account)
+    #         for line in self.order_line
+    #         for account_ids in (line.analytic_distribution or {})
+    #         for account in account_ids.split(',')
+    #     ]
+    #     action = self.env["ir.actions.actions"]._for_xml_id("account_budget.budget_report_action")
+    #     action['domain'] = [('auto_account_id', 'in', analytic_account_ids), ('budget_analytic_id.budget_type', '!=', 'revenue')]
+    #     return action

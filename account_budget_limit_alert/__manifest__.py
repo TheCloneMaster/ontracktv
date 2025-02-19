@@ -34,7 +34,7 @@
     'website': 'https://www.cybrosys.com',
     'depends': ['account_budget'],
     'data': [
-        'views/crossovered_budget_views.xml',
+        # 'views/crossovered_budget_views.xml',
         'views/account_move_views.xml'
     ],
     'images': ['static/description/banner.jpg'],

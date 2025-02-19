@@ -123,7 +123,7 @@ class FetchmailServer(models.Model):
                 finally:
                     if errors_warnings:
                         email_body = '\n'.join(errors_warnings)
-                        server_saliente_id = self.env['ir.mail.server'].search([('name', '=', 'erp.facturas@teletica.com')], limit=1)
+                        server_saliente_id = self.env['ir.mail_server'].search([('name', '=', 'erp.facturas@teletica.com')], limit=1)
                         self.env['mail.mail'].create({
                             'subject': 'Detalle de errores cargando correos facturación electrónica',
                             'body_html': f'<pre>{email_body}</pre>',
