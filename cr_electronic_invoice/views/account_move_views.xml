@@ -187,6 +187,9 @@
             <xpath expr="(//field[@name='tipo_documento'])" position="attributes">
                 <attribute name="readonly">from_mail or state != 'draft'</attribute>
             </xpath>
+            <xpath expr="(//field[@name='invoice_date'])" position="attributes">
+                <attribute name="readonly">from_mail or state != 'draft'</attribute>
+            </xpath>
             <!--xpath expr="(//field[@name='payment_methods_id'])" position="attributes">
                 <attribute name="readonly">from_mail or state != 'draft'</attribute>
             </xpath-->
