@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="menu_records_by_role" model="ir.rule">
+        <field name="name">Menu Records By Role</field>
+        <field ref="model_ir_ui_menu" name="model_id"/>
+        <field name="domain_force">['|', ('role_ids', 'in', user.role_ids.ids), ('role_ids', '=', False)]</field>
+    </record>
+</odoo>

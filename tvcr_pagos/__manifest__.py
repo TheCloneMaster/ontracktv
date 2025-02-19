@@ -4,11 +4,14 @@
     'category': 'Accounting',
     'summary': 'Gestión de pagos para TVCR',
     'author': 'TVCR',
-    'depends': ['account'],
+    'depends': ['base', 'web', 'account', 'purchase', 'stock', 'account_payment_order', 'point_of_sale'],
     'data': [
         'security/tvcr_pagos_security.xml',
-        'security/ir.model.access.csv',
+        'security/ir_rule.xml',
         'views/tvcr_pagos_menu.xml',
+        'views/ir_ui_menu.xml',
+        'views/res_users_role.xml',
+        'views/role_menu_items.xml'
     ],
     'installable': True,
     'application': True,

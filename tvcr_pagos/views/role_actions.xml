@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Customer -->
+    <record model="ir.actions.act_window" id="tvcr_action_move_out_invoice_type">
+        <field name="name">Facturas</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="domain">[('move_type', '=', 'out_invoice')]</field>
+        <field name="context">{'default_move_type': 'out_invoice', 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_action_move_out_refund_type">
+        <field name="name">Notas de credito</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="domain">[('move_type', '=', 'out_refund')]</field>
+        <field name="context">{'default_move_type': 'out_refund', 'display_account_trust': True, 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_action_move_out_receipt_type">
+        <field name="name">Recibos</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="domain">[('move_type', '=', 'out_receipt')]</field>
+        <field name="context">{'default_move_type': 'out_receipt', 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_action_account_payments">
+        <field name="name">Pagos</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,kanban,form,graph,activity</field>
+        <field name="context">{'default_payment_type': 'inbound', 'default_partner_type': 'customer', 'search_default_inbound_filter': 1,
+                               'default_move_journal_types': ('bank', 'cash'), 'display_account_trust': True, 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_account_payment_order_inbound_action">
+        <field name="name">Ordenes de cobro</field>
+        <field name="res_model">account.payment.order</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="domain">[('payment_type', '=', 'inbound')]</field>
+        <field name="context">{'default_payment_type': 'inbound', 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_action_view_list_customer_statements">
+        <field name="name">Reportes de seguimiento</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|', ('parent_id', '=', False), ('is_company', '=', True), ('customer_rank', '>', 0)]</field>
+        <field name="context">{'search_default_filter_with_overdue_invoices': 1, 'res_partner_search_mode': 'customer', 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_product_product_action_sellable">
+        <field name="name">Productos</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="context">{'search_default_filter_to_sell': 1, 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_res_partner_action_customer">
+        <field name="name">Clientes</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_customer': 1, 'res_partner_search_mode': 'customer', 'default_is_company': True, 'default_customer_rank': 1, 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <!-- Vendor -->
+    <record model="ir.actions.act_window" id="tvcr_action_move_in_invoice_type">
+        <field name="name">Facturas</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="domain">[('move_type', '=', 'in_invoice')]</field>
+        <field name="context">{'default_move_type': 'in_invoice', 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_action_move_in_refund_type">
+        <field name="name">Reembolsos</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="domain">[('move_type', '=', 'in_refund')]</field>
+        <field name="context">{'default_move_type': 'in_refund', 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_action_move_in_receipt_type">
+        <field name="name">Recibos</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="domain">[('move_type', '=', 'in_receipt')]</field>
+        <field name="context">{'default_move_type': 'in_receipt', 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_action_account_payments_payable">
+        <field name="name">Pagos</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,kanban,form,graph,activity</field>
+        <field name="context">{'default_payment_type': 'outbound', 'default_partner_type': 'supplier', 'search_default_outbound_filter': 1,
+                               'default_move_journal_types': ('bank', 'cash'), 'display_account_trust': True, 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_account_payment_order_outbound_action">
+        <field name="name">Ordenes de pago</field>
+        <field name="res_model">account.payment.order</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="domain">[('payment_type', '=', 'outbound')]</field>
+        <field name="context">{'default_payment_type': 'outbound', 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+    <record model="ir.actions.act_window" id="tvcr_account_payment_order_outbound_action">
+        <field name="name">Gastos del empleado</field>
+        <field name="res_model">hr.expense.sheet</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph</field>
+        <field name="context">{'search_default_approved': 1, 'search_default_to_post': 1, 'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+
+    action_hr_expense_account
+    action_account_advance_payments_payable
+    action_account_supplier_accounts
+
+    <!-- Stock -->
+
+</odoo>

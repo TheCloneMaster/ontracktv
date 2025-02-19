@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="show_role_menu" model="ir.ui.view">
+        <field name="name">Show Menus By Role</field>
+        <field name="model">res.users.role</field>
+        <field name="inherit_id" ref="base_user_role.view_res_users_role_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <field name="admin_role" invisible="1"/>
+                <page string="Menus">
+                    <field name="menu_ids"/>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_res_users_role_tree_inherit" model="ir.ui.view">
+        <field name="name">Res Users Role Tree View</field>
+        <field name="model">res.users.role</field>
+        <field name="inherit_id" ref="base_user_role.view_res_users_role_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_ids']" position="after">
+                <field name="menu_ids" optional="hide"/>
+                <field name="admin_role" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ir_actions_server_admin_role" model="ir.actions.server">
+        <field name="name">Rol de administracion</field>
+        <field name="model_id" ref="base_user_role.model_res_users_role" />
+        <field name="binding_model_id" ref="base_user_role.model_res_users_role" />
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = record._assign_admin_role()
+        </field>
+    </record>
+
+    <record id="ir_actions_server_reset_menu_roles" model="ir.actions.server">
+        <field name="name">Reiniciar menus y roles</field>
+        <field name="model_id" ref="base_user_role.model_res_users_role" />
+        <field name="binding_model_id" ref="base_user_role.model_res_users_role" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = model._reset_menu_roles()
+        </field>
+    </record>
+
+    <menuitem id="role_settings" name="Elementos de menu" parent="base.menu_users" sequence="99">
+        <menuitem id="role_restart_roles" name="Reiniciar roles" action="ir_actions_server_reset_menu_roles"/>
+    </menuitem>
+
+</odoo>
