@@ -204,7 +204,6 @@
                 <menuitem id="pos_role_menu_pos_session_all" name="Sesiones" action="point_of_sale.action_pos_session"/>
                 <menuitem id="pos_role_menu_pos_payment" name="Pagos" action="point_of_sale.action_pos_payment_form"/>
                 <menuitem id="pos_role_menu_pos_preparation_printer" name="Impresoras de preparación" action="point_of_sale.action_pos_printer_form"/>
-                <menuitem id="pos_role_menu_pos_preparation_display" name="Pantalla de preparación" action="pos_preparation_display.action_preparation_display"/>
                 <menuitem id="pos_role_menu_point_of_sale_customer" name="Clientes" action="account.res_partner_action_customer"/>
             </menuitem>
 
