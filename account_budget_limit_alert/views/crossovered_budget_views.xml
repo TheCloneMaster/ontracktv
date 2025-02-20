@@ -1,20 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!--    Inherited to add extra fields-->
+    <!-- <act_window id="action_view_budget_lines"
+        name="Líneas de Presupuesto"
+        res_model="crossovered.budget.line"
+        view_mode="tree,pivot"
+        domain="[('budget_id','=',active_id)]"
+        context="{{'search_default_budget_filter':1}}"/> -->
+
+    <record id="action_view_budget_lines" model="ir.actions.act_window">
+        <field name="name">Líneas de Presupuesto</field>
+        <field name="res_model">crossovered.budget.lines</field>
+        <field name="view_mode">tree,pivot</field>  
+        <field name="domain">[('budget_id','=',active_id)]</field>
+        <field name="context">{'search_default_budget_filter':1}</field>
+    </record>
+
     <record id="crossovered_budget_view_form" model="ir.ui.view">
-        <field name="name">budget.budget.view.form.inherit.account.budget.limit.alert</field>
-        <field name="model">budget.budget</field>
+        <field name="name">crossovered.budget.view.form.inherit.account.budget.limit.alert</field>
+        <field name="model">crossovered.budget</field>
         <field name="inherit_id"
-               ref="base_account_budget.crossovered_budget_view_form"/>
+               ref="account_budget.crossovered_budget_view_form"/>
         <field name="mode">primary</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <xpath expr="//notebook//page[1]//field[@name='budget_line']//tree//field[@name='date_to']" position="after">
+            <!-- <xpath expr="//notebook//page[1]//field[@name='budget_line']//tree//field[@name='date_to']" position="after">
                 <field name="alert_type"/>
             </xpath>
               <xpath expr="//notebook//page[1]//field[@name='budget_line']//form//group//group[1]//field[@name='general_budget_id']" position="after">
                 <field name="alert_type"/>
-              </xpath>
+            </xpath> -->
+            <xpath expr="//button[@name='action_budget_cancel']" position="after">
+                <button name="%(action_view_budget_lines)d"
+                    type="action"
+                    string="Ver Detalle"
+                    class="oe_highlight"
+                    invisible="state in ('draft', 'cancel')"/>
+            </xpath>
         </field>
     </record>
+
+    <!-- New views for crossovered.budget.line -->
+    <record id="crossovered_budget_line_view_tree" model="ir.ui.view">
+        <field name="name">crossovered.budget.lines.tree</field>
+        <field name="model">crossovered.budget.lines</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="general_budget_id"/>
+                <field name="analytic_account_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="planned_amount" sum="Total Presupuestado"/>
+                <field name="practical_amount" sum="Total Real"/>
+                <field name="theoritical_amount" sum="Total Teórico"/>
+                <field name="percentage" sum="Total Porcentaje"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="crossovered_budget_line_view_pivot" model="ir.ui.view">
+        <field name="name">crossovered.budget.lines.pivot</field>
+        <field name="model">crossovered.budget.lines</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="general_budget_id" type="col"/>
+                <field name="analytic_account_id" type="row"/>
+                <field name="date_from" interval="month" type="row"/>
+                <field name="planned_amount" type="measure"/>
+                <field name="practical_amount" type="measure"/>
+                <field name="theoritical_amount" type="measure"/>
+                <field name="percentage" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="crossovered_budget_line_view_search" model="ir.ui.view">
+        <field name="name">crossovered.budget.lines.search</field>
+        <field name="model">crossovered.budget.lines</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="current_month" string="Mes Actual"
+                    domain="[('date_from', '>=', context_today().replace(day=1)), ('date_to', '&lt;=', context_today())]"/>
+                <filter name="budget_filter" string="Presupuesto"
+                    domain="[('crossovered_budget_id', '=', active_id)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_by_date" context="{'group_by':'date_from:month'}"/>
+                    <filter name="group_by_department" context="{'group_by':'analytic_account_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
 </odoo>
