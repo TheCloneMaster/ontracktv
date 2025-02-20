@@ -7,7 +7,6 @@
         <field name="inherit_id" ref="base_user_role.view_res_users_role_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <field name="admin_role" invisible="1"/>
                 <page string="Menus">
                     <field name="menu_ids"/>
                 </page>
@@ -23,19 +22,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_ids']" position="after">
                 <field name="menu_ids" optional="hide"/>
-                <field name="admin_role" optional="hide"/>
             </xpath>
-        </field>
-    </record>
-
-    <record id="ir_actions_server_admin_role" model="ir.actions.server">
-        <field name="name">Rol de administracion</field>
-        <field name="model_id" ref="base_user_role.model_res_users_role" />
-        <field name="binding_model_id" ref="base_user_role.model_res_users_role" />
-        <field name="binding_view_types">form</field>
-        <field name="state">code</field>
-        <field name="code">
-            action = record._assign_admin_role()
         </field>
     </record>
 
