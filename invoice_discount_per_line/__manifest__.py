@@ -29,7 +29,8 @@
     'website': 'https://ekika.co',
     "category": "Accounting",
     'license': 'OPL-1',
-    "depends": ['account', 'invoice_discount_per_line_setup', 'ekika_utils'],
+    "depends": ['base', 'account', 'ekika_utils'],
+    'post_init_hook': 'update_existing_discount_values',
     "data": [
         "security/ir.model.access.csv",
         "data/advance_discount_selection.xml",

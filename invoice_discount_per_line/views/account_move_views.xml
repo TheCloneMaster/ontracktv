@@ -10,9 +10,9 @@
                 <field name="discount_conf_id" widget="selection"/>
                 <field name="advance_discount"/>
             </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="attributes">
-                <attribute name="column_invisible">True</attribute>
-            </xpath>
+<!--            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="attributes">-->
+<!--                <attribute name="column_invisible">True</attribute>-->
+<!--            </xpath>-->
             <xpath expr="//field[@name='tax_totals']" position="before">
                 <field name="fixed_discounts"/>
             </xpath>

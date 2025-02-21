@@ -12,6 +12,7 @@ from odoo.exceptions import UserError
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
+    module_invoice_discount_per_line = fields.Boolean('Discount Per Line')
     advance_percentage_discount = fields.Boolean('Percentage Discount',
                                     related='company_id.advance_percentage_discount', readonly=False)
     fix_discount_per_line = fields.Boolean('Fix Discount Per Line',

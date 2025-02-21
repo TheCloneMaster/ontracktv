@@ -2,17 +2,22 @@
 <odoo>
 
     <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.inherit.invoice.discount.per.line</field>
+        <field name="name">res.config.settings.view.form.inherit.invoice.fix.discount.setup</field>
         <field name="model">res.config.settings</field>
         <field name="priority" eval="10"/>
-        <field name="inherit_id" ref="invoice_discount_per_line_setup.res_config_settings_view_form"/>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//setting[@id='discount_per_line']" position="inside">
-                <group>
-                    <field name="advance_percentage_discount"/>
-                    <field name="fix_discount_per_line"/>
-                    <field name="fix_discount_per_unit"/>
-                </group>
+            <xpath expr="//block[@name='fiscal_localization_setting_container']" position="after">
+                <block title="Fix Discount Per Line" name="invoice_fix_discount_per_line">
+                    <setting id="discount_per_line" title="This module enhances Odoo's discount management by introducing flexible line-level discounts. Discounts can be applied in three ways: as a percentage of the line total, a fixed amount discount on the line total, or a per-unit discount." help="Allows you to manage discounts per line in various ways.">
+                        <field name="module_invoice_discount_per_line" />
+                        <group>
+                            <field name="advance_percentage_discount"/>
+                            <field name="fix_discount_per_line"/>
+                            <field name="fix_discount_per_unit"/>
+                        </group>
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>
