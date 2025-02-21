@@ -121,12 +121,12 @@ class AccountMove(models.Model):
         """ Method for Interest computation via scheduled action """
 
         today_date = fields.Date.today()
-        for rec in self.sudo().search([('state', '=', 'draft')]):
+        for rec in self.sudo().search([('state', '=', 'posted'),('payment_state', 'in', ('not_paid', 'partial'))]):
             if rec.invoice_date_due and rec.invoice_date_due < today_date \
-                    and rec.state == 'draft' \
                     and rec.move_type == 'out_invoice' \
                     and rec.interest_overdue_act \
                     and rec.invoice_payment_term_id.interest_percentage > 0:
+                    # and rec.state == 'draft' \
                 period = rec.get_period_time(today_date)
                 if rec.invoice_payment_term_id.interest_type == 'monthly':
                     if rec.interest_calculated_period \
@@ -146,23 +146,23 @@ class AccountMove(models.Model):
                             + "-d":
                         continue
                     rec.interest_calculated_period = str(period) + "-d"
-                interest_line = rec.invoice_line_ids.search(
-                    [('name', '=', 'Interest Amount for Overdue'),
-                     ('move_id', '=', rec.id)], limit=1)
-                if interest_line:
-                    rec.invoice_line_ids = ([(2, interest_line.id, 0)])
+                # interest_line = rec.invoice_line_ids.search(
+                #     [('name', '=', 'Interest Amount for Overdue'),
+                #      ('move_id', '=', rec.id)], limit=1)
+                # if interest_line:
+                #     rec.invoice_line_ids = ([(2, interest_line.id, 0)])
                 rec.interest_amount = rec.amount_total * rec \
                     .invoice_payment_term_id.interest_percentage * period / 100
-                vals = {'name': 'Interest Amount for Overdue',
-                        'price_unit': rec.interest_amount,
-                        'quantity': 1,
-                        }
-                if rec.invoice_payment_term_id.interest_account_id:
-                    vals.update({
-                        'account_id': rec.invoice_payment_term_id.
-                        interest_account_id.id})
-                if rec.interest_amount > 0:
-                    rec.invoice_line_ids = ([(0, 0, vals)])
+                # vals = {'name': 'Interest Amount for Overdue',
+                #         'price_unit': rec.interest_amount,
+                #         'quantity': 1,
+                #         }
+                # if rec.invoice_payment_term_id.interest_account_id:
+                #     vals.update({
+                #         'account_id': rec.invoice_payment_term_id.
+                #         interest_account_id.id})
+                # if rec.interest_amount > 0:
+                #     rec.invoice_line_ids = ([(0, 0, vals)])
             elif rec.interest_amount > 0:
                 rec.action_interest_reset()
 
