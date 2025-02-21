@@ -17,6 +17,14 @@ class PurchaseOrder(models.Model):
         domain="[('id', 'in', valid_purchase_approvers)]"
     )
 
+    confirm_po = fields.Boolean('Permitir confirmación')
+    enable_confirm_action = fields.Boolean(compute='_enable_confirm_action')
+
+    @api.depends('confirm_po')
+    def _enable_confirm_action(self):
+        for p in self:
+            p.enable_confirm_action = True if p.confirm_po == True else False
+
 class PurchaseRequest(models.Model):
     _inherit = "purchase.request"
 

@@ -19,6 +19,15 @@
                 <field name="valid_purchase_approvers" invisible="1"/>
                 <field name="tier_validation_approver"/>
             </field>
+            <field name="picking_type_id" position="after">
+                <field name="enable_confirm_action" invisible="1"/>
+                <field name="confirm_po" invisible="state in ['purchase', 'done', 'cancel']" groups="purchase.group_purchase_manager"/>
+            </field>
+            <xpath expr="//button[@name='button_confirm'][@id='draft_confirm']" position="attributes">
+                <attribute name="invisible">state != 'draft' or enable_confirm_action == False</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>
+
+
