@@ -29,7 +29,8 @@
     'website': 'https://ekika.co',
     "category": "Sales",
     'license': 'OPL-1',
-    "depends": ['sale', 'invoice_discount_per_line', 'sale_discount_per_line_setup', 'ekika_utils'],
+    "depends": ['base', 'sale', 'invoice_discount_per_line', 'ekika_utils'],
+    'post_init_hook': 'update_existing_discount_values',
     "data": [
         #"data/report_sale_order_template.xml",
         "views/sale_order_views.xml",

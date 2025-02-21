@@ -6,5 +6,10 @@
 #                                                                    #
 ######################################################################
 
-from . import res_config_settings
-from . import sale_order
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
+
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
+
+    module_sale_discount_per_line = fields.Boolean('Sale Discount Per Line')

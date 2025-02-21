@@ -2,17 +2,20 @@
 <odoo>
 
     <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.inherit.sale.fix.discount</field>
+        <field name="name">res.config.settings.view.form.inherit.sale.fix.discount.setup</field>
         <field name="model">res.config.settings</field>
         <field name="priority" eval="10"/>
-        <field name="inherit_id" ref="sale_discount_per_line_setup.res_config_settings_view_form"/>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='module_sale_discount_per_line']" position="after">
-                <group>
-                    <field name="advance_percentage_discount"/>
-                    <field name="fix_discount_per_line"/>
-                    <field name="fix_discount_per_unit"/>
-                </group>
+            <xpath expr="//block[@id='pricing_setting_container']" position="inside">
+                <setting id="sale_discount_per_line" title="his module enhances Odoo's discount management by introducing flexible line-level discounts. Discounts can be applied in three ways: as a percentage of the line total, a fixed amount discount on the line total, or a per-unit discount." help="Allows you to manage sale discounts per line in various ways.">
+                    <field name="module_sale_discount_per_line" />
+                    <group>
+                        <field name="advance_percentage_discount"/>
+                        <field name="fix_discount_per_line"/>
+                        <field name="fix_discount_per_unit"/>
+                    </group>
+                </setting>
             </xpath>
         </field>
     </record>
