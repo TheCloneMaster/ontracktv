@@ -21,10 +21,13 @@
             </field>
             <field name="picking_type_id" position="after">
                 <field name="enable_confirm_action" invisible="1"/>
-                <field name="confirm_po" invisible="state in ['purchase', 'done', 'cancel']" groups="purchase.group_purchase_manager"/>
+                <field name="confirm_po" invisible="state not in ['draft', 'sent']" groups="purchase.group_purchase_manager"/>
             </field>
+            <xpath expr="//button[@name='button_confirm'][@id='bid_confirm']" position="attributes">
+                <attribute name="invisible">state not in ['draft', 'sent'] or enable_confirm_action == False</attribute>
+            </xpath>
             <xpath expr="//button[@name='button_confirm'][@id='draft_confirm']" position="attributes">
-                <attribute name="invisible">state != 'draft' or enable_confirm_action == False</attribute>
+                <attribute name="invisible">True</attribute>
             </xpath>
         </field>
     </record>
