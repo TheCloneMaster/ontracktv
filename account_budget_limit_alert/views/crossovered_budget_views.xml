@@ -11,7 +11,7 @@
         <field name="name">Líneas de Presupuesto</field>
         <field name="res_model">crossovered.budget.lines</field>
         <field name="view_mode">tree,pivot</field>  
-        <field name="domain">[('budget_id','=',active_id)]</field>
+        <field name="domain">[('crossovered_budget_id','=',active_id)]</field>
         <field name="context">{'search_default_budget_filter':1}</field>
     </record>
 
@@ -34,8 +34,11 @@
                     type="action"
                     string="Ver Detalle"
                     class="oe_highlight"
-                    invisible="state in ('draft', 'cancel')"/>
+                />
             </xpath>
+            <field name="percentage" position="after">
+                <field name="remaining_amount" sum="Total Restante"/>
+            </field>
         </field>
     </record>
 
@@ -43,50 +46,47 @@
     <record id="crossovered_budget_line_view_tree" model="ir.ui.view">
         <field name="name">crossovered.budget.lines.tree</field>
         <field name="model">crossovered.budget.lines</field>
+        <field name="inherit_id"
+               ref="account_budget.view_crossovered_budget_line_tree"/>
         <field name="arch" type="xml">
-            <tree>
-                <field name="general_budget_id"/>
-                <field name="analytic_account_id"/>
-                <field name="date_from"/>
-                <field name="date_to"/>
-                <field name="planned_amount" sum="Total Presupuestado"/>
-                <field name="practical_amount" sum="Total Real"/>
-                <field name="theoritical_amount" sum="Total Teórico"/>
-                <field name="percentage" sum="Total Porcentaje"/>
-            </tree>
+            <field name="percentage" position="after">
+                <field name="remaining_amount" sum="Total Restante"/>
+            </field>
         </field>
     </record>
 
     <record id="crossovered_budget_line_view_pivot" model="ir.ui.view">
         <field name="name">crossovered.budget.lines.pivot</field>
         <field name="model">crossovered.budget.lines</field>
+        <field name="inherit_id"
+               ref="account_budget.view_crossovered_budget_line_pivot"/>
         <field name="arch" type="xml">
-            <pivot>
-                <field name="general_budget_id" type="col"/>
-                <field name="analytic_account_id" type="row"/>
-                <field name="date_from" interval="month" type="row"/>
-                <field name="planned_amount" type="measure"/>
-                <field name="practical_amount" type="measure"/>
-                <field name="theoritical_amount" type="measure"/>
-                <field name="percentage" type="measure"/>
-            </pivot>
+            <field name="percentage" position="after">
+                <field name="remaining_amount" type="measure"/>
+            </field>
         </field>
     </record>
 
     <record id="crossovered_budget_line_view_search" model="ir.ui.view">
         <field name="name">crossovered.budget.lines.search</field>
         <field name="model">crossovered.budget.lines</field>
+        <field name="inherit_id"
+               ref="account_budget.view_crossovered_budget_line_search"/>
         <field name="arch" type="xml">
-            <search>
+            <field name="crossovered_budget_id" position="before">
+                <field name="general_budget_id"/>
+            </field>
+            <filter name="filter_not_cancelled" position="after">
                 <filter name="current_month" string="Mes Actual"
                     domain="[('date_from', '>=', context_today().replace(day=1)), ('date_to', '&lt;=', context_today())]"/>
                 <filter name="budget_filter" string="Presupuesto"
                     domain="[('crossovered_budget_id', '=', active_id)]"/>
-                <group expand="0" string="Agrupar por">
-                    <filter name="group_by_date" context="{'group_by':'date_from:month'}"/>
-                    <filter name="group_by_department" context="{'group_by':'analytic_account_id'}"/>
-                </group>
-            </search>
+            </filter>
+            <filter name="group_crossevered_budgdet_id" position="after">
+                <filter name="group_by_date" context="{'group_by':'date_from:month'}"/>
+                <filter name="group_by_df" context="{'group_by':'analytic_account_id'}"/>
+                <filter name="group_by_general_budget_id" context="{'group_by':'general_budget_id'}"/>
+            </filter>
         </field>
     </record>
 

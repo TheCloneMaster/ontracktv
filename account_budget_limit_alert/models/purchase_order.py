@@ -1,10 +1,11 @@
 from odoo import fields, models, api
+from odoo.exceptions import UserError
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    is_above_budget = fields.Boolean('Is Above Budget', compute='_compute_above_budget')
+    is_above_budget = fields.Boolean('Is Above Budget', compute='_compute_above_budget', store=True)
     is_analytic = fields.Boolean('Is Analytic', compute='_compute_is_analytic')
 
     @api.depends('order_line.analytic_distribution')
@@ -16,7 +17,8 @@ class PurchaseOrder(models.Model):
     def _compute_above_budget(self):
         for order in self:
             order.is_above_budget = any(order.order_line.mapped('is_above_budget'))
-            raise UserError("Order is above budget")
+            # if order.is_above_budget:
+            #     raise UserError("Order is above budget")
 
     # def action_budget(self):
     #     self.ensure_one()

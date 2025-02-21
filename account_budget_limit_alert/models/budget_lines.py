@@ -30,7 +30,7 @@ class BudgetLines(models.Model):
         [('warning', 'Warning Message'), ('ignore', 'Ignore'),
          ('stop', 'Stop/ Restrict')], string="Alert Type", help="Type of Alert")
     remaining_amount = fields.Monetary(
-        compute='_compute_remaining_amount', string='Remaining Amount',
+        compute='_compute_remaining_amount', string='Total Restante',
         help="Amount you have still available.")
 
     def _compute_remaining_amount(self):

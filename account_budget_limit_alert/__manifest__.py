@@ -28,14 +28,15 @@
     'description': """Empowers you to issue timely warnings and alerts 
      whenever purchase orders surpass the allocated budget, ensuring financial 
      oversight and control.""",
-    'author': 'Cybrosys Techno Solutions',
-    'company': 'Cybrosys Techno Solutions',
-    'maintainer': 'Cybrosys Techno Solutions',
-    'website': 'https://www.cybrosys.com',
-    'depends': ['account_budget'],
+    'author': 'CYSFuturo S.A.',
+    'company': 'CYSFuturo S.A.',
+    'maintainer': 'CYSFuturo S.A.',
+    'website': 'https://www.cysfuturo.com',
+    'depends': ['account_budget', 'purchase'],
     'data': [
         'views/crossovered_budget_views.xml',
-        'views/account_move_views.xml'
+        'views/account_move_views.xml',
+        'views/purchase_order_views.xml'
     ],
     'images': ['static/description/banner.jpg'],
     'license': 'LGPL-3',
