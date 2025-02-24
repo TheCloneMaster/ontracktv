@@ -1,0 +1,6 @@
+id,name,background_color_inherit,background_color,font_weight_inherit,font_weight,font_style_inherit,font_style,font_size_inherit,font_size,dp_inherit,dp,hide_empty_inherit,hide_empty
+l10n_cr_mis_reports.level1,l10n_cr N1,1,#FFFF00,0,bold,,,0,large,,2,,
+l10n_cr_mis_reports.level2,l10n_cr N2,1,#ffff40,0,bold,,,,,,2,0,1
+l10n_cr_mis_reports.level3,l10n_cr N3,1,#ffff80,0,,0,italic,,,,2,0,1
+l10n_cr_mis_reports.level4,l10n_cr N4,1,#ffffb0,0,,0,italic,,,,2,0,1
+l10n_cr_mis_reports.level5,l10n_cr N5,,,,,,,,,,2,0,1

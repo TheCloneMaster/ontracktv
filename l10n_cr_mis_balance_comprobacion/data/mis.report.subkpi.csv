@@ -1,0 +1,5 @@
+id,description,name,report_id/id
+bc_inicio,Balance Inicial,inicio,mis_report_bc_cr
+bc_debit,Débitos,debit,mis_report_bc_cr
+bc_credit,Créditos,credit,mis_report_bc_cr
+bc_final,Balance Final,final,mis_report_bc_cr

@@ -1,0 +1,126 @@
+report_id/id,id,name,description,type,compare_method,style_id/id,sequence,auto_expand_accounts,accumulation_method,multi
+mis_report_bc_cr,mis_report_bc_cr_K1,K1,ACTIVO                                                      ,Numeric,Percentage,l10n_cr_mis_reports.level1,10,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01,K1_01,  ACTIVO CORRIENTE                                            ,Numeric,Percentage,l10n_cr_mis_reports.level2,11,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_01,K1_01_01,    Efectivo,Numeric,Percentage,l10n_cr_mis_reports.level3,12,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_02,K1_01_02,    BANCOS                                                      ,Numeric,Percentage,l10n_cr_mis_reports.level3,13,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_02_01,K1_01_02_01,      BAC  SAN JOSE                                               ,Numeric,Percentage,l10n_cr_mis_reports.level4,14,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_02_02,K1_01_02_02,      BNCR                                                        ,Numeric,Percentage,l10n_cr_mis_reports.level4,15,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_03,K1_01_03,    INVERSIONES                                                 ,Numeric,Percentage,l10n_cr_mis_reports.level3,16,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_05,K1_01_05,    CUENTAS POR COBRAR                                          ,Numeric,Percentage,l10n_cr_mis_reports.level3,17,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_05_01,K1_01_05_01,      Cuentas por Cobrar Cliente                                  ,Numeric,Percentage,l10n_cr_mis_reports.level4,18,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_05_02,K1_01_05_02,      Cuentas por cobrar- Compañias                               ,Numeric,Percentage,l10n_cr_mis_reports.level4,19,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_05_03,K1_01_05_03,      Otras Cuentas por Cobrar                                    ,Numeric,Percentage,l10n_cr_mis_reports.level4,20,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_05_04,K1_01_05_04,Cuentas por Cobrar Cliente - Enlace,Numeric,Percentage,l10n_cr_mis_reports.level4,21,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_01_10,K1_01_10,    INVENTARIOS                                                 ,Numeric,Percentage,l10n_cr_mis_reports.level3,22,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02,K1_02,  ACTIVO NO CORRIENTE                                         ,Numeric,Percentage,l10n_cr_mis_reports.level2,23,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02_01,K1_02_01,    Terreno                                                     ,Numeric,Percentage,l10n_cr_mis_reports.level3,24,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02_02,K1_02_02,    Edificio                                                    ,Numeric,Percentage,l10n_cr_mis_reports.level3,25,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02_03,K1_02_03,    Vehiculos                                                   ,Numeric,Percentage,l10n_cr_mis_reports.level3,26,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02_04,K1_02_04,    Mobiliario y Equipo                                         ,Numeric,Percentage,l10n_cr_mis_reports.level3,27,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02_05,K1_02_05,    Equipo de Computo                                           ,Numeric,Percentage,l10n_cr_mis_reports.level3,28,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02_06,K1_02_06,    Mejoras a la Propiedad Arrendada                            ,Numeric,Percentage,l10n_cr_mis_reports.level3,29,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02_07,K1_02_07,    Maquinaria                                                  ,Numeric,Percentage,l10n_cr_mis_reports.level3,30,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_02_08,K1_02_08,Moldes / Moldetas,Numeric,Percentage,l10n_cr_mis_reports.level3,31,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03,K1_03,  OTROS ACTIVOS                                               ,Numeric,Percentage,l10n_cr_mis_reports.level2,32,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03_01,K1_03_01,    Gastos Diferidos                                            ,Numeric,Percentage,l10n_cr_mis_reports.level3,33,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03_01_02,K1_03_01_02,      Ministerio de Hacienda                                      ,Numeric,Percentage,l10n_cr_mis_reports.level4,34,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03_01_03,K1_03_01_03,      Gastos pagados por adelantado                               ,Numeric,Percentage,l10n_cr_mis_reports.level4,35,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03_01_04,K1_03_01_04,      Seguros                                                     ,Numeric,Percentage,l10n_cr_mis_reports.level4,36,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03_02,K1_03_02,    Depósitos en Garantía                                       ,Numeric,Percentage,l10n_cr_mis_reports.level3,37,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03_03,K1_03_03,    Obras en Proceso                                            ,Numeric,Percentage,l10n_cr_mis_reports.level3,38,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03_04,K1_03_04,    Gastos Preoperativos                                        ,Numeric,Percentage,l10n_cr_mis_reports.level3,39,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K1_03_05,K1_03_05,    IVA Soportado                                               ,Numeric,Percentage,l10n_cr_mis_reports.level3,40,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2,K2,PASIVOS                                                     ,Numeric,Percentage,l10n_cr_mis_reports.level1,41,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01,K2_01,  PASIVO CORRIENTE                                            ,Numeric,Percentage,l10n_cr_mis_reports.level2,42,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01,K2_01_01,    Cuentas por Pagar                                           ,Numeric,Percentage,l10n_cr_mis_reports.level3,43,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_01,K2_01_01_01,      Cuentas por Pagar Proveedores                               ,Numeric,Percentage,l10n_cr_mis_reports.level4,44,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_03,K2_01_01_03,      Cuentas por pagar compañias                                 ,Numeric,Percentage,l10n_cr_mis_reports.level4,45,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_04,K2_01_01_04,      INGRESOS PERCIBIDOS POR ADELANTADO                          ,Numeric,Percentage,l10n_cr_mis_reports.level4,46,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_05,K2_01_01_05,      Impuestos por Pagar                                         ,Numeric,Percentage,l10n_cr_mis_reports.level4,47,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_08,K2_01_01_08,      Cajas Chicas Por Pagar                                      ,Numeric,Percentage,l10n_cr_mis_reports.level4,48,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09,K2_01_01_09,      Otras Cuentas por Pagar                                     ,Numeric,Percentage,l10n_cr_mis_reports.level4,49,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_01,K2_01_01_09_01,        C.C.S.S.                                                    ,Numeric,Percentage,l10n_cr_mis_reports.level5,50,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_02,K2_01_01_09_02,        Provisiones                                                 ,Numeric,Percentage,l10n_cr_mis_reports.level5,51,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_03,K2_01_01_09_03,        Empleados                                                   ,Numeric,Percentage,l10n_cr_mis_reports.level5,52,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_04,K2_01_01_09_04,        Documento por Pagar a Corto Plazo                           ,Numeric,Percentage,l10n_cr_mis_reports.level5,53,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_06,K2_01_01_09_06,        Salarios Por Pagar                                          ,Numeric,Percentage,l10n_cr_mis_reports.level5,54,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_07,K2_01_01_09_07,        Aguinaldo Acum por pagar                                    ,Numeric,Percentage,l10n_cr_mis_reports.level5,55,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_08,K2_01_01_09_08,        Vacaciones Acum por Pagar                                   ,Numeric,Percentage,l10n_cr_mis_reports.level5,56,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_09,K2_01_01_09_09,        Prestaciones Legales por Pagar                              ,Numeric,Percentage,l10n_cr_mis_reports.level5,57,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_09_10,K2_01_01_09_10,        Embargos Por Pagar                                          ,Numeric,Percentage,l10n_cr_mis_reports.level5,58,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_01_10,K2_01_01_10,      Cuenta por pagar Socios                                     ,Numeric,Percentage,l10n_cr_mis_reports.level4,59,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_01_09_08,K2_01_09_08,      ADELANTOS CLIENTES                                          ,Numeric,Percentage,l10n_cr_mis_reports.level4,60,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K2_02,K2_02,  PASIVO LARGO PLAZO                                          ,Numeric,Percentage,l10n_cr_mis_reports.level2,61,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K3,K3,PATRIMONIO                                                  ,Numeric,Percentage,l10n_cr_mis_reports.level1,62,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_k3_01,k3_01,Capital Social,Numeric,Percentage,l10n_cr_mis_reports.level2,63,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_k3_02,k3_02,Capital Aportado,Numeric,Percentage,l10n_cr_mis_reports.level2,64,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_k3_05,k3_05,Utilidades no distribuidas,Numeric,Percentage,l10n_cr_mis_reports.level2,65,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_k3_06,k3_06,Utilidad (Perdida) del Periodo,Numeric,Percentage,l10n_cr_mis_reports.level2,66,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_ingresos,ingresos,INGRESOS,String,None,l10n_cr_mis_reports.level1,1070,0,None,1
+mis_report_bc_cr,mis_report_bc_cr_K4_01,K4_01,  VENTAS                                                      ,Numeric,Percentage,l10n_cr_mis_reports.level2,1071,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K4_02,K4_02,  SERVICIOS-INSTALACION-OTROS                                 ,Numeric,Percentage,l10n_cr_mis_reports.level2,1072,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K4_09,K4_09,  OTROS INGRESOS                                              ,Numeric,Percentage,l10n_cr_mis_reports.level2,1073,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K4,K4,TOTAL INGRESOS,Numeric,Percentage,l10n_cr_mis_reports.level1,1074,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_costos,costos,COSTOS,String,None,l10n_cr_mis_reports.level1,1075,0,None,1
+mis_report_bc_cr,mis_report_bc_cr_K5,K5,TOTAL COSTOS,Numeric,Percentage,l10n_cr_mis_reports.level1,1080,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K5_01,K5_01,  Costos de Ventas                                            ,Numeric,Percentage,l10n_cr_mis_reports.level2,1076,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K5_02,K5_02,Costos Proyectos,Numeric,Percentage,l10n_cr_mis_reports.level2,1077,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K5_03,K5_03,Producción de Jacuzzis IGUI,Numeric,Percentage,l10n_cr_mis_reports.level2,1078,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K5_04,K5_04,Costos Reparación Piscinas,Numeric,Percentage,l10n_cr_mis_reports.level2,1079,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_gastos,gastos,GASTOS,String,None,l10n_cr_mis_reports.level1,1082,0,None,1
+mis_report_bc_cr,mis_report_bc_cr_K6,K6,TOTAL GASTOS,Numeric,Percentage,l10n_cr_mis_reports.level1,1138,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01,K6_01,  GASTOS ADMINISTRATIVOS                                      ,Numeric,Percentage,l10n_cr_mis_reports.level2,1083,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_01,K6_01_01,    Salarios y Comisiones                                       ,Numeric,Percentage,l10n_cr_mis_reports.level3,1084,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_02,K6_01_02,    Cargas Sociales                                             ,Numeric,Percentage,l10n_cr_mis_reports.level3,1085,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_03,K6_01_03,    Prestaciones Legales                                        ,Numeric,Percentage,l10n_cr_mis_reports.level3,1086,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_04,K6_01_04,    Riesgos del Trabajo                                         ,Numeric,Percentage,l10n_cr_mis_reports.level3,1087,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_05,K6_01_05,    Servicios Públicos                                          ,Numeric,Percentage,l10n_cr_mis_reports.level3,1088,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_06,K6_01_06,    Mantenimiento                                               ,Numeric,Percentage,l10n_cr_mis_reports.level3,1089,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_07,K6_01_07,    Gastos de Representación                                    ,Numeric,Percentage,l10n_cr_mis_reports.level3,1090,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_08,K6_01_08,    Mantenimiento Vehiculo                                      ,Numeric,Percentage,l10n_cr_mis_reports.level3,1091,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_09,K6_01_09,    Transportes y Acarreos                                      ,Numeric,Percentage,l10n_cr_mis_reports.level3,1092,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_10,K6_01_10,    Honorarios Profesionales                                    ,Numeric,Percentage,l10n_cr_mis_reports.level3,1093,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_11,K6_01_11,    Depreciaciones                                              ,Numeric,Percentage,l10n_cr_mis_reports.level3,1094,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_12,K6_01_12,    Comisiones                                                  ,Numeric,Percentage,l10n_cr_mis_reports.level3,1095,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_13,K6_01_13,    Gastos Legales                                              ,Numeric,Percentage,l10n_cr_mis_reports.level3,1096,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_14,K6_01_14,    Alquiler                                                    ,Numeric,Percentage,l10n_cr_mis_reports.level3,1097,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_15,K6_01_15,    Papelería y Utiles de Oficina                               ,Numeric,Percentage,l10n_cr_mis_reports.level3,1098,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_16,K6_01_16,    Publicidad                                                  ,Numeric,Percentage,l10n_cr_mis_reports.level3,1099,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_17,K6_01_17,    Mensajería                                                  ,Numeric,Percentage,l10n_cr_mis_reports.level3,1100,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_18,K6_01_18,    Cuotas y Suscripciones                                      ,Numeric,Percentage,l10n_cr_mis_reports.level3,1101,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_19,K6_01_19,    Seguridad                                                   ,Numeric,Percentage,l10n_cr_mis_reports.level3,1102,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_20,K6_01_20,    Timbre de Educación y cultura                               ,Numeric,Percentage,l10n_cr_mis_reports.level3,1103,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_21,K6_01_21,    Aseo y limpieza                                             ,Numeric,Percentage,l10n_cr_mis_reports.level3,1104,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_22,K6_01_22,    Botiquin                                                    ,Numeric,Percentage,l10n_cr_mis_reports.level3,1105,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_23,K6_01_23,    Uniformes                                                   ,Numeric,Percentage,l10n_cr_mis_reports.level3,1106,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_24,K6_01_24,    Atencion clientes                                           ,Numeric,Percentage,l10n_cr_mis_reports.level3,1107,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_25,K6_01_25,    Donaciones                                                  ,Numeric,Percentage,l10n_cr_mis_reports.level3,1108,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_26,K6_01_26,    Peajes y Parqueos                                           ,Numeric,Percentage,l10n_cr_mis_reports.level3,1109,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_27,K6_01_27,    Seguros Medicos                                             ,Numeric,Percentage,l10n_cr_mis_reports.level3,1110,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_28,K6_01_28,    Gastos Municipales                                          ,Numeric,Percentage,l10n_cr_mis_reports.level3,1111,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_29,K6_01_29,    Atencion Empleados                                          ,Numeric,Percentage,l10n_cr_mis_reports.level3,1112,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_30,K6_01_30,    Hospedaje                                                   ,Numeric,Percentage,l10n_cr_mis_reports.level3,1113,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_31,K6_01_31,    Boletos Aereos                                              ,Numeric,Percentage,l10n_cr_mis_reports.level3,1114,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_32,K6_01_32,    Gastos de Viaje                                             ,Numeric,Percentage,l10n_cr_mis_reports.level3,1115,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_33,K6_01_33,"Fletes, Acarreos y Transportes",Numeric,Percentage,l10n_cr_mis_reports.level3,1116,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_49,K6_01_49,    Derechos de Circulación                                     ,Numeric,Percentage,l10n_cr_mis_reports.level3,1117,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_50,K6_01_50,    Seguros Vehiculo                                            ,Numeric,Percentage,l10n_cr_mis_reports.level3,1118,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_51,K6_01_51,    Participaciones                                             ,Numeric,Percentage,l10n_cr_mis_reports.level3,1119,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_52,K6_01_52,    Dietas                                                      ,Numeric,Percentage,l10n_cr_mis_reports.level3,1120,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_54,K6_01_54,    Alquiler Vehiculos                                          ,Numeric,Percentage,l10n_cr_mis_reports.level3,1121,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_60,K6_01_60,    Gastos Socios                                               ,Numeric,Percentage,l10n_cr_mis_reports.level3,1122,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_01_90,K6_01_90,    Gastos No Deducibles                                        ,Numeric,Percentage,l10n_cr_mis_reports.level3,1123,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02,K6_02,  GASTOS OPERATIVOS                                           ,Numeric,Percentage,l10n_cr_mis_reports.level2,1124,0,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_01,K6_02_01,    Salarios y Comisiones                                       ,Numeric,Percentage,l10n_cr_mis_reports.level3,1125,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_02,K6_02_02,    Cargas Sociales                                             ,Numeric,Percentage,l10n_cr_mis_reports.level3,1126,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_03,K6_02_03,    Prestaciones Legales                                        ,Numeric,Percentage,l10n_cr_mis_reports.level3,1127,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_04,K6_02_04,    Seguros Riesgos de Trabajo                                  ,Numeric,Percentage,l10n_cr_mis_reports.level3,1128,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_05,K6_02_05,    Otros Gastos por Importaciones                              ,Numeric,Percentage,l10n_cr_mis_reports.level3,1129,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_06,K6_02_06,    Gastos por Descuentos en Compras                            ,Numeric,Percentage,l10n_cr_mis_reports.level3,1130,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_09,K6_02_09,    Servicios de Instalacion                                    ,Numeric,Percentage,l10n_cr_mis_reports.level3,1131,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_10,K6_02_10,    Servicios Electromecanicos                                  ,Numeric,Percentage,l10n_cr_mis_reports.level3,1132,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_02_15,K6_02_15,    Viaticos Empleados                                          ,Numeric,Percentage,l10n_cr_mis_reports.level3,1133,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_03,K6_03,  GASTOS FINANCIEROS                                          ,Numeric,Percentage,l10n_cr_mis_reports.level2,1134,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_04,K6_04,  OTROS GASTOS                                                ,Numeric,Percentage,l10n_cr_mis_reports.level2,1135,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K6_05,K6_05,  IVA No Acreditable                                          ,Numeric,Percentage,l10n_cr_mis_reports.level2,1136,1,Sum,1
+mis_report_bc_cr,mis_report_bc_cr_K9,K9,DIFERENCIAS                                                 ,Numeric,Percentage,l10n_cr_mis_reports.level2,1137,1,Sum,1

@@ -1,0 +1,118 @@
+id,report_id/id,name,description,expression,type,compare_method,style_id/id,sequence,auto_expand_accounts
+mis_report_bs_cr_K1,mis_report_bs_cr,K1,ACTIVO                                                      ,K1_01+K1_02+K1_03,num,pct,level1,10,
+mis_report_bs_cr_K1_01,mis_report_bs_cr,K1_01,  ACTIVO CORRIENTE                                            ,K1_01_01+K1_01_01_01+K1_01_02,num,pct,level2,20,
+mis_report_bs_cr_K1_01_01,mis_report_bs_cr,K1_01_01,    Efectivo,bale[1.01.01%],num,pct,level3,30,1
+mis_report_bs_cr_K1_01_02,mis_report_bs_cr,K1_01_02,    BANCOS                                                      ,K1_01_02_01+K1_01_02_02,num,pct,level3,70,
+mis_report_bs_cr_K1_01_02_01,mis_report_bs_cr,K1_01_02_01,      BAC  SAN JOSE                                               ,bale[1.01.02.01%],num,pct,level4,80,1
+mis_report_bs_cr_K1_01_02_02,mis_report_bs_cr,K1_01_02_02,      BNCR                                                        ,bale[1.01.02.02%],num,pct,level4,130,1
+mis_report_bs_cr_K1_01_03,mis_report_bs_cr,K1_01_03,    INVERSIONES                                                 ,bale[1.01.03%],num,pct,level3,160,1
+mis_report_bs_cr_K1_01_05,mis_report_bs_cr,K1_01_05,    CUENTAS POR COBRAR                                          ,K1_01_05_01+K1_01_05_02+K1_01_05_03,num,pct,level3,170,
+mis_report_bs_cr_K1_01_05_01,mis_report_bs_cr,K1_01_05_01,      Cuentas por Cobrar Cliente                                  ,bale[1.01.05.01%],num,pct,level4,180,1
+mis_report_bs_cr_K1_01_05_02,mis_report_bs_cr,K1_01_05_02,      Cuentas por cobrar- Compañias                               ,bale[1.01.05.02%],num,pct,level4,190,1
+mis_report_bs_cr_K1_01_05_03,mis_report_bs_cr,K1_01_05_03,      Otras Cuentas por Cobrar                                    ,bale[1.01.05.03%],num,pct,level4,200,1
+mis_report_bs_cr_K1_01_10,mis_report_bs_cr,K1_01_10,    INVENTARIOS                                                 ,bale[1.01.10%],num,pct,level3,240,1
+mis_report_bs_cr_K1_02,mis_report_bs_cr,K1_02,  ACTIVO NO CORRIENTE                                         ,K1_02_01+K1_02_02+K1_02_03+K1_02_04+K1_02_05+K1_02_06+K1_02_07,num,pct,level2,270,
+mis_report_bs_cr_K1_02_01,mis_report_bs_cr,K1_02_01,    Terreno                                                     ,bale[1.02.01%],num,pct,level3,280,1
+mis_report_bs_cr_K1_02_02,mis_report_bs_cr,K1_02_02,    Edificio                                                    ,bale[1.02.02%],num,pct,level3,290,1
+mis_report_bs_cr_K1_02_03,mis_report_bs_cr,K1_02_03,    Vehiculos                                                   ,bale[1.02.03%],num,pct,level3,320,1
+mis_report_bs_cr_K1_02_04,mis_report_bs_cr,K1_02_04,    Mobiliario y Equipo                                         ,bale[1.02.04%],num,pct,level3,350,1
+mis_report_bs_cr_K1_02_05,mis_report_bs_cr,K1_02_05,    Equipo de Computo                                           ,bale[1.02.05%],num,pct,level3,380,1
+mis_report_bs_cr_K1_02_06,mis_report_bs_cr,K1_02_06,    Mejoras a la Propiedad Arrendada                            ,bale[1.02.06%],num,pct,level3,410,1
+mis_report_bs_cr_K1_02_07,mis_report_bs_cr,K1_02_07,    Maquinaria                                                  ,bale[1.02.07%],num,pct,level3,440,1
+mis_report_bs_cr_K1_03,mis_report_bs_cr,K1_03,  OTROS ACTIVOS                                               ,K1_03_01+K1_03_02+K1_03_03+K1_03_04+K1_03_05,num,pct,level2,470,
+mis_report_bs_cr_K1_03_01,mis_report_bs_cr,K1_03_01,    Gastos Diferidos                                            ,K1_03_01_02+K1_03_01_03+K1_03_01_04,num,pct,level3,480,
+mis_report_bs_cr_K1_03_01_02,mis_report_bs_cr,K1_03_01_02,      Ministerio de Hacienda                                      ,bale[1.03.01.02%],num,pct,level4,490,1
+mis_report_bs_cr_K1_03_01_03,mis_report_bs_cr,K1_03_01_03,      Gastos pagados por adelantado                               ,bale[1.03.01.03%],num,pct,level4,530,1
+mis_report_bs_cr_K1_03_01_04,mis_report_bs_cr,K1_03_01_04,      Seguros                                                     ,bale[1.03.01.04%],num,pct,level4,540,1
+mis_report_bs_cr_K1_03_02,mis_report_bs_cr,K1_03_02,    Depósitos en Garantía                                       ,bale[1.03.02%],num,pct,level3,590,1
+mis_report_bs_cr_K1_03_03,mis_report_bs_cr,K1_03_03,    Obras en Proceso                                            ,bale[1.03.03%],num,pct,level3,620,1
+mis_report_bs_cr_K1_03_04,mis_report_bs_cr,K1_03_04,    Gastos Preoperativos                                        ,bale[1.03.04%],num,pct,level3,640,1
+mis_report_bs_cr_K1_03_05,mis_report_bs_cr,K1_03_05,    IVA Soportado                                               ,bale[1.03.05%],num,pct,level3,670,1
+mis_report_bs_cr_K2,mis_report_bs_cr,K2,PASIVOS                                                     ,K2_01+K2_02,num,pct,level1,730,
+mis_report_bs_cr_K2_01,mis_report_bs_cr,K2_01,  PASIVO CORRIENTE                                            ,K2_01_01+K2_01_09_08,num,pct,level2,740,
+mis_report_bs_cr_K2_01_01,mis_report_bs_cr,K2_01_01,    Cuentas por Pagar                                           ,K2_01_01_01+K2_01_01_03+K2_01_01_04+K2_01_01_05+K2_01_01_08+K2_01_01_09+K2_01_01_10+K2_01_01_10,num,pct,level3,750,
+mis_report_bs_cr_K2_01_01_01,mis_report_bs_cr,K2_01_01_01,      Cuentas por Pagar Proveedores                               ,bale[2.01.01.01%],num,pct,level4,760,1
+mis_report_bs_cr_K2_01_01_03,mis_report_bs_cr,K2_01_01_03,      Cuentas por pagar compañias                                 ,bale[2.01.01.03%],num,pct,level4,770,1
+mis_report_bs_cr_K2_01_01_04,mis_report_bs_cr,K2_01_01_04,      INGRESOS PERCIBIDOS POR ADELANTADO                          ,bale[2.01.01.04%],num,pct,level4,780,1
+mis_report_bs_cr_K2_01_01_05,mis_report_bs_cr,K2_01_01_05,      Impuestos por Pagar                                         ,bale[2.01.01.05%],num,pct,level4,790,1
+mis_report_bs_cr_K2_01_01_08,mis_report_bs_cr,K2_01_01_08,      Cajas Chicas Por Pagar                                      ,bale[2.01.01.08%],num,pct,level4,840,1
+mis_report_bs_cr_K2_01_01_09,mis_report_bs_cr,K2_01_01_09,      Otras Cuentas por Pagar                                     ,K2_01_01_09_01+K2_01_01_09_02+K2_01_01_09_03+K2_01_01_09_04+K2_01_01_09_06+K2_01_01_09_07+K2_01_01_09_08+K2_01_01_09_09+K2_01_01_09_10,num,pct,level4,850,
+mis_report_bs_cr_K2_01_01_09_01,mis_report_bs_cr,K2_01_01_09_01,        C.C.S.S.                                                    ,bale[2.01.01.09.01%],num,pct,level5,860,1
+mis_report_bs_cr_K2_01_01_09_02,mis_report_bs_cr,K2_01_01_09_02,        Provisiones                                                 ,bale[2.01.01.09.02%],num,pct,level5,870,1
+mis_report_bs_cr_K2_01_01_09_03,mis_report_bs_cr,K2_01_01_09_03,        Empleados                                                   ,bale[2.01.01.09.03%],num,pct,level5,900,1
+mis_report_bs_cr_K2_01_01_09_04,mis_report_bs_cr,K2_01_01_09_04,        Documento por Pagar a Corto Plazo                           ,bale[2.01.01.09.04%],num,pct,level5,910,1
+mis_report_bs_cr_K2_01_01_09_06,mis_report_bs_cr,K2_01_01_09_06,        Salarios Por Pagar                                          ,bale[2.01.01.09.06%],num,pct,level5,920,1
+mis_report_bs_cr_K2_01_01_09_07,mis_report_bs_cr,K2_01_01_09_07,        Aguinaldo Acum por pagar                                    ,bale[2.01.01.09.07%],num,pct,level5,930,1
+mis_report_bs_cr_K2_01_01_09_08,mis_report_bs_cr,K2_01_01_09_08,        Vacaciones Acum por Pagar                                   ,bale[2.01.01.09.08%],num,pct,level5,940,1
+mis_report_bs_cr_K2_01_01_09_09,mis_report_bs_cr,K2_01_01_09_09,        Prestaciones Legales por Pagar                              ,bale[2.01.01.09.09%],num,pct,level5,950,1
+mis_report_bs_cr_K2_01_01_09_10,mis_report_bs_cr,K2_01_01_09_10,        Embargos Por Pagar                                          ,bale[2.01.01.09.10%],num,pct,level5,960,1
+mis_report_bs_cr_K2_01_01_10,mis_report_bs_cr,K2_01_01_10,      Cuenta por pagar Socios                                     ,bale[2.01.01.10%],num,pct,level4,970,1
+mis_report_bs_cr_K2_01_09_08,mis_report_bs_cr,K2_01_09_08,      ADELANTOS CLIENTES                                          ,bale[2.01.09.08%],num,pct,level4,980,1
+mis_report_bs_cr_K2_02,mis_report_bs_cr,K2_02,  PASIVO LARGO PLAZO                                          ,bale[2.02%],num,pct,level2,1000,1
+mis_report_bs_cr_K3,mis_report_bs_cr,K3,PATRIMONIO                                                  ,bale[3%],num,pct,level1,1020,1
+mis_report_pg_cr_K4,mis_report_pg_cr,K4,INGRESOS                                                    ,K4_01+K4_02+K4_09,num,diff,level1,1070,
+mis_report_pg_cr_K4_01,mis_report_pg_cr,K4_01,  VENTAS                                                      ,-balp[4.01%],num,diff,level2,1080,1
+mis_report_pg_cr_K4_02,mis_report_pg_cr,K4_02,  SERVICIOS-INSTALACION-OTROS                                 ,-balp[4.02%],num,diff,level2,1130,1
+mis_report_pg_cr_K4_09,mis_report_pg_cr,K4_09,  OTROS INGRESOS                                              ,-balp[4.09%],num,diff,level2,1180,1
+mis_report_pg_cr_K5,mis_report_pg_cr,K5,COSTOS                                                      ,K5_01+K5_02+K5_03+K5_04,num,diff,level1,1230,
+mis_report_pg_cr_K5_01,mis_report_pg_cr,K5_01,  Costos de Ventas                                            ,balp[5.01%],num,diff,level2,1240,1
+mis_report_pg_cr_K5_02,mis_report_pg_cr,K5_02,Costos Proyectos,balp[5.02%],num,diff,level2,1280,1
+mis_report_pg_cr_K5_03,mis_report_pg_cr,K5_03,Producción de Jacuzzis IGUI,balp[5.03%],num,diff,level2,1290,1
+mis_report_pg_cr_K5_04,mis_report_pg_cr,K5_04,Costos Reparación Piscinas,balp[5.04%],num,diff,level2,1300,1
+mis_report_pg_cr_K6,mis_report_pg_cr,K6,GASTOS                                                      ,K6_01+K6_02+K6_03+K6_04+K6_05,num,diff,level1,1300,
+mis_report_pg_cr_K6_01,mis_report_pg_cr,K6_01,  GASTOS ADMINISTRATIVOS                                      ,K6_01_01+K6_01_02+K6_01_03+K6_01_04+K6_01_05+K6_01_06+K6_01_07+K6_01_08+K6_01_09+K6_01_10+K6_01_11+K6_01_12+K6_01_13+K6_01_14+K6_01_15+K6_01_16+K6_01_17+K6_01_18+K6_01_19+K6_01_20+K6_01_21+K6_01_22+K6_01_23+K6_01_24+K6_01_25+K6_01_26+K6_01_27+K6_01_28+K6_01_29+K6_01_30+K6_01_31+K6_01_32+K6_01_33+K6_01_49+K6_01_50+K6_01_51+K6_01_52+K6_01_54+K6_01_60+K6_01_90,num,diff,level2,1310,
+mis_report_pg_cr_K6_01_01,mis_report_pg_cr,K6_01_01,    Salarios y Comisiones                                       ,balp[6.01.01%],num,diff,level3,1320,1
+mis_report_pg_cr_K6_01_02,mis_report_pg_cr,K6_01_02,    Cargas Sociales                                             ,balp[6.01.02%],num,diff,level3,1350,1
+mis_report_pg_cr_K6_01_03,mis_report_pg_cr,K6_01_03,    Prestaciones Legales                                        ,balp[6.01.03%],num,diff,level3,1360,1
+mis_report_pg_cr_K6_01_04,mis_report_pg_cr,K6_01_04,    Riesgos del Trabajo                                         ,balp[6.01.04%],num,diff,level3,1410,1
+mis_report_pg_cr_K6_01_05,mis_report_pg_cr,K6_01_05,    Servicios Públicos                                          ,balp[6.01.05%],num,diff,level3,1420,1
+mis_report_pg_cr_K6_01_06,mis_report_pg_cr,K6_01_06,    Mantenimiento                                               ,balp[6.01.06%],num,diff,level3,1470,1
+mis_report_pg_cr_K6_01_07,mis_report_pg_cr,K6_01_07,    Gastos de Representación                                    ,balp[6.01.07%],num,diff,level3,1500,1
+mis_report_pg_cr_K6_01_08,mis_report_pg_cr,K6_01_08,    Mantenimiento Vehiculo                                      ,balp[6.01.08%],num,diff,level3,1510,1
+mis_report_pg_cr_K6_01_09,mis_report_pg_cr,K6_01_09,    Transportes y Acarreos                                      ,balp[6.01.09%],num,diff,level3,1540,1
+mis_report_pg_cr_K6_01_10,mis_report_pg_cr,K6_01_10,    Honorarios Profesionales                                    ,balp[6.01.10%],num,diff,level3,1550,1
+mis_report_pg_cr_K6_01_11,mis_report_pg_cr,K6_01_11,    Depreciaciones                                              ,balp[6.01.11%],num,diff,level3,1560,1
+mis_report_pg_cr_K6_01_12,mis_report_pg_cr,K6_01_12,    Comisiones                                                  ,balp[6.01.12%],num,diff,level3,1570,1
+mis_report_pg_cr_K6_01_13,mis_report_pg_cr,K6_01_13,    Gastos Legales                                              ,balp[6.01.13%],num,diff,level3,1580,1
+mis_report_pg_cr_K6_01_14,mis_report_pg_cr,K6_01_14,    Alquiler                                                    ,balp[6.01.14%],num,diff,level3,1590,1
+mis_report_pg_cr_K6_01_15,mis_report_pg_cr,K6_01_15,    Papelería y Utiles de Oficina                               ,balp[6.01.15%],num,diff,level3,1600,1
+mis_report_pg_cr_K6_01_16,mis_report_pg_cr,K6_01_16,    Publicidad                                                  ,balp[6.01.16%],num,diff,level3,1610,1
+mis_report_pg_cr_K6_01_17,mis_report_pg_cr,K6_01_17,    Mensajería                                                  ,balp[6.01.17%],num,diff,level3,1620,1
+mis_report_pg_cr_K6_01_18,mis_report_pg_cr,K6_01_18,    Cuotas y Suscripciones                                      ,balp[6.01.18%],num,diff,level3,1630,1
+mis_report_pg_cr_K6_01_19,mis_report_pg_cr,K6_01_19,    Seguridad                                                   ,balp[6.01.19%],num,diff,level3,1640,1
+mis_report_pg_cr_K6_01_20,mis_report_pg_cr,K6_01_20,    Timbre de Educación y cultura                               ,balp[6.01.20%],num,diff,level3,1650,1
+mis_report_pg_cr_K6_01_21,mis_report_pg_cr,K6_01_21,    Aseo y limpieza                                             ,balp[6.01.21%],num,diff,level3,1660,1
+mis_report_pg_cr_K6_01_22,mis_report_pg_cr,K6_01_22,    Botiquin                                                    ,balp[6.01.22%],num,diff,level3,1670,1
+mis_report_pg_cr_K6_01_23,mis_report_pg_cr,K6_01_23,    Uniformes                                                   ,balp[6.01.23%],num,diff,level3,1680,1
+mis_report_pg_cr_K6_01_24,mis_report_pg_cr,K6_01_24,    Atencion clientes                                           ,balp[6.01.24%],num,diff,level3,1690,1
+mis_report_pg_cr_K6_01_25,mis_report_pg_cr,K6_01_25,    Donaciones                                                  ,balp[6.01.25%],num,diff,level3,1700,1
+mis_report_pg_cr_K6_01_26,mis_report_pg_cr,K6_01_26,    Peajes y Parqueos                                           ,balp[6.01.26%],num,diff,level3,1710,1
+mis_report_pg_cr_K6_01_27,mis_report_pg_cr,K6_01_27,    Seguros Medicos                                             ,balp[6.01.27%],num,diff,level3,1720,1
+mis_report_pg_cr_K6_01_28,mis_report_pg_cr,K6_01_28,    Gastos Municipales                                          ,balp[6.01.28%],num,diff,level3,1730,1
+mis_report_pg_cr_K6_01_29,mis_report_pg_cr,K6_01_29,    Atencion Empleados                                          ,balp[6.01.29%],num,diff,level3,1740,1
+mis_report_pg_cr_K6_01_30,mis_report_pg_cr,K6_01_30,    Hospedaje                                                   ,balp[6.01.30%],num,diff,level3,1750,1
+mis_report_pg_cr_K6_01_31,mis_report_pg_cr,K6_01_31,    Boletos Aereos                                              ,balp[6.01.31%],num,diff,level3,1760,1
+mis_report_pg_cr_K6_01_32,mis_report_pg_cr,K6_01_32,    Gastos de Viaje                                             ,balp[6.01.32%],num,diff,level3,1770,1
+mis_report_pg_cr_K6_01_33,mis_report_pg_cr,K6_01_33,"Fletes, Acarreos y Transportes",balp[6.01.33%],num,diff,level3,1780,1
+mis_report_pg_cr_K6_01_49,mis_report_pg_cr,K6_01_49,    Derechos de Circulación                                     ,balp[6.01.49%],num,diff,level3,1780,1
+mis_report_pg_cr_K6_01_50,mis_report_pg_cr,K6_01_50,    Seguros Vehiculo                                            ,balp[6.01.50%],num,diff,level3,1790,1
+mis_report_pg_cr_K6_01_51,mis_report_pg_cr,K6_01_51,    Participaciones                                             ,balp[6.01.51%],num,diff,level3,1800,1
+mis_report_pg_cr_K6_01_52,mis_report_pg_cr,K6_01_52,    Dietas                                                      ,balp[6.01.52%],num,diff,level3,1810,1
+mis_report_pg_cr_K6_01_54,mis_report_pg_cr,K6_01_54,    Alquiler Vehiculos                                          ,balp[6.01.54%],num,diff,level3,1820,1
+mis_report_pg_cr_K6_01_60,mis_report_pg_cr,K6_01_60,    Gastos Socios                                               ,balp[6.01.60%],num,diff,level3,1830,1
+mis_report_pg_cr_K6_01_90,mis_report_pg_cr,K6_01_90,    Gastos No Deducibles                                        ,balp[6.01.90%],num,diff,level3,1840,1
+mis_report_pg_cr_K6_02,mis_report_pg_cr,K6_02,  GASTOS OPERATIVOS                                           ,K6_02_01+K6_02_02+K6_02_03+K6_02_04+K6_02_05+K6_02_06+K6_02_09+K6_02_10+K6_02_15,num,diff,level2,1880,
+mis_report_pg_cr_K6_02_01,mis_report_pg_cr,K6_02_01,    Salarios y Comisiones                                       ,balp[6.02.01%],num,diff,level3,1890,1
+mis_report_pg_cr_K6_02_02,mis_report_pg_cr,K6_02_02,    Cargas Sociales                                             ,balp[6.02.02%],num,diff,level3,1940,1
+mis_report_pg_cr_K6_02_03,mis_report_pg_cr,K6_02_03,    Prestaciones Legales                                        ,balp[6.02.03%],num,diff,level3,1950,1
+mis_report_pg_cr_K6_02_04,mis_report_pg_cr,K6_02_04,    Seguros Riesgos de Trabajo                                  ,balp[6.02.04%],num,diff,level3,2000,1
+mis_report_pg_cr_K6_02_05,mis_report_pg_cr,K6_02_05,    Otros Gastos por Importaciones                              ,balp[6.02.05%],num,diff,level3,2010,1
+mis_report_pg_cr_K6_02_06,mis_report_pg_cr,K6_02_06,    Gastos por Descuentos en Compras                            ,balp[6.02.06%],num,diff,level3,2020,1
+mis_report_pg_cr_K6_02_09,mis_report_pg_cr,K6_02_09,    Servicios de Instalacion                                    ,balp[6.02.09%],num,diff,level3,2030,1
+mis_report_pg_cr_K6_02_10,mis_report_pg_cr,K6_02_10,    Servicios Electromecanicos                                  ,balp[6.02.10%],num,diff,level3,2060,1
+mis_report_pg_cr_K6_02_15,mis_report_pg_cr,K6_02_15,    Viaticos Empleados                                          ,balp[6.02.15%],num,diff,level3,2070,1
+mis_report_pg_cr_K6_03,mis_report_pg_cr,K6_03,  GASTOS FINANCIEROS                                          ,balp[6.03%],num,diff,level2,2140,1
+mis_report_pg_cr_K6_04,mis_report_pg_cr,K6_04,  OTROS GASTOS                                                ,balp[6.04%],num,diff,level2,2190,1
+mis_report_pg_cr_K6_05,mis_report_pg_cr,K6_05,  IVA No Acreditable                                          ,balp[6.05%],num,diff,level2,2240,1
+mis_report_pg_cr_K9,mis_report_pg_cr,K9,DIFERENCIAS                                                 ,balp[9%],num,diff,level1,2250,1
+mis_report_pg_cr_KPGRESULT,mis_report_pg_cr,KPGRESULT,Pérdidas o Ganancias a Reportar,K4-K5-K6,num,diff,level1,2260,
