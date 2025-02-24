@@ -14,6 +14,13 @@
                 <field name="is_above_budget" invisible="True"/>
                 <field name="is_analytic" invisible="True"/>
             </field>
+            <button name="button_done" position="after">
+                <button name="compute_above_budget"
+                    type="object"
+                    string="Refrescar Presupuesto"
+                    class="oe_highlight"
+                />
+            </button>
         </field>
     </record>
 </odoo>

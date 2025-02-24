@@ -14,7 +14,7 @@ class PurchaseOrder(models.Model):
             order.is_analytic = any(order.order_line.mapped('analytic_distribution'))
 
     @api.depends('order_line.is_above_budget')
-    def _compute_above_budget(self):
+    def compute_above_budget(self):
         for order in self:
             order.is_above_budget = any(order.order_line.mapped('is_above_budget'))
             # if order.is_above_budget:

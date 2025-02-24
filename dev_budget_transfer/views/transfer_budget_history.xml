@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="form_transfer_budget_history" model="ir.ui.view">
+        <field name="name">form_transfer_budget_history_</field>
+        <field name="model">transfer.budget.history</field>
+        <field name="arch" type="xml">
+            <tree string="Transfer Budget History" create="false">
+                <field name="date"/>
+                <field name="from_budget_id"/>
+                <field name="to_budget_id"/>
+                <field name="from_budget_line_id"/>
+                <field name="to_budget_line_id"/>
+                <field name="notes"/>
+                <field name="amount"/>
+                <field name="company_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="search_transfer_budget_history" model="ir.ui.view">
+        <field name="name">search_transfer_budget_history_</field>
+        <field name="model">transfer.budget.history</field>
+        <field name="arch" type="xml">
+            <search string="Transfer Budget History">
+                <field name="from_budget_id"/>
+                <field name="to_budget_id"/>
+                <field name="from_budget_line_id"/>
+                <field name="to_budget_line_id"/>
+                <filter string="Date" name="filter_date" date="date"/>
+                <group expand="0" string="Group By" colspan="16">
+                    <filter string="From Budget" name="from_budget_id" context="{'group_by':'from_budget_id'}"/>
+                    <filter string="To Budget" name="to_budget_id" context="{'group_by':'to_budget_id'}"/>
+                    <filter string="From Budget Line" name="from_budget_line_id" context="{'group_by':'from_budget_line_id'}"/>
+                    <filter string="To Budget Line" name="to_budget_line_id" context="{'group_by':'to_budget_line_id'}"/>
+                    <separator/>
+                    <filter string="Date" name="filter_date_groupby" context="{'group_by': 'date'}"/>
+                </group>
+                <searchpanel>
+                    <field name="from_budget_id" icon="fa-circle-o"/>
+                    <field name="to_budget_id" icon="fa-circle-o"/>
+                    <field name="from_budget_line_id" icon="fa-circle-o"/>
+                    <field name="to_budget_line_id" icon="fa-circle-o"/>
+                    <field name="company_id" icon="fa-circle-o"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_transfer_budget_history" model="ir.actions.act_window">
+        <field name="name">Transfer Budget History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">transfer.budget.history</field>
+        <field name="view_id" ref="form_transfer_budget_history"/>
+        <field name="view_mode">tree</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem name="Budget Transfer History"
+              id="menu_transfer_budget_history"
+			  parent="main_menu_transfer_budget"
+              sequence="2"
+              action="action_transfer_budget_history"/>
+</odoo>
