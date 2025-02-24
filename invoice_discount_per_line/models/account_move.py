@@ -108,6 +108,7 @@ class AccountMove(models.Model):
     def _compute_tax_totals(self):
         super()._compute_tax_totals()
         for rec in self:
-            tax_totals = rec.tax_totals
-            tax_totals.update({'total_discount': formatLang(self.env, rec.fixed_discounts, currency_obj=rec.currency_id or rec.journal_id.currency_id or rec.company_id.currency_id)})
-            rec.tax_totals = tax_totals
+            if rec.tax_totals:
+                tax_totals = rec.tax_totals
+                tax_totals.update({'total_discount': formatLang(self.env, rec.fixed_discounts, currency_obj=rec.currency_id or rec.journal_id.currency_id or rec.company_id.currency_id)})
+                rec.tax_totals = tax_totals
