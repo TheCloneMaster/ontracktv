@@ -14,7 +14,8 @@
         'stock_landed_costs',
         'web_widget_x2many_2d_matrix',
         'commission',
-        'account_invoice_line_report'
+        'account_invoice_line_report',
+        'account_bank_statement_import_csv',
     ],
     'data': [
         'security/ir.model.access.csv',
