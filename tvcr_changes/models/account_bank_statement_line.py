@@ -1,3 +1,5 @@
+from odoo import models, fields
+
 class AccountBankStatementLine(models.Model):
     _inherit = "account.bank.statement.line"
 
