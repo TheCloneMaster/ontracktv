@@ -1,0 +1,17 @@
+id,description,name,report_id/id,sequence
+
+bc_inicio,Balance Inicial,inicio,tvcr_report_balance,1
+bc_debit,Débitos,debit,tvcr_report_balance,2
+bc_credit,Créditos,credit,tvcr_report_balance,3
+bc_final,Balance Final,final,tvcr_report_balance,4
+
+cd_ter,Terrenos,terrenos,tvcr_report_cedula,10
+cd_edi,Edificios,edificios,tvcr_report_cedula,11
+cd_maq,Maquinaria,maquinaria,tvcr_report_cedula,12
+cd_veh,Vehiculos,vehiculos,tvcr_report_cedula,13
+cd_eqe,Equipo electronico,equipoe,tvcr_report_cedula,14
+cd_mej,Mejoras a la propiedad arrendada,mejoras,tvcr_report_cedula,15
+cd_pro,Propiedades de inversión,inversion,tvcr_report_cedula,16
+cd_mob,Mobiliario y equipo,mobiliario,tvcr_report_cedula,17
+cd_eqh,Equipo y herramientas,equipoh,tvcr_report_cedula,18
+cd_total,Total,total,tvcr_report_cedula,19

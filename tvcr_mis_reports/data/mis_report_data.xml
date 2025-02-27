@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="mis.report" id="tvcr_report_balance">
+      <field name="name">Balance de comprobación de activos fijos</field>
+    </record>
+
+    <record model="mis.report" id="tvcr_report_cedula">
+      <field name="name">Cédula de activos fijos</field>
+    </record>
+
+</odoo>

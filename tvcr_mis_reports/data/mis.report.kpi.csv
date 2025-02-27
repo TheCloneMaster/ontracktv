@@ -1,0 +1,26 @@
+report_id/id,id,name,description,type,compare_method,style_id/id,sequence,auto_expand_accounts,accumulation_method,multi
+
+tvcr_report_balance,tvcr_report_balance_K1_02,K1_02,ACTIVOS FIJOS,Numeric,Percentage,tvcr_mis_reports.level1,23,FALSO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_01,K1_02_01,Terrenos,Numeric,Percentage,tvcr_mis_reports.level2,24,VERDADERO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_02,K1_02_02,Edificios,Numeric,Percentage,tvcr_mis_reports.level2,25,VERDADERO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_03,K1_02_03,Vehículos,Numeric,Percentage,tvcr_mis_reports.level2,26,VERDADERO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_04,K1_02_04,Mobiliario y Equipo,Numeric,Percentage,tvcr_mis_reports.level2,27,VERDADERO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_05,K1_02_05,Equipo Electrónico,Numeric,Percentage,tvcr_mis_reports.level2,28,VERDADERO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_06,K1_02_06,Mejoras a la Propiedad Arrendada,Numeric,Percentage,tvcr_mis_reports.level2,29,VERDADERO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_07,K1_02_07,Maquinaria,Numeric,Percentage,tvcr_mis_reports.level2,30,VERDADERO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_08,K1_02_08,Equipo y Herramientas,Numeric,Percentage,tvcr_mis_reports.level2,31,VERDADERO,Sum,1
+tvcr_report_balance,tvcr_report_balance_K1_02_09,K1_02_09,Propiedades de Inversión,Numeric,Percentage,tvcr_mis_reports.level2,32,VERDADERO,Sum,1
+
+tvcr_report_cedula,tvcr_report_cedula_costos,Costos,Costos,Numeric,Percentage,tvcr_mis_reports.level1,50,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_costos_ini,Inicial,Saldo inicial,Numeric,Percentage,tvcr_mis_reports.level3,52,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_costos_adi,Adiciones,Adiciones,Numeric,Percentage,tvcr_mis_reports.level3,53,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_costos_dis,Disminuciones,Disminuciones,Numeric,Percentage,tvcr_mis_reports.level3,54,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_costos_aju,Ajustes,Ajustes,Numeric,Percentage,tvcr_mis_reports.level3,55,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_costos_fin,Final,Saldo final,Numeric,Percentage,tvcr_mis_reports.level3,56,FALSO,Sum,1
+
+tvcr_report_cedula,tvcr_report_cedula_depreciacion,Depreciacion,Depreciación,Numeric,Percentage,tvcr_mis_reports.level1,57,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_depreciacion_ini,Inicial_2,Saldo inicial,Numeric,Percentage,tvcr_mis_reports.level3,58,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_depreciacion_adi,Adiciones_2,Adiciones,Numeric,Percentage,tvcr_mis_reports.level3,59,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_depreciacion_dis,Disminuciones_2,Disminuciones,Numeric,Percentage,tvcr_mis_reports.level3,60,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_depreciacion_aju,Ajustes_2,Ajustes,Numeric,Percentage,tvcr_mis_reports.level3,61,FALSO,Sum,1
+tvcr_report_cedula,tvcr_report_cedula_depreciacion_fin,Final_2,Saldo final,Numeric,Percentage,tvcr_mis_reports.level3,62,FALSO,Sum,1

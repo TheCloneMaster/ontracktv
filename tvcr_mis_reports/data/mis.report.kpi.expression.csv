@@ -1,0 +1,163 @@
+id,kpi_id/id,sequence,subkpi_id/id,name
+
+tvcr_report_balance_K1_02bali,tvcr_report_balance_K1_02,1,bc_inicio,K1_02_01[0]+K1_02_02[0]+K1_02_03[0]+K1_02_04[0]+K1_02_05[0]+K1_02_06[0]+K1_02_07[0]+K1_02_08[0]+K1_02_09[0]
+tvcr_report_balance_K1_02_01bali,tvcr_report_balance_K1_02_01,1,bc_inicio,bali[1.20.01.01]
+tvcr_report_balance_K1_02_02bali,tvcr_report_balance_K1_02_02,1,bc_inicio,bali[1.20.02%]
+tvcr_report_balance_K1_02_03bali,tvcr_report_balance_K1_02_03,1,bc_inicio,bali[1.20.07%]
+tvcr_report_balance_K1_02_04bali,tvcr_report_balance_K1_02_04,1,bc_inicio,bali[1.20.06%]
+tvcr_report_balance_K1_02_05bali,tvcr_report_balance_K1_02_05,1,bc_inicio,bali[1.20.04%]
+tvcr_report_balance_K1_02_06bali,tvcr_report_balance_K1_02_06,1,bc_inicio,bali[1.20.09%]
+tvcr_report_balance_K1_02_07bali,tvcr_report_balance_K1_02_07,1,bc_inicio,bali[1.20.05%]
+tvcr_report_balance_K1_02_08bali,tvcr_report_balance_K1_02_08,1,bc_inicio,bali[1.20.08%]
+tvcr_report_balance_K1_02_09bali,tvcr_report_balance_K1_02_09,1,bc_inicio,bali[1.40.01]+bali[1.40.02]
+
+tvcr_report_balance_K1_02deb,tvcr_report_balance_K1_02,1,bc_debit,K1_02_01[1]+K1_02_02[1]+K1_02_03[1]+K1_02_04[1]+K1_02_05[1]+K1_02_06[1]+K1_02_07[1]+K1_02_08[1]+K1_02_09[1]
+tvcr_report_balance_K1_02_01deb,tvcr_report_balance_K1_02_01,1,bc_debit,deb[1.20.01.01]
+tvcr_report_balance_K1_02_02deb,tvcr_report_balance_K1_02_02,1,bc_debit,deb[1.20.02%]
+tvcr_report_balance_K1_02_03deb,tvcr_report_balance_K1_02_03,1,bc_debit,deb[1.20.07%]
+tvcr_report_balance_K1_02_04deb,tvcr_report_balance_K1_02_04,1,bc_debit,deb[1.20.06%]
+tvcr_report_balance_K1_02_05deb,tvcr_report_balance_K1_02_05,1,bc_debit,deb[1.20.04%]
+tvcr_report_balance_K1_02_06deb,tvcr_report_balance_K1_02_06,1,bc_debit,deb[1.20.09%]
+tvcr_report_balance_K1_02_07deb,tvcr_report_balance_K1_02_07,1,bc_debit,deb[1.20.05%]
+tvcr_report_balance_K1_02_08deb,tvcr_report_balance_K1_02_08,1,bc_debit,deb[1.20.08%]
+tvcr_report_balance_K1_02_09deb,tvcr_report_balance_K1_02_09,1,bc_debit,deb[1.40.01]+deb[1.40.02]
+
+tvcr_report_balance_K1_02crd,tvcr_report_balance_K1_02,1,bc_credit,K1_02_01[2]+K1_02_02[2]+K1_02_03[2]+K1_02_04[2]+K1_02_05[2]+K1_02_06[2]+K1_02_07[2]+K1_02_08[2]+K1_02_09[2]
+tvcr_report_balance_K1_02_01crd,tvcr_report_balance_K1_02_01,1,bc_credit,crd[1.20.01.01]
+tvcr_report_balance_K1_02_02crd,tvcr_report_balance_K1_02_02,1,bc_credit,crd[1.20.02%]
+tvcr_report_balance_K1_02_03crd,tvcr_report_balance_K1_02_03,1,bc_credit,crd[1.20.07%]
+tvcr_report_balance_K1_02_04crd,tvcr_report_balance_K1_02_04,1,bc_credit,crd[1.20.06%]
+tvcr_report_balance_K1_02_05crd,tvcr_report_balance_K1_02_05,1,bc_credit,crd[1.20.04%]
+tvcr_report_balance_K1_02_06crd,tvcr_report_balance_K1_02_06,1,bc_credit,crd[1.20.09%]
+tvcr_report_balance_K1_02_07crd,tvcr_report_balance_K1_02_07,1,bc_credit,crd[1.20.05%]
+tvcr_report_balance_K1_02_08crd,tvcr_report_balance_K1_02_08,1,bc_credit,crd[1.20.08%]
+tvcr_report_balance_K1_02_09crd,tvcr_report_balance_K1_02_09,1,bc_credit,crd[1.40.01]+crd[1.40.02]
+
+tvcr_report_balance_K1_02fin,tvcr_report_balance_K1_02,1,bc_final,K1_02_01[3]+K1_02_02[3]+K1_02_03[3]+K1_02_04[3]+K1_02_05[3]+K1_02_06[3]+K1_02_07[3]+K1_02_08[3]+K1_02_09[3]
+tvcr_report_balance_K1_02_01fin,tvcr_report_balance_K1_02_01,1,bc_final,bale[1.20.01.01]
+tvcr_report_balance_K1_02_02fin,tvcr_report_balance_K1_02_02,1,bc_final,bale[1.20.02%]
+tvcr_report_balance_K1_02_03fin,tvcr_report_balance_K1_02_03,1,bc_final,bale[1.20.07%]
+tvcr_report_balance_K1_02_04fin,tvcr_report_balance_K1_02_04,1,bc_final,bale[1.20.06%]
+tvcr_report_balance_K1_02_05fin,tvcr_report_balance_K1_02_05,1,bc_final,bale[1.20.04%]
+tvcr_report_balance_K1_02_06fin,tvcr_report_balance_K1_02_06,1,bc_final,bale[1.20.09%]
+tvcr_report_balance_K1_02_07fin,tvcr_report_balance_K1_02_07,1,bc_final,bale[1.20.05%]
+tvcr_report_balance_K1_02_08fin,tvcr_report_balance_K1_02_08,1,bc_final,bale[1.20.08%]
+tvcr_report_balance_K1_02_09fin,tvcr_report_balance_K1_02_09,1,bc_final,bale[1.40.01]+bale[1.40.02]
+
+
+
+terreno_ini,tvcr_report_cedula_costos_ini,1,cd_ter,pbali[1.20.01.01]
+terreno_adi,tvcr_report_cedula_costos_adi,1,cd_ter,"deb[1.20.01.01][('journal_id.code', '=', 'APER')]"
+terreno_dis,tvcr_report_cedula_costos_dis,1,cd_ter,"-crd[1.20.01.01][('journal_id.code', '=', 'APER')]"
+terreno_aju,tvcr_report_cedula_costos_aju,1,cd_ter,"balp[1.20.01.01][('journal_id.code', '=', 'AJUS')]"
+terreno_fin,tvcr_report_cedula_costos_fin,1,cd_ter,pbale[1.20.01.01]
+
+edificios_ini,tvcr_report_cedula_costos_ini,1,cd_edi,pbali[1.20.02.01]
+edificios_adi,tvcr_report_cedula_costos_adi,1,cd_edi,"deb[1.20.02.01][('journal_id.code', '=', 'APER')]"
+edificios_dis,tvcr_report_cedula_costos_dis,1,cd_edi,"-crd[1.20.02.01][('journal_id.code', '=', 'APER')]"
+edificios_aju,tvcr_report_cedula_costos_aju,1,cd_edi,"balp[1.20.02.01][('journal_id.code', '=', 'AJUS')]"
+edificios_fin,tvcr_report_cedula_costos_fin,1,cd_edi,pbale[1.20.02.01]
+
+maquinaria_ini,tvcr_report_cedula_costos_ini,1,cd_maq,pbali[1.20.05.01]
+maquinaria_adi,tvcr_report_cedula_costos_adi,1,cd_maq,"deb[1.20.05.01][('journal_id.code', '=', 'APER')]"
+maquinaria_dis,tvcr_report_cedula_costos_dis,1,cd_maq,"-crd[1.20.05.01][('journal_id.code', '=', 'APER')]"
+maquinaria_aju,tvcr_report_cedula_costos_aju,1,cd_maq,"balp[1.20.05.01][('journal_id.code', '=', 'AJUS')]"
+maquinaria_fin,tvcr_report_cedula_costos_fin,1,cd_maq,pbale[1.20.05.01]
+
+vehiculos_ini,tvcr_report_cedula_costos_ini,1,cd_veh,pbali[1.20.07.01]
+vehiculos_adi,tvcr_report_cedula_costos_adi,1,cd_veh,"deb[1.20.07.01][('journal_id.code', '=', 'APER')]"
+vehiculos_dis,tvcr_report_cedula_costos_dis,1,cd_veh,"-crd[1.20.07.01][('journal_id.code', '=', 'APER')]"
+vehiculos_aju,tvcr_report_cedula_costos_aju,1,cd_veh,"balp[1.20.07.01][('journal_id.code', '=', 'AJUS')]"
+vehiculos_fin,tvcr_report_cedula_costos_fin,1,cd_veh,pbale[1.20.07.01]
+
+equipo_electronico_ini,tvcr_report_cedula_costos_ini,1,cd_eqe,pbali[1.20.04.01]
+equipo_electronico_adi,tvcr_report_cedula_costos_adi,1,cd_eqe,"deb[1.20.04.01][('journal_id.code', '=', 'APER')]"
+equipo_electronico_dis,tvcr_report_cedula_costos_dis,1,cd_eqe,"-crd[1.20.04.01][('journal_id.code', '=', 'APER')]"
+equipo_electronico_aju,tvcr_report_cedula_costos_aju,1,cd_eqe,"balp[1.20.04.01][('journal_id.code', '=', 'AJUS')]"
+equipo_electronico_fin,tvcr_report_cedula_costos_fin,1,cd_eqe,pbale[1.20.04.01]
+
+mejoras_ini,tvcr_report_cedula_costos_ini,1,cd_mej,pbali[1.40.01]
+mejoras_adi,tvcr_report_cedula_costos_adi,1,cd_mej,"deb[1.40.01][('journal_id.code', '=', 'APER')]"
+mejoras_dis,tvcr_report_cedula_costos_dis,1,cd_mej,"-crd[1.40.01][('journal_id.code', '=', 'APER')]"
+mejoras_aju,tvcr_report_cedula_costos_aju,1,cd_mej,"balp[1.40.01[('journal_id.code', '=', 'AJUS')]"
+mejoras_fin,tvcr_report_cedula_costos_fin,1,cd_mej,pbale[1.40.01]
+
+propiedades_ini,tvcr_report_cedula_costos_ini,1,cd_pro,pbali[1.20.09.01]
+propiedades_adi,tvcr_report_cedula_costos_adi,1,cd_pro,"deb[1.20.09.01][('journal_id.code', '=', 'APER')]"
+propiedades_dis,tvcr_report_cedula_costos_dis,1,cd_pro,"-crd[1.20.09.01][('journal_id.code', '=', 'APER')]"
+propiedades_aju,tvcr_report_cedula_costos_aju,1,cd_pro,"balp[1.20.09.01][('journal_id.code', '=', 'AJUS')]"
+propiedades_fin,tvcr_report_cedula_costos_fin,1,cd_pro,pbale[1.20.09.01]
+
+mobiliario_ini,tvcr_report_cedula_costos_ini,1,cd_mob,pbali[1.20.06.01]
+mobiliario_adi,tvcr_report_cedula_costos_adi,1,cd_mob,"deb[1.20.06.01][('journal_id.code', '=', 'APER')]"
+mobiliario_dis,tvcr_report_cedula_costos_dis,1,cd_mob,"-crd[1.20.06.01][('journal_id.code', '=', 'APER')]"
+mobiliario_aju,tvcr_report_cedula_costos_aju,1,cd_mob,"balp[1.20.06.01][('journal_id.code', '=', 'AJUS')]"
+mobiliario_fin,tvcr_report_cedula_costos_fin,1,cd_mob,pbale[1.20.06.01]
+
+equipo_herramientas_ini,tvcr_report_cedula_costos_ini,1,cd_eqh,pbali[1.20.08.01]
+equipo_herramientas_adi,tvcr_report_cedula_costos_adi,1,cd_eqh,"deb[1.20.08.01][('journal_id.code','=','APER')]"
+equipo_herramientas_dis,tvcr_report_cedula_costos_dis,1,cd_eqh,"-crd[1.20.08.01][('journal_id.code', '=', 'APER')]"
+equipo_herramientas_aju,tvcr_report_cedula_costos_aju,1,cd_eqh,"balp[1.20.08.01][('journal_id.code', '=', 'AJUS')]"
+equipo_herramientas_fin,tvcr_report_cedula_costos_fin,1,cd_eqh,pbale[1.20.08.01]
+
+
+edificios_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_edi,nbali[1.20.02.02]
+edificios_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_edi,"-crd[1.20.02.02][('journal_id.code', '=', 'APER')]"
+edificios_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_edi,"deb[1.20.02.02][('journal_id.code', '=', 'APER')]"
+edificios_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_edi,"balp[1.20.02.02][('journal_id.code', '=', 'AJUS')]"
+edificios_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_edi,nbale[1.20.02.02]
+
+maquinaria_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_maq,nbali[1.20.05.02]
+maquinaria_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_maq,"-crd[1.20.05.02][('journal_id.code', '=', 'APER')]"
+maquinaria_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_maq,"deb[1.20.05.02] [('journal_id.code', '=', 'APER')]"
+maquinaria_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_maq,"balp[1.20.05.02][('journal_id.code', '=', 'AJUS')]"
+maquinaria_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_maq,nbale[1.20.05.02]
+
+vehiculos_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_veh,nbali[1.20.07.02]
+vehiculos_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_veh,"-crd[1.20.07.02][('journal_id.code', '=', 'APER')]"
+vehiculos_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_veh,"deb[1.20.07.02][('journal_id.code', '=', 'APER')]"
+vehiculos_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_veh,"balp[1.20.07.02][('journal_id.code', '=', 'AJUS')]"
+vehiculos_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_veh,nbale[1.20.07.02]
+
+equipo_electronico_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_eqe,nbali[1.20.04.02]
+equipo_electronico_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_eqe,"-crd[1.20.04.02][('journal_id.code', '=', 'APER')]"
+equipo_electronico_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_eqe,"deb[1.20.04.02][('journal_id.code', '=', 'APER')]"
+equipo_electronico_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_eqe,"balp[1.20.04.02][('journal_id.code', '=', 'AJUS')]"
+equipo_electronico_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_eqe,nbale[1.20.04.02]
+
+mejoras_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_mej,nbali[1.40.02]
+mejoras_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_mej,"-crd[1.40.02][('journal_id.code', '=', 'APER')]"
+mejoras_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_mej,"deb[1.40.02][('journal_id.code', '=', 'APER')]"
+mejoras_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_mej,"balp[1.40.02[('journal_id.code', '=', 'AJUS')]"
+mejoras_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_mej,nbale[1.40.02]
+
+propiedades_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_pro,nbali[1.20.09.02]
+propiedades_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_pro,"-crd[1.20.09.02][('journal_id.code', '=', 'APER')]"
+propiedades_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_pro,"deb[1.20.09.02][('journal_id.code', '=', 'APER')]"
+propiedades_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_pro,"balp[1.20.09.02][('journal_id.code', '=', 'AJUS')]"
+propiedades_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_pro,nbale[1.20.09.02]
+
+mobiliario_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_mob,nbali[1.20.06.02]
+mobiliario_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_mob,"crd[1.20.06.02][('journal_id.code', '=', 'APER')]"
+mobiliario_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_mob,"deb[1.20.06.02][('journal_id.code', '=', 'APER')]"
+mobiliario_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_mob,"balp[1.20.06.02][('journal_id.code', '=', 'AJUS')]"
+mobiliario_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_mob,nbale[1.20.06.02]
+
+equipo_herramientas_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_eqh,nbali[1.20.08.02]
+equipo_herramientas_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_eqh,"-crd[1.20.08.02][('journal_id.code','=','APER')]"
+equipo_herramientas_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_eqh,"deb[1.20.08.02][('journal_id.code', '=', 'APER')]"
+equipo_herramientas_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_eqh,"balp[1.20.08.02][('journal_id.code', '=', 'AJUS')]"
+equipo_herramientas_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_eqh,nbale[1.20.08.02]
+
+
+total_ini,tvcr_report_cedula_costos_ini,1,cd_total,bali[1.20.01.01] + bali[1.20.02.01] + bali[1.20.05.01] + bali[1.20.07.01] + bali[1.20.04.01] + bali[1.40.01] + bali[1.20.09.01] + bali[1.20.06.01] + bali[1.20.08.01]
+total_adi,tvcr_report_cedula_costos_adi,1,cd_total,"deb[1.20.01.01][('journal_id.code', '=', 'APER')] + deb[1.20.02.01][('journal_id.code', '=', 'APER')] + deb[1.20.05.01][('journal_id.code', '=', 'APER')] + deb[1.20.07.01][('journal_id.code', '=', 'APER')] + deb[1.20.04.01][('journal_id.code', '=', 'APER')] + deb[1.40.01][('journal_id.code', '=', 'APER')] + deb[1.20.09.01][('journal_id.code', '=', 'APER')] + deb[1.20.06.01][('journal_id.code', '=', 'APER')] + deb[1.20.08.01][('journal_id.code','=','APER')]"
+total_dis,tvcr_report_cedula_costos_dis,1,cd_total,"crd[1.20.01.01][('journal_id.code', '=', 'APER')] + crd[1.20.02.01][('journal_id.code', '=', 'APER')] + crd[1.20.05.01][('journal_id.code', '=', 'APER')] + crd[1.20.07.01][('journal_id.code', '=', 'APER')] + crd[1.20.04.01][('journal_id.code', '=', 'APER')] + crd[1.40.01][('journal_id.code', '=', 'APER')] + crd[1.20.09.01][('journal_id.code', '=', 'APER')] + crd[1.20.06.01][('journal_id.code', '=', 'APER')] + crd[1.20.08.01][('journal_id.code', '=', 'APER')]"
+total_aju,tvcr_report_cedula_costos_aju,1,cd_total,"balp[1.20.01.01][('journal_id.code', '=', 'AJUS')] + balp[1.20.02.01][('journal_id.code', '=', 'AJUS')] + balp[1.20.05.01][('journal_id.code', '=', 'AJUS')] + balp[1.20.07.01][('journal_id.code', '=', 'AJUS')] + balp[1.20.04.01][('journal_id.code', '=', 'AJUS')] + balp[1.40.01[('journal_id.code', '=', 'AJUS')] + balp[1.20.09.01][('journal_id.code', '=', 'AJUS')] + balp[1.20.06.01][('journal_id.code', '=', 'AJUS')] + balp[1.20.08.01][('journal_id.code', '=', 'AJUS')]"
+total_fin,tvcr_report_cedula_costos_fin,1,cd_total,bale[1.20.01.01] + bale[1.20.02.01] + bale[1.20.05.01] + bale[1.20.07.01] + bale[1.20.04.01] + bale[1.40.01] + bale[1.20.09.01] + bale[1.20.06.01] + bale[1.20.08.01]
+
+total_ini_2,tvcr_report_cedula_depreciacion_ini,1,cd_total,bali[1.20.01.02] + bali[1.20.02.02] + bali[1.20.05.02] + bali[1.20.07.02] + bali[1.20.04.02] + bali[1.40.02] + bali[1.20.09.02] + bali[1.20.06.02] + bali[1.20.08.02]
+total_adi_2,tvcr_report_cedula_depreciacion_adi,1,cd_total,"deb[1.20.01.02][('journal_id.code', '=', 'APER')] + deb[1.20.02.02][('journal_id.code', '=', 'APER')] + deb[1.20.05.02][('journal_id.code', '=', 'APER')] + deb[1.20.07.02][('journal_id.code', '=', 'APER')] + deb[1.20.04.02][('journal_id.code', '=', 'APER')] + deb[1.40.02][('journal_id.code', '=', 'APER')] + deb[1.20.09.02][('journal_id.code', '=', 'APER')] + deb[1.20.06.02][('journal_id.code', '=', 'APER')] + deb[1.20.08.02][('journal_id.code','=','APER')]"
+total_dis_2,tvcr_report_cedula_depreciacion_dis,1,cd_total,"crd[1.20.01.02][('journal_id.code', '=', 'APER')] + crd[1.20.02.02][('journal_id.code', '=', 'APER')] + crd[1.20.05.02][('journal_id.code', '=', 'APER')] + crd[1.20.07.02][('journal_id.code', '=', 'APER')] + crd[1.20.04.02][('journal_id.code', '=', 'APER')] + crd[1.40.02][('journal_id.code', '=', 'APER')] + crd[1.20.09.02][('journal_id.code', '=', 'APER')] + crd[1.20.06.02][('journal_id.code', '=', 'APER')] + crd[1.20.08.02][('journal_id.code', '=', 'APER')]"
+total_aju_2,tvcr_report_cedula_depreciacion_aju,1,cd_total,"balp[1.20.01.02][('journal_id.code', '=', 'AJUS')] + balp[1.20.02.02][('journal_id.code', '=', 'AJUS')] + balp[1.20.05.02][('journal_id.code', '=', 'AJUS')] + balp[1.20.07.02][('journal_id.code', '=', 'AJUS')] + balp[1.20.04.02][('journal_id.code', '=', 'AJUS')] + balp[1.40.02][('journal_id.code', '=', 'AJUS')] + balp[1.20.09.02][('journal_id.code', '=', 'AJUS')] + balp[1.20.06.02][('journal_id.code', '=', 'AJUS')] + balp[1.20.08.02][('journal_id.code', '=', 'AJUS')]"
+total_fin_2,tvcr_report_cedula_depreciacion_fin,1,cd_total,bale[1.20.01.02] + bale[1.20.02.02] + bale[1.20.05.02] + bale[1.20.07.02] + bale[1.20.04.02] + bale[1.40.02] + bale[1.20.09.02] + bale[1.20.06.02] + bale[1.20.08.02]
