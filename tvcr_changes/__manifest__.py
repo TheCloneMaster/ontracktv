@@ -14,6 +14,7 @@
         'stock_landed_costs',
         'web_widget_x2many_2d_matrix',
         'commission',
+        'purchase_tier_validation',
         'account_invoice_line_report',
         'account_bank_statement_import_csv',
     ],
