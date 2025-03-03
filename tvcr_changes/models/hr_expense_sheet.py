@@ -70,6 +70,7 @@ class ExpenseSheet(models.Model):
                 raise UserError(_("El Gasto %s no tiene una factura asociada") % (expense_line.name))
             for line in invoice.invoice_line_ids:
                 line.account_id = expense_line.account_id
+                line.analytic_account_id = expense_line.analytic_account_id
             if invoice.state == "draft":
                 invoice._post()
         return super().action_sheet_move_create()
