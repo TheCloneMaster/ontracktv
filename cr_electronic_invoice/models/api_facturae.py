@@ -1289,9 +1289,9 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
 
         ####################################
         otrosCargos = invoice_xml.xpath("inv:OtrosCargos", namespaces=namespaces)
-        if otrosCargos:
-            total_amount = float(otrosCargos[0].xpath("inv:MontoCargo", namespaces=namespaces)[0].text)
-            columns = {'name': otrosCargos[0].xpath("inv:Detalle", namespaces=namespaces)[0].text,
+        for otroCargo in otrosCargos:
+            total_amount = float(otroCargo[0].xpath("inv:MontoCargo", namespaces=namespaces)[0].text)
+            columns = {'name': otroCargo[0].xpath("inv:Detalle", namespaces=namespaces)[0].text,
                         'move_id': invoice.id,
                         'price_unit': total_amount,
                         'quantity': 1,
