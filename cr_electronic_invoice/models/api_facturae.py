@@ -1290,8 +1290,8 @@ def load_xml_data(invoice, load_lines, account_id, product_id=False, analytic_ac
         ####################################
         otrosCargos = invoice_xml.xpath("inv:OtrosCargos", namespaces=namespaces)
         for otroCargo in otrosCargos:
-            total_amount = float(otroCargo[0].xpath("inv:MontoCargo", namespaces=namespaces)[0].text)
-            columns = {'name': otroCargo[0].xpath("inv:Detalle", namespaces=namespaces)[0].text,
+            total_amount = float(otroCargo.xpath("inv:MontoCargo", namespaces=namespaces)[0].text)
+            columns = {'name': otroCargo.xpath("inv:Detalle", namespaces=namespaces)[0].text,
                         'move_id': invoice.id,
                         'price_unit': total_amount,
                         'quantity': 1,
