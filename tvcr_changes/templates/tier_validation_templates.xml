@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="tier_validation_buttons_purchase_request">
+        <div>
+            <button
+                name="restart_validation"
+                string="Restart Validation"
+                invisible="not review_ids or hide_reviews"
+                type="object"
+            />
+        </div>
+    </template>
+</odoo>

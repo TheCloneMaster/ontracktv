@@ -1,3 +1,5 @@
+from lxml import etree
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -26,13 +28,11 @@ class PurchaseOrder(models.Model):
             p.enable_confirm_action = True if p.confirm_po == True else False
 
     def _add_tier_validation_buttons(self, node, params):
-        node = super()._add_tier_validation_buttons(node, params)
-        return node
-        # str_element = self.env["ir.qweb"]._render(
-        #     "base_tier_validation.tier_validation_buttons", params
-        # )
-        # new_node = etree.fromstring(str_element)
-        # return new_node
+        str_element = self.env["ir.qweb"]._render(
+            "tvcr_changes.tier_validation_buttons_purchase_request", params
+        )
+        new_node = etree.fromstring(str_element)
+        return new_node
 
 class PurchaseRequest(models.Model):
     _inherit = "purchase.request"
