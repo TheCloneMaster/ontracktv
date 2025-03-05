@@ -66,7 +66,7 @@ class FetchmailServer(models.Model):
                         result, data = imap_server.fetch(num, '(RFC822)')
                         imap_server.store(num, '-FLAGS', '\\Seen')
                         message = data[0][1]
-                        msg = 'No Asignado'
+                        msg = False
                         try:
                             warning_messages = []
                             ##res_id = MailThread.with_context(**additionnal_context).message_process(server.object_id.model, data[0][1], save_original=server.original, strip_attachments=(not server.attach))
@@ -102,8 +102,11 @@ class FetchmailServer(models.Model):
                                 imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Repeated Invoice")
                             else:
-                                errors_warnings.append(f"Ignored email {msg.get('subject', '')}")
-                                errors_warnings.append(f"From: {msg.get('from', '')}")
+                                if msg:
+                                    errors_warnings.append(f"Ignored email {msg.get('subject', '')}")
+                                    errors_warnings.append(f"From: {msg.get('from', '')}")
+                                else:
+                                    errors_warnings.append(f"Ignored email bad format")
                                 errors_warnings += warning_messages
                                 imap_server.copy(num, 'Inbox/Ignored')
                                 imap_server.store(num, '+FLAGS', '\\Deleted')
