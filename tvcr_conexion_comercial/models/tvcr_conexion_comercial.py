@@ -139,7 +139,10 @@ class TVCRConexionComercial(models.Model):
             'product_id': product and product.id,
             'product_uom_qty': 1, #order_line_data.Cantidad,
             'price_unit': order_line_data.Precio,
-            'discount': order_line_data.PorcentajeDescuento,
+            'discount_conf_id': self.env.ref(
+                        'invoice_discount_per_line.advance_discount_selection_percentage').id,
+            # 'discount': order_line_data.PorcentajeDescuento,
+            'advance_discount': order_line_data.MontoDescuento,
             'name': order_line_data.ProductoCliente,
             # 'name': str(order_line_data.Cantidad) + ' ' + order_line_data.NombrePrograma + ' - ' + order_line_data.ProductoCliente,
             # 'tax_id': [(6, 0, iva_tax+periodistas_tax)], #Funcion para obtener impuestos

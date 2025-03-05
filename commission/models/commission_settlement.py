@@ -95,6 +95,7 @@ class CommissionSettlement(models.Model):
         self.ensure_one()
         # Buscar todas las facturas en el período
         invoices = self.env['account.move'].search([
+            ('partner_shipping_id.agent', '=', True),
             ('invoice_date', '>=', self.date_from),
             ('invoice_date', '<=', self.date_to),
             ('move_type', 'in', ['out_invoice', 'out_refund']),
@@ -129,6 +130,7 @@ class CommissionSettlement(models.Model):
 
             volumen_base = 0
             invoice_commission = 0
+            line_details = []
             # Calcular line_commission (monto sin impuestos de líneas no exentas de comisión)
             for line in invoice.invoice_line_ids:
                 if line.product_id.commission_free:
@@ -154,6 +156,12 @@ class CommissionSettlement(models.Model):
 
                 invoice_commission += line.price_subtotal * line_percentage / 100
                 volumen_base += line.price_subtotal
+                line_details.append({
+                    'invoice_line_id': line.id,
+                    'line_amount': line.price_subtotal,
+                    'commission_percentage': line_percentage,
+                    # 'line_commission': line.price_subtotal * line_percentage / 100,
+                })
 
             # Agregar la factura al diccionario usando la dirección como llave
             if key_address not in invoices_by_agent:
@@ -220,6 +228,7 @@ class CommissionSettlement(models.Model):
                         'currency_id': agent_invoice['invoice'].currency_id.id,
                         'date': agent_invoice['invoice'].invoice_date,
                         'agent_id': agent,
+                        'partner_id': agent_invoice['invoice'].partner_id.id,
                         'invoice_id': agent_invoice['invoice'].id,
                         'agent_volume': agent_volume,
                         'invoice_amount': agent_invoice['invoice_amount'],
@@ -236,7 +245,6 @@ class CommissionSettlement(models.Model):
                 except Exception as e:
                     _logger.error(f"Error creating settlement line: {e}")
             
-        # return invoices_by_agent
 class SettlementLine(models.Model):
     _name = "commission.settlement.line"
     _description = "Line of a commission settlement"
@@ -254,6 +262,10 @@ class SettlementLine(models.Model):
         required=True,
     )
     agent_id = fields.Many2one(
+        comodel_name="res.partner",
+        store=True,
+    )
+    partner_id = fields.Many2one(
         comodel_name="res.partner",
         store=True,
     )
@@ -309,3 +321,41 @@ class SettlementLine(models.Model):
     @api.onchange('volumen_percentage')
     def _onchange_volumen_percentage(self):
         self.volume_amount = (self.volumen_base - self.invoice_commission) * self.volumen_percentage / 100
+
+
+
+class SettlementLineDetails(models.Model):
+    _name = "commission.settlement.line.detail"
+    _description = "Line detail of a commission settlement"
+
+    name = fields.Char()
+    settlement_line_id = fields.Many2one(
+        "commission.settlement.line",
+        readonly=True,
+        ondelete="cascade",
+        required=True,
+    )
+    invoice_line_id = fields.Many2one(
+        comodel_name="account.move.line",
+        required=True,
+    )
+    line_amount = fields.Monetary(
+        related="invoice_line_id.price_subtotal",
+        readonly=True, store=True
+    )
+    currency_id = fields.Many2one(
+        related="invoice_line_id.currency_id",
+        comodel_name="res.currency",
+        store=True,
+        readonly=True,
+    )
+    commission_percentage = fields.Float(
+        readonly=False, store=True
+    )
+    line_commission = fields.Monetary(
+        readonly=False, store=True
+    )
+
+    @api.onchange('commission_percentage')
+    def _onchange_commission_percentage(self):
+        self.line_commission: self.line_amount * self.commission_percentage / 100

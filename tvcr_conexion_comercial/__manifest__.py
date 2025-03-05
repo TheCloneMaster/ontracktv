@@ -7,7 +7,7 @@
     """,
     'author': 'Mario Arias - OnTrack Costa Rica',
     'category': 'Sales',
-    'depends': ['sale_management'],
+    'depends': ['sale_management', 'sale_discount_per_line'],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
