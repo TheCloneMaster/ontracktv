@@ -101,15 +101,16 @@ class FetchmailServer(models.Model):
                                 imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Repeated Invoice")
                             else:
-                                errors_warnings.append(f"Ignored email {message}")
-                                # errors_warnings.append(f"From: {msg.get('from', '')}")
+                                errors_warnings.append(f"Ignored email {msg.get('subject', '')}")
+                                errors_warnings.append(f"From: {msg.get('from', '')}")
                                 errors_warnings += warning_messages
                                 imap_server.copy(num, 'Inbox/Ignored')
                                 imap_server.store(num, '+FLAGS', '\\Deleted')
                                 _logger.info("Ignore email")
                         except Exception:
-                            errors_warnings.append(f"Failed to process email {msg.get('subject', '')}")
-                            errors_warnings.append(f"From: {msg.get('from', '')}")
+                            errors_warnings.append(f"Ignored email {message}")
+                            # errors_warnings.append(f"Failed to process email {msg.get('subject', '')}")
+                            # errors_warnings.append(f"From: {msg.get('from', '')}")
                             errors_warnings += warning_messages
                             imap_server.copy(num, 'Inbox/Failed')
                             imap_server.store(num, '+FLAGS', '\\Deleted')
