@@ -140,7 +140,7 @@ class TVCRConexionComercial(models.Model):
             'product_uom_qty': 1, #order_line_data.Cantidad,
             'price_unit': order_line_data.Precio,
             'discount_conf_id': self.env.ref(
-                        'invoice_discount_per_line.advance_discount_selection_percentage').id,
+                        'invoice_discount_per_line.advance_discount_selection_fix_per_line').id,
             # 'discount': order_line_data.PorcentajeDescuento,
             'advance_discount': order_line_data.MontoDescuento,
             'name': order_line_data.ProductoCliente,
