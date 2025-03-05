@@ -66,6 +66,7 @@ class FetchmailServer(models.Model):
                         result, data = imap_server.fetch(num, '(RFC822)')
                         imap_server.store(num, '-FLAGS', '\\Seen')
                         message = data[0][1]
+                        msg = 'No Asignado'
                         try:
                             warning_messages = []
                             ##res_id = MailThread.with_context(**additionnal_context).message_process(server.object_id.model, data[0][1], save_original=server.original, strip_attachments=(not server.attach))
